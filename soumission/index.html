@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Demande de soumission Artisan FM — décrivez votre besoin, sans taux horaire.">
+    <title>Soumission | Artisan FM</title>
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header class="site-header">
+        <a class="brand" href="../index.html">
+            <span class="brand-name">Artisan FM</span>
+            <span class="brand-mark">L'Artisan du numérique</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+            <a href="../index.html">Accueil</a>
+            <a href="../realisations/index.html">Réalisations</a>
+            <a href="../approche/index.html">Mon approche</a>
+            <a href="index.html" aria-current="page">Soumission</a>
+        </nav>
+    </header>
+
+    <main id="contenu">
+        <h1>Demande de soumission</h1>
+
+        <section class="form-panel" id="stepWelcome" aria-labelledby="welcomeTitle">
+            <h2 id="welcomeTitle">Étape 1 sur 4 — Bienvenue</h2>
+            <p>Artisan FM conçoit des solutions numériques sur mesure : sites web, boutiques en ligne, applications, logiciels et outils de gestion.</p>
+            <h3>Avant de commencer</h3>
+            <ul class="plain-list">
+                <li>Quelques renseignements et une description du besoin seront demandés.</li>
+                <li>Ces renseignements servent uniquement à préparer une proposition.</li>
+                <li>Aucune information n'est transmise à un tiers.</li>
+            </ul>
+            <label class="consent" for="consent">
+                <input type="checkbox" id="consent">
+                <span>J'ai lu ces informations et j'accepte que les renseignements fournis servent à traiter ma demande de soumission.</span>
+            </label>
+            <p class="field-error" id="consentError" role="alert"></p>
+            <div class="form-actions">
+                <button class="btn btn-primary" type="button" id="startBtn">Commencer</button>
+            </div>
+        </section>
+
+        <section class="form-panel" id="stepNeed" hidden aria-labelledby="needTitle">
+            <h2 id="needTitle">Étape 2 sur 4</h2>
+            <p>Décrivez la nature du besoin et le support visé.</p>
+            <label for="serviceType">Nature du besoin *</label>
+            <select id="serviceType" name="serviceType">
+                <option value="">— Sélectionnez une option —</option>
+                <option value="site">Site web</option>
+                <option value="boutique">Boutique en ligne</option>
+                <option value="application">Application</option>
+                <option value="logiciel">Logiciel</option>
+                <option value="outil">Outil de gestion</option>
+                <option value="autre">Autre</option>
+            </select>
+            <p class="field-error" id="serviceTypeError" role="alert"></p>
+
+            <label for="platformType">Support visé *</label>
+            <select id="platformType" name="platformType">
+                <option value="">— Sélectionnez une option —</option>
+                <option value="web">Web</option>
+                <option value="android">Android</option>
+                <option value="windows">Windows</option>
+                <option value="autre">Autre</option>
+            </select>
+            <p class="field-error" id="platformTypeError" role="alert"></p>
+
+            <div class="form-actions">
+                <button class="btn btn-ghost" type="button" id="backToWelcome">Retour</button>
+                <button class="btn btn-primary" type="button" id="toDetails">Continuer</button>
+            </div>
+        </section>
+
+        <section class="form-panel" id="stepDetails" hidden aria-labelledby="detailsTitle">
+            <h2 id="detailsTitle">Étape 3 sur 4</h2>
+            <h3>Coordonnées</h3>
+            <label for="clientName">Nom complet *</label>
+            <input type="text" id="clientName" name="clientName" autocomplete="name">
+            <p class="field-error" id="clientNameError" role="alert"></p>
+
+            <label for="clientEmail">Adresse courriel *</label>
+            <input type="email" id="clientEmail" name="clientEmail" autocomplete="email">
+            <p class="field-error" id="clientEmailError" role="alert"></p>
+
+            <label for="clientPhone">Téléphone</label>
+            <input type="tel" id="clientPhone" name="clientPhone" autocomplete="tel" inputmode="tel">
+            <p class="field-error" id="clientPhoneError" role="alert"></p>
+
+            <label for="clientCompany">Entreprise</label>
+            <input type="text" id="clientCompany" name="clientCompany" autocomplete="organization">
+
+            <h3>Besoin</h3>
+            <label for="projectName">Nom du projet</label>
+            <input type="text" id="projectName" name="projectName">
+
+            <label for="projectDescription">Description *</label>
+            <textarea id="projectDescription" name="projectDescription" maxlength="5000" rows="8"></textarea>
+            <p class="counter" id="projectDescriptionCounter">0 / 5000</p>
+            <p class="field-error" id="projectDescriptionError" role="alert"></p>
+
+            <label for="expectedResult">Résultat attendu *</label>
+            <textarea id="expectedResult" name="expectedResult" maxlength="1500" rows="5"></textarea>
+            <p class="counter" id="expectedResultCounter">0 / 1500</p>
+            <p class="field-error" id="expectedResultError" role="alert"></p>
+
+            <h3>Budget et délai</h3>
+            <label for="budgetType">Budget approximatif *</label>
+            <select id="budgetType" name="budgetType">
+                <option value="">— Sélectionnez une option —</option>
+                <option value="inconnu">Je ne sais pas encore</option>
+                <option value="discussion">À discuter</option>
+                <option value="moins-500">Moins de 500 $</option>
+                <option value="500-2000">500 $ à 2 000 $</option>
+                <option value="2000-5000">2 000 $ à 5 000 $</option>
+                <option value="5000-10000">5 000 $ à 10 000 $</option>
+                <option value="plus-10000">Plus de 10 000 $</option>
+            </select>
+            <p class="field-error" id="budgetTypeError" role="alert"></p>
+
+            <label for="timelineType">Délai souhaité *</label>
+            <select id="timelineType" name="timelineType">
+                <option value="">— Sélectionnez une option —</option>
+                <option value="des-que-possible">Dès que possible</option>
+                <option value="semaine">Cette semaine</option>
+                <option value="mois">Ce mois-ci</option>
+                <option value="trois-mois">Dans les 3 prochains mois</option>
+                <option value="sans-date">Aucune date précise</option>
+            </select>
+            <p class="field-error" id="timelineTypeError" role="alert"></p>
+
+            <div class="form-actions">
+                <button class="btn btn-ghost" type="button" id="backToNeed">Retour</button>
+                <button class="btn btn-primary" type="button" id="toRates">Continuer</button>
+            </div>
+        </section>
+
+        <section class="form-panel" id="stepRates" hidden aria-labelledby="ratesTitle">
+            <h2 id="ratesTitle">Étape 4 sur 4</h2>
+            <h3>Conditions</h3>
+            <ul class="plain-list">
+                <li>Le prix est un forfait écrit avant de commencer.</li>
+                <li>Un acompte est prévu au contrat.</li>
+                <li>Aucune facture n'est envoyée sans accord.</li>
+            </ul>
+            <label class="consent" for="ratesConsent">
+                <input type="checkbox" id="ratesConsent">
+                <span>J'ai pris connaissance de ces conditions.</span>
+            </label>
+            <p class="field-error" id="ratesConsentError" role="alert"></p>
+            <p class="review-note">Note de travail : l'envoi et la vérification anti-robot ne sont pas branchés. Aucune donnée ne quitte cette page.</p>
+            <div class="form-actions">
+                <button class="btn btn-ghost" type="button" id="backToDetails">Retour</button>
+                <button class="btn btn-primary" type="button" id="finishBtn">Terminer</button>
+            </div>
+        </section>
+
+        <section class="form-panel" id="stepHold" hidden aria-labelledby="holdTitle">
+            <h2 id="holdTitle">Formulaire prêt, envoi non branché</h2>
+            <p>La demande n'a pas été transmise.</p>
+            <p>Le parcours est en place. L'envoi sera relié à un formulaire propre à artisanfm.ca au moment de la mise en ligne, après accord.</p>
+            <div class="form-actions">
+                <a class="btn btn-primary" href="../index.html">Retour à l'accueil</a>
+            </div>
+        </section>
+        <p class="field-error" id="formError" role="alert"></p>
+    </main>
+
+    <footer class="site-footer">
+        <p>Artisan FM — L'Artisan du numérique</p>
+        <p>Des solutions sur mesure, pensées dans les moindres détails.</p>
+    </footer>
+    <script src="../js/nav.js"></script>
+    <script src="../js/soumission.js"></script>
+</body>
+</html>
