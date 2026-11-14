@@ -117,7 +117,8 @@
                 "</figure>";
         }
 
-        return sections + circuit;
+        /* Boucle d'abord : vue d'ensemble avant le détail des produits */
+        return circuit + sections;
     }
 
     function texteListe(projet) {
