@@ -2,3 +2,39 @@
 Thumbs.db
 desktop.ini
 *.log
+
+# Secrets / outils locaux (jamais publier)
+.env
+.env.*
+.dev.vars
+workers/
+*.pem
+*.key
+
+# Hors publication GitHub Pages (TEMP, sauvegardes, aperçus, brouillons)
+approche/
+savoir-faire/
+prototype-fibres.html
+soumission/apercu-courriel.html
+realisations/_backup-livre-20261112/
+realisations/fiches/
+realisations/haven.html
+realisations/hk-crib-go.html
+js/livre.js
+
+# Assets de travail / validation (non publiés)
+assets/accueil/_validation-*
+assets/accueil/reseau-reference-neo.jpg
+assets/accueil/reseau-reference-proto-*
+assets/accueil/reseau-reference-v1-backup.jpg
+assets/accueil/wifi/
+assets/atelier/ref-parchemin*
+assets/brand/*.backup.png
+assets/livre/
+assets/atelier/
+assets/realisations/haven-accueil.png
+assets/realisations/haven-historique.png
+assets/realisations/haven-horaire.png
+assets/realisations/hk-partie.png
+assets/realisations/hk-pointage.png
+assets/realisations/hk-support.png

@@ -13,6 +13,11 @@
     --radius: 14px;
     --measure: 40rem;
     --page: 72rem;
+    /* Zone visuelle commune sous le bandeau (Atelier, Réalisations, …) */
+    --stage-max: var(--page);
+    --stage-inline: calc(100% - 2rem);
+    --stage-pad: clamp(0.55rem, 1.6vw, 1rem);
+    --stage-gap-top: 0.85rem;
     --font: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Palatino Linotype", Palatino, Georgia, serif;
 }
@@ -64,7 +69,20 @@ a:hover {
     top: 1rem;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .site-header {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -73,25 +91,68 @@ a:hover {
     width: min(var(--page), calc(100% - 2rem));
     margin: 0 auto;
     padding: 1.25rem 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: none;
+}
+
+/* Ligne de séparation dorée — 1 px, sous le bandeau */
+.site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #a67c2a 6%,
+        #e0b45a 22%,
+        #ffe2a0 42%,
+        #fff6d6 50%,
+        #ffe2a0 58%,
+        #e0b45a 78%,
+        #a67c2a 94%,
+        transparent 100%
+    );
+    box-shadow:
+        0 0 3px rgba(255, 226, 160, 0.35),
+        0 0 7px rgba(224, 180, 90, 0.18);
 }
 
 .brand {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    color: var(--ink);
+    color: inherit;
+    line-height: 0;
+    min-width: 0;
+}
+
+.brand-logo {
+    display: block;
+    width: clamp(12rem, 38vw, 20rem);
+    height: auto;
+    max-width: min(360px, 70vw);
+    max-height: clamp(3.2rem, 10vw, 5rem);
+    object-fit: contain;
+    object-position: left center;
 }
 
 .brand-name {
     font-family: var(--serif);
-    font-size: 1.45rem;
+    font-size: clamp(1.4rem, 2.3vw, 1.9rem);
+    font-weight: 600;
     letter-spacing: 0.01em;
+    line-height: 1.12;
+    color: #ffe2a0;
 }
 
 .brand-mark {
-    color: var(--ink-soft);
-    font-size: 0.92rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.65vw, 1.28rem);
+    color: #fff0c2;
 }
 
 .nav-toggle {
@@ -105,12 +166,77 @@ a:hover {
 }
 
 .site-nav {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.4rem 1.1rem;
+    padding: 0.55rem 1.2rem 0.7rem;
+}
+
+/* Tache mauve aubergine — bande horizontale diffuse derrière les onglets */
+.site-nav::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    /* Dimensions figées — ne pas retoucher left/right/top/bottom */
+    top: -0.55rem;
+    bottom: -0.7rem;
+    left: -50px;
+    right: -50px;
+    width: auto;
+    max-width: none;
+    pointer-events: none;
+    border-radius: 0;
+    background: rgba(48, 22, 54, 0.62);
+    /* Fondu 4 côtés via masques croisés (pas de capsule) */
+    -webkit-mask-image:
+        linear-gradient(
+            90deg,
+            transparent 0,
+            rgba(0, 0, 0, 0.35) 28px,
+            #000 52px,
+            #000 calc(100% - 52px),
+            rgba(0, 0, 0, 0.35) calc(100% - 28px),
+            transparent 100%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.3) 18%,
+            #000 34%,
+            #000 66%,
+            rgba(0, 0, 0, 0.3) 82%,
+            transparent 100%
+        );
+    mask-image:
+        linear-gradient(
+            90deg,
+            transparent 0,
+            rgba(0, 0, 0, 0.35) 28px,
+            #000 52px,
+            #000 calc(100% - 52px),
+            rgba(0, 0, 0, 0.35) calc(100% - 28px),
+            transparent 100%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.3) 18%,
+            #000 34%,
+            #000 66%,
+            rgba(0, 0, 0, 0.3) 82%,
+            transparent 100%
+        );
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
 }
 
 .site-nav a {
+    position: relative;
+    z-index: 1;
     color: var(--ink);
     text-decoration: none;
     padding: 0.2rem 0;
@@ -248,6 +374,33 @@ h2 {
     color: var(--ink-soft);
 }
 
+.shot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.shot-grid figure {
+    margin: 0;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.shot-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #161616;
+}
+
+.shot-grid figcaption {
+    padding: 0.75rem 0.9rem 1rem;
+    font-size: 0.98rem;
+}
+
 .review-note {
     margin-top: 1.5rem;
     padding: 0.8rem 1rem;
@@ -258,13 +411,17 @@ h2 {
 .site-footer {
     width: min(var(--page), calc(100% - 2rem));
     margin: 0 auto;
-    padding: 1.5rem 0 2rem;
+    padding: 1.35rem 0 1.6rem;
     border-top: 1px solid var(--line);
     color: var(--ink-soft);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
 }
 
 .site-footer p {
-    margin: 0.2rem 0;
+    margin: 0;
 }
 
 .form-panel[hidden] {
@@ -338,6 +495,2023 @@ textarea {
     margin-top: 1.3rem;
 }
 
+.temp {
+    color: #8a5a18;
+    font-style: italic;
+}
+
+.slot-missing {
+    margin: 0;
+    padding: 1.2rem;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    background: var(--warn-bg);
+    color: var(--ink-soft);
+}
+
+.page-atelier {
+    background:
+        radial-gradient(ellipse at 70% 18%, rgba(255, 140, 60, 0.28), transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(90, 60, 120, 0.18), transparent 50%),
+        linear-gradient(180deg, #2a1f3a 0%, #4a3548 28%, #c4784a 62%, #f3efe6 100%);
+}
+
+.page-atelier .site-nav::before {
+    background: rgba(42, 18, 48, 0.74);
+}
+
+.page-atelier .site-nav a {
+    color: #fff6ea;
+}
+
+.page-atelier .site-nav a[aria-current="page"] {
+    color: #ffd7a8;
+    border-bottom-color: #ffd7a8;
+}
+
+.page-atelier .nav-toggle {
+    color: #fff6ea;
+    border-color: rgba(255, 236, 210, 0.4);
+}
+
+/* Cadre commun des grandes sections visuelles */
+.page-atelier main,
+.page-livre main {
+    width: min(var(--stage-max), var(--stage-inline));
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--stage-gap-top) 0 1rem;
+}
+
+.atelier-panorama,
+.livre-scene {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--stage-pad);
+    border-radius: calc(var(--radius) + 4px);
+    box-sizing: border-box;
+    line-height: 0;
+    min-height: 0;
+}
+
+.atelier-panorama {
+    background:
+        linear-gradient(135deg, rgba(255, 160, 80, 0.35), rgba(70, 40, 90, 0.45)),
+        #1e1528;
+    box-shadow: 0 18px 40px rgba(20, 12, 28, 0.35);
+}
+
+.atelier-panorama__frame {
+    position: relative;
+    margin: 0;
+    border-radius: var(--radius);
+    background: #1a1222;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.atelier-panorama__frame > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Texte HTML dans la toile de la maquette (parchemin dessiné dans l'image) */
+.parchemin-texte {
+    --parchemin-or: #ffe2a0;
+    --parchemin-or-clair: #fff0c2;
+    position: absolute;
+    /* Zone lecture ~5 % plus étroite, recentrée dans la toile */
+    left: 55.4%;
+    width: 37.8%;
+    top: 20.2%;
+    bottom: 12.2%;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: clamp(16px, 1.6vw, 20px) clamp(12px, 1.2vw, 18px);
+    line-height: normal;
+    /* Contient la zone entre bambous ; le texte reste accessible via __scroll */
+    overflow: hidden;
+}
+
+.parchemin-texte__scroll {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    text-align: left;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.parchemin-texte__scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.parchemin-texte__titre,
+.parchemin-texte__p {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    color: var(--parchemin-or);
+    text-shadow: 0 1px 2px rgba(36, 20, 10, 0.58);
+}
+
+.parchemin-texte__titre {
+    flex: 0 0 auto;
+    font-family: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: clamp(0.98rem, 1.35vw, 1.22rem);
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    font-weight: 600;
+    text-align: center;
+    color: var(--parchemin-or-clair);
+    text-wrap: balance;
+    white-space: nowrap;
+}
+
+.parchemin-texte__filet {
+    display: block;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #ffe2a0, transparent);
+}
+
+.parchemin-texte__titre--fin {
+    margin-top: 0.35rem;
+    padding-top: 0.2rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--parchemin-or-clair);
+    white-space: normal;
+    letter-spacing: -0.008em;
+    text-wrap: balance;
+}
+
+.parchemin-texte__p {
+    flex: 0 0 auto;
+    margin-top: 0;
+    font-family: "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: clamp(0.94rem, 1.18vw, 1.06rem);
+    line-height: 1.36;
+    text-align: left;
+    text-wrap: pretty;
+    hyphens: manual;
+}
+
+.parchemin-texte__p + .parchemin-texte__p {
+    margin-top: 0.55rem;
+}
+
+@media (max-width: 1100px) {
+    .parchemin-texte {
+        left: 55.5%;
+        width: 37%;
+        top: 18.8%;
+        bottom: 11.2%;
+        padding: clamp(14px, 1.5vw, 18px) clamp(10px, 1.2vw, 16px);
+    }
+}
+
+/* Mobile : pas de nouvelle présentation — texte masqué jusqu'à l'adaptation dédiée */
+@media (max-width: 720px) {
+    .parchemin-texte {
+        display: none;
+    }
+}
+
+.atelier-layers {
+    display: none;
+}
+
+.atelier-intro {
+    margin-top: 0.5rem;
+}
+
+/* —— Page Mes réalisations : livre immersif —— */
+.page-livre {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(80, 40, 70, 0.35), transparent 55%),
+        linear-gradient(180deg, #2a1a32 0%, #1a1218 42%, #120e12 100%);
+    color: #f3ebe0;
+}
+
+.page-livre .site-nav a {
+    color: #fff6ea;
+}
+
+.page-livre .site-nav a[aria-current="page"] {
+    color: #ffd7a8;
+    border-bottom-color: #ffd7a8;
+}
+
+.page-livre .nav-toggle {
+    color: #fff6ea;
+    border-color: rgba(255, 236, 210, 0.4);
+}
+
+.livre-scene {
+    overflow: hidden;
+    background: #120e12;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    /*
+     * Terrain de travail — % relatifs à l'image (cadre 1024×576).
+     * Ancrés sur le bitmap rendu (height:auto), pas sur le padding de .livre-scene.
+     * Marges : fleurons haut/bas, reliure centrale, paysage bas-gauche, bords irréguliers.
+     */
+    --livre-g-left: 15.2%;
+    --livre-g-top: 27.1%; /* +~8px vers le haut (bas G inchangé → 67 %) */
+    --livre-g-width: 29.2%;
+    --livre-g-height: 39.9%;
+    --livre-d-left: 52.2%;
+    --livre-d-top: 27.1%;
+    --livre-d-width: 32.8%;
+    --livre-d-height: 52.5%; /* bas D +~15px (≈ 79,6 %) */
+    /* Limites de pages / reliure (conservées, plus affichées) */
+    --livre-page-g-left: 12.2%;
+    --livre-page-g-top: 17.5%;
+    --livre-page-g-width: 35.2%;
+    --livre-page-g-height: 58.5%;
+    --livre-page-d-left: 50.2%;
+    --livre-page-d-top: 17.5%;
+    --livre-page-d-width: 36.2%;
+    --livre-page-d-height: 58.5%;
+    --livre-reliure-left: 48.4%;
+    --livre-reliure-width: 2.8%;
+}
+
+/* Cadre = boîte exacte de l'image (évite dérive object-fit / padding scène) */
+.livre-scene__frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    line-height: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.livre-scene__decor {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    /* height:auto → la boîte = ratio intrinsèque ; contain ne recadre pas */
+    object-fit: contain;
+    object-position: center;
+    vertical-align: top;
+    border-radius: var(--radius);
+}
+
+.livre-scene__pages {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    line-height: normal;
+    z-index: 2;
+}
+
+/* Zones de travail (terrain) — conteneurs flex pour mise en page auto */
+.livre-zone {
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.livre-zone--gauche {
+    left: var(--livre-g-left);
+    top: var(--livre-g-top);
+    width: var(--livre-g-width);
+    height: var(--livre-g-height);
+}
+
+.livre-zone--droite {
+    --loupe-h: 3.06rem; /* 5.1 rem − 40 % */
+    --loupe-reserve-x: calc(var(--loupe-h) * 1.55 + 0.35rem);
+    --loupe-reserve-y: calc(var(--loupe-h) + 0.25rem);
+    left: var(--livre-d-left);
+    top: var(--livre-d-top);
+    width: var(--livre-d-width);
+    height: var(--livre-d-height);
+    pointer-events: auto;
+}
+
+.livre-flux-slot {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+ * Loupe isolée du layout : absolute only.
+ * Cause régression photos = padding-right sur le slot (retiré).
+ * Seul le titre s’écarte ; images / corps gardent toute la largeur.
+ */
+.livre-zoom-ouvrir {
+    position: absolute;
+    top: 0.05rem;
+    right: 0.05rem;
+    z-index: 6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    max-width: var(--loupe-reserve-x);
+    max-height: var(--loupe-reserve-y);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+    filter: drop-shadow(0 0 6px rgba(255, 200, 90, 0.4)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.livre-zoom-ouvrir:hover,
+.livre-zoom-ouvrir:focus-visible {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(255, 220, 120, 0.65)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+    outline: none;
+}
+
+.livre-zoom-ouvrir__icone {
+    display: block;
+    width: auto;
+    height: var(--loupe-h);
+    max-width: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Titre centré sur toute la largeur (au-dessus des images) ; la loupe flotte par-dessus */
+.livre-zone--droite .livre-chapitre__entete {
+    padding-right: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.livre-zone--droite .livre-chapitre__entete .livre-detail__titre,
+.livre-zone--droite .livre-chapitre__entete .livre-detail__sous-titre {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Défilement vertical indépendant — page droite seulement */
+.livre-flux {
+    --livre-flux-marge-ancre: 0.45rem;
+    position: relative;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(1.4rem, 4vh, 2.4rem);
+    padding: 0.1em 0.35em 1.2em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+    outline: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120, 80, 40, 0.35) transparent;
+    scrollbar-gutter: auto;
+}
+
+.livre-flux:focus-visible {
+    box-shadow: inset 0 0 0 1px rgba(180, 120, 50, 0.35);
+}
+
+.livre-flux::-webkit-scrollbar {
+    width: 0.28rem;
+}
+
+.livre-flux::-webkit-scrollbar-thumb {
+    background: rgba(120, 80, 40, 0.32);
+    border-radius: 999px;
+}
+
+/* Zone D : chapitres mieux espacés, moins de titres « coupés » en bas */
+.livre-zone--droite .livre-flux {
+    gap: clamp(2.1rem, 5.5vh, 3.4rem);
+    padding: 0.15em 0.2em 2.2em 0.35em;
+    scroll-padding-bottom: 2.8rem;
+}
+
+.livre-zone--droite .livre-chapitre {
+    scroll-margin-bottom: 1.5rem;
+    padding-bottom: 0.55em;
+}
+
+.livre-zone--droite .livre-chapitre__pied {
+    padding-bottom: 0.55em;
+    margin-bottom: 0.35em;
+}
+
+/* Fourrures : photos un peu plus petites pour laisser place au bouton au complet */
+.livre-zone--droite .livre-detail__visuel--galerie {
+    width: 48%;
+    gap: clamp(0.3em, 1vh, 0.5em);
+}
+
+.livre-zone--droite .livre-detail__visuel--galerie img {
+    max-height: min(15.5vh, 5.6rem);
+    object-fit: cover;
+}
+
+.livre-page {
+    position: relative;
+    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    pointer-events: auto;
+    color: #2a1c14;
+    box-sizing: border-box;
+}
+
+/* —— Sommaire (zone G) : grille auto —— */
+.livre-sommaire {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: stretch;
+    gap: clamp(0.45rem, 1.8vh, 0.85rem);
+    padding: 0;
+}
+
+.livre-sommaire__entete {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.livre-sommaire__corps {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.livre-toc__titre {
+    margin: 0;
+    width: 100%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2vw, 1.55rem);
+    font-weight: 600;
+    color: #24160f;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.livre-toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 92%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: clamp(0.45rem, 2.2vh, 1.1rem);
+}
+
+.livre-toc__item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45em;
+    width: 100%;
+    margin: 0;
+    padding: 0.28em 0.35em 0.28em 0.45em;
+    border: 0;
+    border-radius: 0.4em;
+    background: transparent;
+    color: #2a1a12;
+    font: inherit;
+    font-family: var(--serif);
+    font-size: clamp(0.78rem, 1.15vw, 0.98rem);
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.livre-toc__item:hover,
+.livre-toc__item:focus-visible {
+    background: rgba(255, 248, 230, 0.45);
+    outline: none;
+}
+
+.livre-toc__item.is-active {
+    background: rgba(255, 236, 190, 0.38);
+    box-shadow: inset 0.2em 0 0 #d4a84a;
+    color: #1a100a;
+    font-weight: 600;
+}
+
+.livre-toc__num {
+    flex: 0 0 auto;
+    min-width: 1.5em;
+    color: #8a6a28;
+    font-weight: 700;
+}
+
+.livre-toc__label {
+    min-width: 0;
+}
+
+/* —— Chapitre : modèle réutilisable titre / corps / pied (hauteur naturelle) —— */
+.livre-chapitre {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.25rem, 1vh, 0.45rem);
+    padding: 0.15em 0.25em 0.35em;
+    box-sizing: border-box;
+    scroll-margin-top: var(--livre-flux-marge-ancre, 0.45rem);
+}
+
+.livre-chapitre__entete {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.livre-chapitre__corps {
+    width: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(0.45rem, 1.4vh, 0.75rem);
+}
+
+.livre-chapitre__bloc {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.25rem, 1vh, 0.4rem);
+}
+
+.livre-chapitre__intro {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.15rem;
+    text-align: center;
+}
+
+.livre-chapitre__intro .livre-detail__intro {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.livre-chapitre__hero {
+    margin: 0.2rem 0 0.35rem;
+    align-items: center;
+}
+
+.livre-hero-projet {
+    margin: 0 auto;
+    width: min(100%, 22rem);
+    max-width: 100%;
+    line-height: 0;
+    border-radius: 0.45em;
+    overflow: hidden;
+    border: 1px solid rgba(70, 45, 28, 0.28);
+    background: #0a0e1a;
+}
+
+.livre-hero-projet img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.livre-zoom .livre-hero-projet {
+    width: min(100%, 36rem);
+}
+
+.calepin .livre-hero-projet {
+    width: min(100%, 20rem);
+    margin: 0.45rem auto 0.65rem;
+    border-color: rgba(224, 180, 90, 0.28);
+}
+
+.livre-chapitre__diagramme {
+    margin: 0.1rem 0 0.25rem;
+}
+
+/* Séparateur ornemental entre réalisations (flux livre + zoom)
+   Marges plus généreuses que l’espacement entre sections produit. */
+.livre-separateur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: clamp(1.75rem, 4.2vh, 2.6rem) 0;
+    padding: 0;
+    pointer-events: none;
+    line-height: 0;
+}
+
+.livre-separateur__img {
+    display: block;
+    width: min(100%, 25.3rem);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.livre-zoom .livre-separateur {
+    margin: clamp(2.75rem, 5.5vh, 3.75rem) 0;
+}
+
+.livre-zoom .livre-separateur__img {
+    width: min(100%, 39.1rem);
+}
+
+.nexus-diagramme {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    line-height: 0;
+}
+
+.nexus-diagramme__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+}
+
+.nexus-diagramme__bloc {
+    fill: #140e0c;
+    stroke: #e0b45a;
+    stroke-width: 2.2;
+}
+
+.nexus-diagramme__label {
+    fill: #fff6e0;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.nexus-diagramme__sub {
+    fill: #f0d9a8;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.nexus-diagramme__fleche {
+    /* Style forcé aussi en attributs SVG (modèle) — CSS de secours */
+    stroke: #704019;
+    stroke-width: 3px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.livre-zoom .nexus-diagramme__svg {
+    max-height: none;
+    width: 100%;
+}
+
+.livre-zoom .nexus-diagramme__label {
+    font-size: 24px;
+}
+
+.livre-zoom .nexus-diagramme__sub {
+    font-size: 16px;
+}
+
+.calepin .nexus-diagramme {
+    margin: 0.4rem 0 0.55rem;
+}
+
+.calepin .nexus-diagramme__svg {
+    max-height: none;
+}
+
+.calepin__nexus-intro {
+    margin: 0.35rem 0 0.2rem;
+    color: #c9b08a;
+    text-align: center;
+    font-size: 0.92rem;
+    width: 100%;
+}
+
+.livre-detail__intro {
+    text-align: center;
+    font-style: italic;
+    color: #3a281c;
+}
+
+.livre-detail__produit-titre {
+    margin: 0 0 0.35em;
+    width: 100%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    font-weight: 700;
+    color: #24160f;
+    text-align: left;
+    line-height: 1.25;
+}
+
+.livre-detail__points {
+    margin: 0.35em 0 0;
+    padding: 0 0 0 1.1em;
+    width: 100%;
+    box-sizing: border-box;
+    color: #3a281c;
+    font-size: clamp(0.72rem, 1.15vw, 0.88rem);
+    line-height: 1.4;
+    text-align: left;
+}
+
+.livre-detail__points li {
+    margin: 0 0 0.28em;
+}
+
+.livre-detail__points li:last-child {
+    margin-bottom: 0;
+}
+
+.livre-chapitre__media,
+.livre-chapitre__texte {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+
+.livre-chapitre__texte {
+    align-items: stretch;
+}
+
+.livre-chapitre__texte .livre-detail__desc {
+    text-align: left;
+}
+
+/* Alternance texte/image dans la page droite du livre */
+.livre-zone--droite .livre-chapitre__bloc--layout-a,
+.livre-zone--droite .livre-chapitre__bloc--layout-b {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(0.9rem, 1.8vw, 1.25rem);
+    align-items: start;
+}
+
+.livre-zone--droite .livre-chapitre__bloc--layout-a .livre-chapitre__media {
+    order: 1;
+}
+
+.livre-zone--droite .livre-chapitre__bloc--layout-a .livre-chapitre__texte {
+    order: 2;
+}
+
+.livre-zone--droite .livre-chapitre__bloc--layout-b .livre-chapitre__media {
+    order: 2;
+}
+
+.livre-zone--droite .livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+    order: 1;
+}
+
+.livre-zone--droite .livre-chapitre__bloc--layout-a .livre-carrousel__slide img,
+.livre-zone--droite .livre-chapitre__bloc--layout-b .livre-carrousel__slide img {
+    max-height: min(28vh, 9.5rem);
+}
+
+/* Espacement vertical entre sections produit (livre non agrandi / proportionnel) */
+.livre-chapitre__corps > .livre-chapitre__bloc--layout-a + .livre-chapitre__bloc--layout-a,
+.livre-chapitre__corps > .livre-chapitre__bloc--layout-a + .livre-chapitre__bloc--layout-b,
+.livre-chapitre__corps > .livre-chapitre__bloc--layout-b + .livre-chapitre__bloc--layout-a,
+.livre-chapitre__corps > .livre-chapitre__bloc--layout-b + .livre-chapitre__bloc--layout-b,
+.livre-chapitre__corps > .livre-chapitre__diagramme + .livre-chapitre__bloc--layout-a,
+.livre-chapitre__corps > .livre-chapitre__diagramme + .livre-chapitre__bloc--layout-b,
+.livre-chapitre__corps > .livre-chapitre__hero + .livre-chapitre__bloc--layout-a,
+.livre-chapitre__corps > .livre-chapitre__hero + .livre-chapitre__bloc--layout-b,
+.livre-chapitre__corps > .livre-chapitre__intro + .livre-chapitre__bloc--layout-a,
+.livre-chapitre__corps > .livre-chapitre__intro + .livre-chapitre__bloc--layout-b {
+    margin-top: clamp(1.35rem, 3.2vh, 1.85rem);
+}
+
+.livre-chapitre__bloc--layout-a .livre-chapitre__texte,
+.livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+    gap: clamp(0.55rem, 1.4vh, 0.85rem);
+}
+
+.livre-chapitre__pied {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2em;
+    padding-top: 0.15em;
+    padding-bottom: 0.1em;
+}
+
+.livre-chapitre__pied .livre-detail__lien-wrap,
+.livre-chapitre__pied .livre-detail__lien-absent {
+    margin: 0;
+}
+
+.livre-chapitre__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 1.4em;
+}
+
+.livre-chapitre__nav .livre-fleche--next {
+    margin-left: auto;
+}
+
+/* Flèches « sang ancien » — dans le flux du pied (plus d’absolu) */
+.livre-fleche {
+    position: static;
+    z-index: 2;
+    width: 1.55em;
+    height: 1.55em;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #7a1515;
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    text-shadow:
+        0 1px 0 rgba(40, 8, 8, 0.55),
+        0 0 4px rgba(120, 20, 20, 0.35);
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.livre-fleche:hover,
+.livre-fleche:focus-visible {
+    color: #a01818;
+    transform: scale(1.08);
+    outline: none;
+}
+
+.livre-fleche[hidden] {
+    display: none !important;
+}
+
+.calepin__fleches {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    min-height: 1.7rem;
+}
+
+.calepin__fleches .livre-fleche {
+    position: static;
+}
+
+.livre-detail__titre {
+    margin: 0;
+    width: 100%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    font-weight: 700;
+    color: #24160f;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.livre-detail__sous-titre {
+    margin: 0.2em 0 0;
+    width: 100%;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+    font-weight: 500;
+    color: #5a4030;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.livre-detail__sous-titre[hidden] {
+    display: none !important;
+}
+
+.livre-detail__visuel {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 1px solid rgba(70, 45, 28, 0.25);
+    background: rgba(216, 196, 164, 0.55);
+}
+
+.livre-detail__visuel--galerie {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.45em, 1.4vh, 0.7em);
+    width: 55%;
+    max-width: 100%;
+    /* Hauteur = contenu (aspect-ratio). Ne pas shrinker → évite collapse à 0 */
+    flex: 0 0 auto;
+    margin: 0;
+    background: transparent;
+    border: 0;
+    overflow: visible;
+}
+
+.livre-detail__visuel--galerie img {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 0.45em;
+    border: 1px solid rgba(70, 45, 28, 0.25);
+}
+
+.livre-detail__visuel:not(.livre-detail__visuel--galerie) img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.livre-detail__visuel--placeholder {
+    display: grid;
+    place-items: center;
+    width: 70%;
+    max-width: 100%;
+    flex: 0 1 auto;
+    aspect-ratio: 16 / 10;
+    font-family: var(--serif);
+    font-size: 0.78em;
+    font-style: italic;
+    color: #5a3d28;
+}
+
+.livre-detail__desc {
+    margin: 0;
+    width: 94%;
+    max-width: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+    font-family: var(--serif);
+    font-size: clamp(0.74rem, 1.05vw, 0.9rem);
+    line-height: 1.4;
+    color: #2a1a12;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.livre-detail__lien-wrap {
+    margin: 0;
+}
+
+.livre-detail__lien {
+    display: inline-block;
+    padding: 0.28em 0.85em;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #fff0c2, #d4a84a 45%, #a67c2a);
+    color: #1a120c;
+    text-decoration: none;
+    font-size: clamp(0.72rem, 1vw, 0.78rem);
+    font-weight: 700;
+}
+
+.livre-detail__lien-absent {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 0.72em;
+    font-style: italic;
+    color: #6a5240;
+    text-align: center;
+}
+
+.calepin {
+    display: none;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 226, 160, 0.22);
+    border-radius: 16px;
+    background: linear-gradient(180deg, #3a2a28, #241814);
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.calepin__couverture {
+    padding: 1.2rem 1.3rem 1rem;
+    border-bottom: 1px solid rgba(255, 226, 160, 0.18);
+}
+
+.calepin__couverture h2 {
+    margin: 0.15rem 0 0;
+    color: #ffe2a0;
+    font-family: var(--serif);
+}
+
+.calepin__marque {
+    margin: 0;
+    color: #fff0c2;
+    opacity: 0.85;
+    font-size: 0.92rem;
+}
+
+.calepin__toc {
+    list-style: none;
+    margin: 0;
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid rgba(255, 226, 160, 0.12);
+}
+
+.calepin__toc-item {
+    display: block;
+    width: 100%;
+    margin: 0 0 0.25rem;
+    padding: 0.55rem 0.6rem;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #f3ebe0;
+    font: inherit;
+    font-family: var(--serif);
+    text-align: left;
+    cursor: pointer;
+}
+
+.calepin__toc-item.is-active {
+    background: rgba(255, 226, 160, 0.14);
+    box-shadow: inset 3px 0 0 #d4a84a;
+    color: #ffe2a0;
+    font-weight: 600;
+}
+
+.calepin__detail {
+    padding: 1rem 1.1rem 1.25rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.calepin__detail.is-ready {
+    opacity: 1;
+    transform: none;
+}
+
+.calepin__detail-sous-titre {
+    margin: 0.15rem 0 0.55rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #c9b08a;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.calepin__detail-sous-titre[hidden] {
+    display: none !important;
+}
+
+.calepin__detail-titre {
+    margin: 0 0 0.55rem;
+    color: #ffe2a0;
+    font-family: var(--serif);
+}
+
+.calepin__detail-visuel {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 0.65rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 226, 160, 0.08);
+    border: 1px solid rgba(255, 226, 160, 0.16);
+}
+
+.calepin__detail-visuel--galerie {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: min(100%, 12rem);
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: auto;
+    background: transparent;
+    border: 0;
+    overflow: visible;
+}
+
+.calepin__detail-visuel--galerie img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 226, 160, 0.16);
+}
+
+.calepin__detail-visuel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.calepin__detail-visuel--placeholder {
+    display: grid;
+    place-items: center;
+    color: rgba(243, 235, 224, 0.65);
+    font-style: italic;
+}
+
+.calepin__detail-desc {
+    margin: 0;
+    color: rgba(243, 235, 224, 0.86);
+    line-height: 1.45;
+}
+
+.calepin__detail-lien {
+    display: inline-block;
+    margin-top: 0.7rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #fff0c2, #d4a84a 45%, #a67c2a);
+    color: #1a120c;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.calepin__detail-lien-absent {
+    margin: 0.55rem 0 0;
+    color: rgba(243, 235, 224, 0.55);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.calepin__detail-lien-wrap {
+    margin: 0;
+}
+
+.bandelettes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.bandelette {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.bandelette__art {
+    min-height: 8rem;
+    margin-bottom: 0.8rem;
+}
+
+.bandelette--extra {
+    margin-top: 1.5rem;
+}
+
+/* —— Zoom lecture : règles actives uniquement avec .livre-zoom-actif / .is-open —— */
+html.livre-zoom-actif,
+body.livre-zoom-actif {
+    overflow: hidden;
+    /* Fond sombre plein écran — évite la bande claire autour du menu (largeur limitée) */
+    background: #120e12;
+}
+
+/* Masquer la scène du livre (encadrement) sans la détruire — restauration à la fermeture */
+body.livre-zoom-actif .livre-scene {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Navigation globale toujours au-dessus du zoom (stacking + fond opaque) */
+.page-livre .site-header {
+    position: relative;
+    z-index: 120;
+}
+
+body.livre-zoom-actif .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 120;
+    pointer-events: auto;
+    /* Empêche le parchemin de « transpercer » sous le bandeau */
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(80, 40, 70, 0.35), transparent 55%),
+        linear-gradient(180deg, #2a1a32 0%, #1a1218 100%);
+}
+
+.livre-zoom {
+    /* Sous l’en-tête — top = bas réel du .site-header (JS) ; largeur = bandeau */
+    --livre-zoom-top: 5.5rem;
+    --zoom-page-width: min(72rem, calc(100% - 2rem));
+    --zoom-page-left: auto;
+    position: fixed;
+    top: var(--livre-zoom-top);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: block;
+    overflow-x: hidden;
+    /* Scroll extérieur seulement si le parchemin dépasse l’espace sous le menu */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 0 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+    background: transparent;
+}
+
+.livre-zoom.is-open,
+.livre-zoom.is-closing {
+    opacity: 1;
+    visibility: visible;
+}
+
+.livre-zoom.is-open {
+    pointer-events: auto;
+}
+
+.livre-zoom.is-closing {
+    pointer-events: none;
+}
+
+.livre-zoom__voile {
+    position: fixed;
+    /* Plein viewport : sombre aussi autour du menu ; le shell reste sous la ligne dorée */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background: rgba(12, 8, 14, 0.92);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.livre-zoom.is-open .livre-zoom__voile {
+    opacity: 1;
+}
+
+.livre-zoom.is-closing .livre-zoom__voile {
+    opacity: 0;
+}
+
+.livre-zoom__cadre {
+    /*
+     * Parchemin = largeur du bandeau ; ratio 1024×576.
+     * Zone lecture = % du parchemin (jamais l’inverse).
+     * Animation : scale depuis le centre (pas de FLIP latéral).
+     */
+    --zoom-parchemin-ratio: 1024 / 576;
+    --zoom-safe-left: 10%;
+    --zoom-safe-top: 16%;
+    --zoom-safe-width: 80%;
+    --zoom-safe-height: 68%;
+    --zoom-anim-ms: 400ms;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: var(--zoom-page-width);
+    max-width: none;
+    height: auto;
+    margin-left: var(--zoom-page-left, auto);
+    margin-right: auto;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #2a1c14;
+    overflow: visible;
+    transform: scale(0.72);
+    opacity: 0;
+    transform-origin: center center;
+    transition:
+        transform var(--zoom-anim-ms) cubic-bezier(0.22, 1, 0.36, 1),
+        opacity var(--zoom-anim-ms) ease;
+    will-change: transform, opacity;
+}
+
+.livre-zoom.is-open .livre-zoom__cadre {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.livre-zoom.is-closing .livre-zoom__cadre {
+    transform: scale(0.72);
+    opacity: 0;
+}
+
+/*
+ * Page = boîte EXACTE du parchemin.
+ * Largeur = conteneur menu ; hauteur dérivée du ratio (pas de réduction auto).
+ */
+.livre-zoom__page {
+    position: relative;
+    box-sizing: border-box;
+    aspect-ratio: var(--zoom-parchemin-ratio);
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    height: auto;
+    line-height: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.livre-zoom__parchemin {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Boîte = ratio image → remplissage exact, pas de letterbox ni crop des fleurons */
+    object-fit: fill;
+    object-position: center;
+    pointer-events: none;
+    user-select: none;
+    background: transparent;
+}
+
+.livre-zoom__fermer {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.35rem;
+    z-index: 5;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: 0;
+    border: 1px solid rgba(255, 220, 160, 0.45);
+    border-radius: 0.4rem;
+    background: rgba(28, 18, 22, 0.72);
+    color: #ffe2a0;
+    font-size: 1.55rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.livre-zoom__fermer:hover,
+.livre-zoom__fermer:focus-visible {
+    background: rgba(40, 26, 30, 0.9);
+    color: #fff6d6;
+    outline: none;
+}
+
+/* Surface intérieure = % de la page-parchemin ; scroll isolé */
+.livre-zoom__lecture {
+    position: absolute;
+    left: var(--zoom-safe-left);
+    top: var(--zoom-safe-top);
+    width: var(--zoom-safe-width);
+    height: var(--zoom-safe-height);
+    z-index: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    line-height: normal;
+    pointer-events: auto;
+}
+
+.livre-zoom__scene {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 0.3rem 0.35rem;
+    overflow: hidden;
+}
+
+.livre-zoom__scene .livre-flux {
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.25rem 0.55rem 0.75rem 0.25rem;
+    gap: clamp(1.4rem, 3vh, 2.2rem);
+    background: transparent;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: auto;
+    /* Firefox — brun / or */
+    scrollbar-width: auto;
+    scrollbar-color: #8a6230 rgba(55, 32, 16, 0.55);
+}
+
+/* WebKit — barre ~11 px, rail brun, pouce doré */
+.livre-zoom__scene .livre-flux::-webkit-scrollbar {
+    width: 11px;
+}
+
+.livre-zoom__scene .livre-flux::-webkit-scrollbar-track {
+    background:
+        linear-gradient(90deg, rgba(40, 22, 10, 0.55), rgba(70, 42, 18, 0.4) 45%, rgba(40, 22, 10, 0.55));
+    border-radius: 8px;
+    border: 1px solid rgba(180, 130, 60, 0.28);
+    box-shadow: inset 0 0 4px rgba(20, 10, 4, 0.45);
+}
+
+.livre-zoom__scene .livre-flux::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            #f0d090 0%,
+            #c49a48 18%,
+            #7a4e22 48%,
+            #4a2c12 78%,
+            #d4b06a 100%
+        );
+    border-radius: 8px;
+    border: 1px solid rgba(255, 220, 150, 0.55);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 240, 200, 0.55),
+        inset 0 -1px 0 rgba(40, 20, 8, 0.35);
+}
+
+.livre-zoom__scene .livre-flux::-webkit-scrollbar-thumb:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #ffe2a0 0%,
+            #d4a84a 22%,
+            #8a5a28 55%,
+            #5a3418 100%
+        );
+}
+
+/* Agrandissement HTML réel (pas un scale bitmap) */
+.livre-zoom .livre-detail__titre {
+    font-size: clamp(1.45rem, 2.5vw, 2rem);
+}
+
+.livre-zoom .livre-detail__desc {
+    width: 100%;
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.55;
+    text-align: left;
+}
+
+.livre-zoom .livre-detail__lien {
+    font-size: clamp(0.88rem, 1.2vw, 1rem);
+    padding: 0.4em 1.05em;
+}
+
+/* —— Dispositions zoom réutilisables (A / B / C) —— */
+.livre-zoom .livre-chapitre__bloc {
+    width: 100%;
+    align-items: stretch;
+}
+
+.livre-zoom .livre-chapitre__media,
+.livre-zoom .livre-chapitre__texte {
+    min-width: 0;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__bloc--layout-b {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 2vw, 2rem);
+    align-items: start;
+}
+
+/* 48 px entre sections produit en lecture agrandie */
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__bloc--layout-a + .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__bloc--layout-a + .livre-chapitre__bloc--layout-b,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__bloc--layout-b + .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__bloc--layout-b + .livre-chapitre__bloc--layout-b,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__diagramme + .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__diagramme + .livre-chapitre__bloc--layout-b,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__hero + .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__hero + .livre-chapitre__bloc--layout-b,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__intro + .livre-chapitre__bloc--layout-a,
+.livre-zoom .livre-chapitre__corps > .livre-chapitre__intro + .livre-chapitre__bloc--layout-b {
+    margin-top: 48px;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-chapitre__texte,
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+    gap: clamp(0.85rem, 1.6vh, 1.15rem);
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-chapitre__media {
+    order: 1;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-chapitre__texte {
+    order: 2;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-chapitre__media {
+    order: 2;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+    order: 1;
+}
+
+.livre-zoom .livre-detail__produit-titre {
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    margin-bottom: 0.45em;
+}
+
+.livre-zoom .livre-detail__points {
+    font-size: clamp(0.92rem, 1.35vw, 1.05rem);
+}
+
+.livre-zoom .livre-detail__intro {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    text-align: center;
+}
+
+.livre-zoom .livre-chapitre__intro {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.6rem;
+    text-align: center;
+}
+
+.livre-zoom .livre-chapitre__intro .livre-detail__intro {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-c.livre-chapitre__intro {
+    align-items: stretch;
+    text-align: center;
+}
+
+.calepin__detail-points {
+    margin: 0.4rem 0 0.75rem;
+    color: #e8d8b8;
+    font-size: 0.92rem;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-c {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-detail__visuel,
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-detail__visuel--galerie,
+.livre-zoom .livre-chapitre__bloc--layout-a .livre-detail__visuel--placeholder,
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-detail__visuel,
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-detail__visuel--galerie,
+.livre-zoom .livre-chapitre__bloc--layout-b .livre-detail__visuel--placeholder,
+.livre-zoom .livre-chapitre__bloc--layout-c .livre-detail__visuel,
+.livre-zoom .livre-chapitre__bloc--layout-c .livre-detail__visuel--galerie,
+.livre-zoom .livre-chapitre__bloc--layout-c .livre-detail__visuel--placeholder {
+    width: 100%;
+    max-width: 100%;
+}
+
+.livre-zoom .livre-chapitre__media,
+.livre-zoom .livre-chapitre__texte,
+.livre-zoom .livre-detail__visuel,
+.livre-zoom .livre-detail__visuel--galerie,
+.livre-zoom .livre-detail__titre,
+.livre-zoom .livre-detail__desc {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.livre-zoom .livre-detail__visuel--galerie {
+    gap: clamp(0.75em, 1.8vh, 1.1em);
+}
+
+.livre-zoom .livre-detail__visuel--galerie img {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Deux colonnes photos sur ordinateur (layout C) */
+.livre-zoom .livre-chapitre__bloc--layout-c .livre-detail__visuel--galerie {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.8vw, 1.35rem);
+}
+
+.livre-zoom .livre-chapitre__bloc--layout-c .livre-detail__visuel--galerie img {
+    aspect-ratio: 16 / 10;
+}
+
+@media (max-width: 820px) {
+    .livre-zoom .livre-chapitre__bloc--layout-a,
+    .livre-zoom .livre-chapitre__bloc--layout-b {
+        grid-template-columns: 1fr;
+    }
+
+    .livre-zoom .livre-chapitre__bloc--layout-a .livre-chapitre__media,
+    .livre-zoom .livre-chapitre__bloc--layout-a .livre-chapitre__texte,
+    .livre-zoom .livre-chapitre__bloc--layout-b .livre-chapitre__media,
+    .livre-zoom .livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+        order: initial;
+    }
+}
+
+/* Page droite étroite : empiler si la zone livre est trop petite */
+@media (max-width: 1100px) {
+    .livre-zone--droite .livre-chapitre__bloc--layout-a,
+    .livre-zone--droite .livre-chapitre__bloc--layout-b {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .livre-zone--droite .livre-chapitre__bloc--layout-a .livre-chapitre__media,
+    .livre-zone--droite .livre-chapitre__bloc--layout-a .livre-chapitre__texte,
+    .livre-zone--droite .livre-chapitre__bloc--layout-b .livre-chapitre__media,
+    .livre-zone--droite .livre-chapitre__bloc--layout-b .livre-chapitre__texte {
+        order: initial;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .livre-zoom,
+    .livre-zoom__cadre,
+    .livre-zoom__voile,
+    .livre-zoom-ouvrir {
+        transition: none !important;
+    }
+
+    .livre-zoom__cadre {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* —— Zoom photo (détail) — livre normal + lecture agrandie —— */
+.livre-carrousel__slide img,
+.livre-detail__visuel--galerie img,
+.livre-hero-projet img,
+.calepin__detail-visuel--galerie img {
+    cursor: zoom-in;
+}
+
+.livre-photo-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 12000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    box-sizing: border-box;
+    background: rgba(10, 6, 12, 0.88);
+    backdrop-filter: blur(2px);
+}
+
+.livre-photo-overlay[hidden] {
+    display: none !important;
+}
+
+body.livre-photo-overlay-actif {
+    overflow: hidden;
+}
+
+.livre-photo-overlay__figure {
+    margin: 0;
+    max-width: min(96vw, 1100px);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    line-height: 0;
+}
+
+.livre-photo-overlay__img {
+    display: block;
+    max-width: 100%;
+    max-height: min(84vh, 900px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.35rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    background: #120c10;
+}
+
+.livre-photo-overlay__caption {
+    margin: 0;
+    max-width: 40rem;
+    padding: 0 0.5rem;
+    font-family: var(--serif);
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+    font-style: italic;
+    line-height: 1.35;
+    color: #f0e2c4;
+    text-align: center;
+}
+
+.livre-photo-overlay__fermer {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.95rem;
+    z-index: 2;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid rgba(224, 180, 90, 0.45);
+    border-radius: 0.4rem;
+    background: rgba(28, 18, 22, 0.85);
+    color: #ffe2a0;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.livre-photo-overlay__fermer:hover,
+.livre-photo-overlay__fermer:focus-visible {
+    background: rgba(50, 32, 28, 0.95);
+    outline: none;
+}
+
+.livre-photo-overlay__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(224, 180, 90, 0.4);
+    border-radius: 0.4rem;
+    background: rgba(28, 18, 22, 0.8);
+    color: #ffe2a0;
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.livre-photo-overlay__nav--prev { left: 0.75rem; }
+.livre-photo-overlay__nav--next { right: 0.75rem; }
+
+.livre-photo-overlay__nav[hidden] {
+    display: none !important;
+}
+
+.livre-photo-overlay__nav:hover,
+.livre-photo-overlay__nav:focus-visible {
+    background: rgba(50, 32, 28, 0.95);
+    outline: none;
+}
+
+/* —— Carrousel réalisations (portfolio → livre / zoom / calepin) —— */
+.livre-carrousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1.6rem minmax(0, 1fr) 1.6rem;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 0.2rem 0.15rem;
+    margin: 0;
+}
+
+/* Une seule capture (ex. Nexus PC / WSAI) : image entière, sans flèches */
+.livre-carrousel--solo {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.livre-carrousel--solo .livre-carrousel__viewport {
+    grid-column: 1;
+}
+
+.livre-carrousel__viewport {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    line-height: 0;
+}
+
+.livre-carrousel__track {
+    position: relative;
+    width: 100%;
+}
+
+.livre-carrousel__slide {
+    display: none;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.livre-carrousel__slide.is-active {
+    display: block;
+}
+
+.livre-carrousel__slide img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(38vh, 14rem);
+    margin-inline: auto;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+}
+
+.livre-carrousel__btn {
+    grid-row: 1;
+    width: 1.55rem;
+    height: 1.55rem;
+    padding: 0;
+    border: 1px solid rgba(120, 80, 40, 0.35);
+    border-radius: 0.35rem;
+    background: rgba(255, 248, 230, 0.72);
+    color: #5a3418;
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 1px 2px rgba(40, 20, 8, 0.12);
+}
+
+.livre-carrousel__btn--prev { grid-column: 1; }
+.livre-carrousel__btn--next { grid-column: 3; }
+
+.livre-carrousel__btn:hover,
+.livre-carrousel__btn:focus-visible {
+    background: rgba(255, 236, 190, 0.95);
+    color: #3a2010;
+    outline: none;
+}
+
+.livre-carrousel__dots {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.28rem;
+    margin-top: 0.15rem;
+}
+
+.livre-carrousel__dot {
+    width: 0.42rem;
+    height: 0.42rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(90, 60, 30, 0.28);
+    cursor: pointer;
+}
+
+.livre-carrousel__dot.is-active {
+    background: #b8893a;
+    box-shadow: 0 0 0 1px rgba(255, 226, 160, 0.55);
+}
+
+.livre-chapitre__media .livre-carrousel {
+    width: 100%;
+}
+
+/* Zoom : images plus grandes, toujours dans la zone lecture */
+.livre-zoom .livre-carrousel__slide img {
+    max-height: min(42vh, 22rem);
+}
+
+.livre-zoom .livre-carrousel__btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.35rem;
+}
+
+.livre-carrousel--calepin {
+    margin: 0.35rem 0 0.7rem;
+}
+
+.livre-carrousel--calepin .livre-carrousel__slide img {
+    max-height: min(48vh, 18rem);
+}
+
+.livre-carrousel--calepin .livre-carrousel__btn {
+    background: rgba(40, 28, 36, 0.75);
+    border-color: rgba(224, 180, 90, 0.4);
+    color: #ffe2a0;
+}
+
+.livre-carrousel--calepin .livre-carrousel__viewport {
+    border: 0;
+    background: transparent;
+}
+
+.livre-carrousel--calepin .livre-carrousel__dot {
+    background: rgba(255, 226, 160, 0.28);
+}
+
+.livre-carrousel--calepin .livre-carrousel__dot.is-active {
+    background: #e0b45a;
+}
+
+@media (max-width: 899px) {
+    .livre-scene {
+        display: none;
+    }
+
+    .calepin {
+        display: block;
+    }
+}
+
+@media (min-width: 900px) {
+    .livre-scene {
+        display: block;
+    }
+
+    .calepin {
+        display: none;
+    }
+}
+
 @media (max-width: 720px) {
     .nav-toggle {
         display: inline-block;
@@ -352,5 +2526,16 @@ textarea {
 
     .site-nav.is-open {
         display: flex;
+    }
+
+    .atelier-panorama,
+    .livre-scene {
+        padding: 0.45rem;
+    }
+
+    .page-atelier main,
+    .page-livre main {
+        width: min(var(--stage-max), calc(100% - 1rem));
+        padding-bottom: 1.4rem;
     }
 }

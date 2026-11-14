@@ -1,180 +1,368 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CA">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Demande de soumission Artisan FM — décrivez votre besoin, sans taux horaire.">
-    <title>Soumission | Artisan FM</title>
-    <link rel="stylesheet" href="../css/site.css">
+    <meta name="robots" content="index, follow">
+    <title>Démarrer un projet | Demande de soumission — Artisan FM</title>
+    <meta name="description" content="Décrivez votre besoin pour démarrer un projet avec Artisan FM : site web, application ou logiciel sur mesure. Formulaire simple, suivi personnalisé au Québec.">
+    <meta name="author" content="Francis Manseau">
+    <link rel="canonical" href="https://artisanfm.ca/soumission/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:site_name" content="Artisan FM">
+    <meta property="og:url" content="https://artisanfm.ca/soumission/">
+    <meta property="og:title" content="Démarrer un projet | Artisan FM">
+    <meta property="og:description" content="Expliquez vos besoins en quelques étapes — sites, apps et logiciels sur mesure.">
+    <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Démarrer un projet | Artisan FM">
+    <meta name="twitter:description" content="Formulaire de demande pour un projet numérique sur mesure.">
+    <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
+    <link rel="stylesheet" href="../css/theme-lumineux.css?v=nav-text-1">
+    <link rel="stylesheet" href="../css/soumission.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Démarrer un projet — Artisan FM",
+      "url": "https://artisanfm.ca/soumission/",
+      "description": "Formulaire pour démarrer un projet de site, d'application ou de logiciel sur mesure.",
+      "isPartOf": { "@type": "WebSite", "name": "Artisan FM", "url": "https://artisanfm.ca/" }
+    }
+    </script>
 </head>
-<body>
+<body class="page-soumission theme-lumineux">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header class="site-header">
         <a class="brand" href="../index.html">
-            <span class="brand-name">Artisan FM</span>
-            <span class="brand-mark">L'Artisan du numérique</span>
+            <img class="brand-logo" src="../assets/brand/logo-artisan-fm-complet.png" alt="Artisan FM — L'Artisan du numérique" width="1024" height="341" decoding="async">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
-            <a href="../index.html">Accueil</a>
-            <a href="../realisations/index.html">Réalisations</a>
-            <a href="../approche/index.html">Mon approche</a>
-            <a href="index.html" aria-current="page">Soumission</a>
-        </nav>
+        <nav class="site-nav" id="site-nav" data-root="../" data-active="projet" aria-label="Navigation principale"></nav>
     </header>
 
-    <main id="contenu">
-        <h1>Demande de soumission</h1>
+    <main id="contenu" class="soumission">
+        <!-- Futur : après envoi confirmé — papier → avion → décollage → disparition. Non programmé. Échec : conserver les données. -->
 
-        <section class="form-panel" id="stepWelcome" aria-labelledby="welcomeTitle">
-            <h2 id="welcomeTitle">Étape 1 sur 4 — Bienvenue</h2>
-            <p>Artisan FM conçoit des solutions numériques sur mesure : sites web, boutiques en ligne, applications, logiciels et outils de gestion.</p>
-            <h3>Avant de commencer</h3>
-            <ul class="plain-list">
-                <li>Quelques renseignements et une description du besoin seront demandés.</li>
-                <li>Ces renseignements servent uniquement à préparer une proposition.</li>
-                <li>Aucune information n'est transmise à un tiers.</li>
-            </ul>
-            <label class="consent" for="consent">
-                <input type="checkbox" id="consent">
-                <span>J'ai lu ces informations et j'accepte que les renseignements fournis servent à traiter ma demande de soumission.</span>
-            </label>
-            <p class="field-error" id="consentError" role="alert"></p>
-            <div class="form-actions">
-                <button class="btn btn-primary" type="button" id="startBtn">Commencer</button>
-            </div>
-        </section>
+        <header class="soumission-head">
+            <h1 class="soumission-page-title">Démarrer un projet</h1>
+        </header>
 
-        <section class="form-panel" id="stepNeed" hidden aria-labelledby="needTitle">
-            <h2 id="needTitle">Étape 2 sur 4</h2>
-            <p>Décrivez la nature du besoin et le support visé.</p>
-            <label for="serviceType">Nature du besoin *</label>
-            <select id="serviceType" name="serviceType">
-                <option value="">— Sélectionnez une option —</option>
-                <option value="site">Site web</option>
-                <option value="boutique">Boutique en ligne</option>
-                <option value="application">Application</option>
-                <option value="logiciel">Logiciel</option>
-                <option value="outil">Outil de gestion</option>
-                <option value="autre">Autre</option>
-            </select>
-            <p class="field-error" id="serviceTypeError" role="alert"></p>
+        <ol class="soumission-progress" aria-label="Progression du formulaire">
+            <li class="soumission-progress__item is-current" data-step="1"><span class="soumission-progress__num">1</span><span class="soumission-progress__label">Besoins</span></li>
+            <li class="soumission-progress__item" data-step="2"><span class="soumission-progress__num">2</span><span class="soumission-progress__label">Projet</span></li>
+            <li class="soumission-progress__item" data-step="3"><span class="soumission-progress__num">3</span><span class="soumission-progress__label">Attentes</span></li>
+            <li class="soumission-progress__item" data-step="4"><span class="soumission-progress__num">4</span><span class="soumission-progress__label">Contact</span></li>
+        </ol>
 
-            <label for="platformType">Support visé *</label>
-            <select id="platformType" name="platformType">
-                <option value="">— Sélectionnez une option —</option>
-                <option value="web">Web</option>
-                <option value="android">Android</option>
-                <option value="windows">Windows</option>
-                <option value="autre">Autre</option>
-            </select>
-            <p class="field-error" id="platformTypeError" role="alert"></p>
+        <form id="soumissionForm" class="soumission-form" novalidate>
+            <!-- Étape 1 — Vos besoins -->
+            <section class="form-panel" id="stepNeeds" aria-labelledby="needsTitle">
+                <h2 id="needsTitle" class="soumission-title">Parlons de vos besoins</h2>
+                <p class="soumission-lead">Décrivez votre besoin, votre idée ou ce que vous souhaitez accomplir, avec vos propres mots.</p>
 
-            <div class="form-actions">
-                <button class="btn btn-ghost" type="button" id="backToWelcome">Retour</button>
-                <button class="btn btn-primary" type="button" id="toDetails">Continuer</button>
-            </div>
-        </section>
+                <div class="field">
+                    <label for="needDescription">Votre besoin <span class="req" aria-hidden="true">*</span></label>
+                    <textarea id="needDescription" name="needDescription" maxlength="5000" rows="8" placeholder="Exemple : Je voudrais un outil pour suivre mes commandes, ou un site pour présenter mon entreprise…" required></textarea>
+                    <p class="counter" id="needDescriptionCounter">0 / 5000</p>
+                    <p class="field-error" id="needDescriptionError" role="alert"></p>
+                </div>
 
-        <section class="form-panel" id="stepDetails" hidden aria-labelledby="detailsTitle">
-            <h2 id="detailsTitle">Étape 3 sur 4</h2>
-            <h3>Coordonnées</h3>
-            <label for="clientName">Nom complet *</label>
-            <input type="text" id="clientName" name="clientName" autocomplete="name">
-            <p class="field-error" id="clientNameError" role="alert"></p>
+                <div class="form-actions">
+                    <span class="form-actions__spacer"></span>
+                    <button class="btn btn-primary" type="button" id="toStep2">Suivant</button>
+                </div>
+            </section>
 
-            <label for="clientEmail">Adresse courriel *</label>
-            <input type="email" id="clientEmail" name="clientEmail" autocomplete="email">
-            <p class="field-error" id="clientEmailError" role="alert"></p>
+            <!-- Étape 2 — Votre projet -->
+            <section class="form-panel" id="stepProject" hidden aria-labelledby="projectTitle">
+                <h2 id="projectTitle" class="soumission-title">Votre projet</h2>
+                <p class="soumission-lead">Cliquez sur le ou les types de projets qui correspondent à vos besoins. Vous pouvez sélectionner plusieurs choix. Cliquez de nouveau sur un choix pour le retirer.</p>
 
-            <label for="clientPhone">Téléphone</label>
-            <input type="tel" id="clientPhone" name="clientPhone" autocomplete="tel" inputmode="tel">
-            <p class="field-error" id="clientPhoneError" role="alert"></p>
+                <fieldset class="choice-fieldset">
+                    <legend class="visually-hidden">Types de projet</legend>
+                    <div class="category-list" id="categoryList">
 
-            <label for="clientCompany">Entreprise</label>
-            <input type="text" id="clientCompany" name="clientCompany" autocomplete="organization">
+                        <div class="category-block" data-category="ordinateur">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="ordinateur" data-label="Ordinateur" data-has-subs="true">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><rect x="7" y="10" width="34" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 38h16M24 32v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Ordinateur</span>
+                                    <span class="choice-card__desc">Logiciel ou application pour PC ou Mac.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                            <div class="sub-options" id="subs-ordinateur" hidden>
+                                <p class="sub-options__label">Plateformes</p>
+                                <div class="sub-options__grid">
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-ordinateur" value="windows" data-label="Windows (PC)">
+                                        <span class="choice-card__title">Windows (PC)</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-ordinateur" value="macos" data-label="macOS (Mac)">
+                                        <span class="choice-card__title">macOS (Mac)</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-            <h3>Besoin</h3>
-            <label for="projectName">Nom du projet</label>
-            <input type="text" id="projectName" name="projectName">
+                        <div class="category-block" data-category="cellulaire">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="cellulaire" data-label="Cellulaire" data-has-subs="true">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><rect x="15" y="6" width="18" height="36" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 10h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="36" r="1.8" fill="currentColor"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Cellulaire</span>
+                                    <span class="choice-card__desc">Application pour téléphone.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                            <div class="sub-options" id="subs-cellulaire" hidden>
+                                <p class="sub-options__label">Plateformes</p>
+                                <div class="sub-options__grid">
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-cellulaire" value="android" data-label="Android">
+                                        <span class="choice-card__title">Android</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-cellulaire" value="ios" data-label="iOS (iPhone)">
+                                        <span class="choice-card__title">iOS (iPhone)</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-            <label for="projectDescription">Description *</label>
-            <textarea id="projectDescription" name="projectDescription" maxlength="5000" rows="8"></textarea>
-            <p class="counter" id="projectDescriptionCounter">0 / 5000</p>
-            <p class="field-error" id="projectDescriptionError" role="alert"></p>
+                        <div class="category-block" data-category="tablette">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="tablette" data-label="Tablette" data-has-subs="true">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><rect x="10" y="8" width="28" height="32" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="34" r="1.6" fill="currentColor"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Tablette</span>
+                                    <span class="choice-card__desc">Application pour tablette.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                            <div class="sub-options" id="subs-tablette" hidden>
+                                <p class="sub-options__label">Plateformes</p>
+                                <div class="sub-options__grid">
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-tablette" value="android-tablet" data-label="Android">
+                                        <span class="choice-card__title">Android</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-tablette" value="ipados" data-label="iPadOS (iPad)">
+                                        <span class="choice-card__title">iPadOS (iPad)</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-            <label for="expectedResult">Résultat attendu *</label>
-            <textarea id="expectedResult" name="expectedResult" maxlength="1500" rows="5"></textarea>
-            <p class="counter" id="expectedResultCounter">0 / 1500</p>
-            <p class="field-error" id="expectedResultError" role="alert"></p>
+                        <div class="category-block" data-category="web">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="web" data-label="Web" data-has-subs="false">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 24h28M24 10c4 5 4 19 0 28M24 10c-4 5-4 19 0 28" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Web</span>
+                                    <span class="choice-card__desc">Site web ou application web.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                        </div>
 
-            <h3>Budget et délai</h3>
-            <label for="budgetType">Budget approximatif *</label>
-            <select id="budgetType" name="budgetType">
-                <option value="">— Sélectionnez une option —</option>
-                <option value="inconnu">Je ne sais pas encore</option>
-                <option value="discussion">À discuter</option>
-                <option value="moins-500">Moins de 500 $</option>
-                <option value="500-2000">500 $ à 2 000 $</option>
-                <option value="2000-5000">2 000 $ à 5 000 $</option>
-                <option value="5000-10000">5 000 $ à 10 000 $</option>
-                <option value="plus-10000">Plus de 10 000 $</option>
-            </select>
-            <p class="field-error" id="budgetTypeError" role="alert"></p>
+                        <div class="category-block" data-category="automatisation">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="automatisation" data-label="Automatisation" data-has-subs="false">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><path d="M14 30a10 10 0 1 1 8.5-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 10h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 18a10 10 0 1 1-8.5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M26 38h-8v-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Automatisation</span>
+                                    <span class="choice-card__desc">Automatisation de tâches et de processus.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                        </div>
 
-            <label for="timelineType">Délai souhaité *</label>
-            <select id="timelineType" name="timelineType">
-                <option value="">— Sélectionnez une option —</option>
-                <option value="des-que-possible">Dès que possible</option>
-                <option value="semaine">Cette semaine</option>
-                <option value="mois">Ce mois-ci</option>
-                <option value="trois-mois">Dans les 3 prochains mois</option>
-                <option value="sans-date">Aucune date précise</option>
-            </select>
-            <p class="field-error" id="timelineTypeError" role="alert"></p>
+                        <div class="category-block" data-category="connexion">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="connexion" data-label="Connexion entre systèmes" data-has-subs="false">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><circle cx="14" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="34" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 24h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 18v-4M16 14h-4M36 30v4M32 34h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Connexion entre systèmes</span>
+                                    <span class="choice-card__desc">Communication et échange de données entre logiciels, applications ou services.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                        </div>
 
-            <div class="form-actions">
-                <button class="btn btn-ghost" type="button" id="backToNeed">Retour</button>
-                <button class="btn btn-primary" type="button" id="toRates">Continuer</button>
-            </div>
-        </section>
+                        <div class="category-block" data-category="autre">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="autre" data-label="Autre / Je ne sais pas encore" data-has-subs="false">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 20c1.2-3 8-4 8 1s-4 3.5-4 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="33" r="1.6" fill="currentColor"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Autre / Je ne sais pas encore</span>
+                                    <span class="choice-card__desc">Pour être guidé dans le choix.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <p class="field-error" id="categoriesError" role="alert"></p>
+                </fieldset>
 
-        <section class="form-panel" id="stepRates" hidden aria-labelledby="ratesTitle">
-            <h2 id="ratesTitle">Étape 4 sur 4</h2>
-            <h3>Conditions</h3>
-            <ul class="plain-list">
-                <li>Le prix est un forfait écrit avant de commencer.</li>
-                <li>Un acompte est prévu au contrat.</li>
-                <li>Aucune facture n'est envoyée sans accord.</li>
-            </ul>
-            <label class="consent" for="ratesConsent">
-                <input type="checkbox" id="ratesConsent">
-                <span>J'ai pris connaissance de ces conditions.</span>
-            </label>
-            <p class="field-error" id="ratesConsentError" role="alert"></p>
-            <p class="review-note">Note de travail : l'envoi et la vérification anti-robot ne sont pas branchés. Aucune donnée ne quitte cette page.</p>
-            <div class="form-actions">
-                <button class="btn btn-ghost" type="button" id="backToDetails">Retour</button>
-                <button class="btn btn-primary" type="button" id="finishBtn">Terminer</button>
-            </div>
-        </section>
+                <div class="selection-summary" id="selectionSummary" hidden aria-live="polite"></div>
 
-        <section class="form-panel" id="stepHold" hidden aria-labelledby="holdTitle">
-            <h2 id="holdTitle">Formulaire prêt, envoi non branché</h2>
-            <p>La demande n'a pas été transmise.</p>
-            <p>Le parcours est en place. L'envoi sera relié à un formulaire propre à artisanfm.ca au moment de la mise en ligne, après accord.</p>
-            <div class="form-actions">
-                <a class="btn btn-primary" href="../index.html">Retour à l'accueil</a>
-            </div>
-        </section>
+                <div class="form-actions">
+                    <button class="btn btn-ghost" type="button" id="backToStep1">Précédent</button>
+                    <button class="btn btn-primary" type="button" id="toStep3">Suivant</button>
+                </div>
+            </section>
+
+            <!-- Étape 3 — Vos attentes -->
+            <section class="form-panel" id="stepExpectations" hidden aria-labelledby="expectationsTitle">
+                <h2 id="expectationsTitle" class="soumission-title">Vos attentes</h2>
+
+                <div class="form-group">
+                    <div class="field">
+                        <label for="featuresDescription">Fonctionnalités souhaitées <span class="req" aria-hidden="true">*</span></label>
+                        <textarea id="featuresDescription" name="featuresDescription" maxlength="5000" rows="6" placeholder="Quelles fonctionnalités, résultats ou problèmes aimeriez-vous résoudre ?" required></textarea>
+                        <p class="counter" id="featuresDescriptionCounter">0 / 5000</p>
+                        <p class="field-error" id="featuresDescriptionError" role="alert"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="timelineType">Délai souhaité</label>
+                            <select id="timelineType" name="timelineType">
+                                <option value="">— Sélectionnez une option —</option>
+                                <option value="des-que-possible">Dès que possible</option>
+                                <option value="semaine">Cette semaine</option>
+                                <option value="mois">Ce mois-ci</option>
+                                <option value="trois-mois">Dans les 3 prochains mois</option>
+                                <option value="flexible">Flexible / À discuter</option>
+                                <option value="sans-date">Aucune date précise</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="budgetType">Budget envisagé <span class="optional">(indicatif, $ CA)</span></label>
+                            <select id="budgetType" name="budgetType">
+                                <option value="">— Sélectionnez une option —</option>
+                                <option value="moins-500">Moins de 500 $</option>
+                                <option value="500-1499">500 $ à 1 499 $</option>
+                                <option value="1500-2999">1 500 $ à 2 999 $</option>
+                                <option value="3000-4999">3 000 $ à 4 999 $</option>
+                                <option value="5000-9999">5 000 $ à 9 999 $</option>
+                                <option value="10000-plus">10 000 $ et plus</option>
+                                <option value="inconnu">Je ne sais pas encore</option>
+                            </select>
+                            <p class="field-hint">Ce montant représente ce que vous envisagez de dépenser. Ce n’est ni une soumission ni une promesse de prix.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emplacement réservé : futurs prix de départ indicatifs. Aucun tarif officiel publié pour le moment. -->
+                <div class="price-slot" aria-hidden="true" data-slot="prix-depart-indicatifs" hidden></div>
+
+                <aside class="support-note">
+                    <p>Un accompagnement qui se poursuit après la livraison. Si votre projet nécessite de la maintenance, du soutien technique ou des ajustements, je peux également vous accompagner selon vos besoins.</p>
+                </aside>
+
+                <div class="form-actions">
+                    <button class="btn btn-ghost" type="button" id="backToStep2">Précédent</button>
+                    <button class="btn btn-primary" type="button" id="toStep4">Suivant</button>
+                </div>
+            </section>
+
+            <!-- Étape 4 — Faisons connaissance -->
+            <section class="form-panel" id="stepContact" hidden aria-labelledby="contactTitle">
+                <h2 id="contactTitle" class="soumission-title">Faisons connaissance</h2>
+                <p class="soumission-lead">Vos coordonnées et un récapitulatif avant l’envoi.</p>
+
+                <div class="form-group">
+                    <div class="field-row">
+                        <div class="field" id="field-clientName">
+                            <label for="clientName">Nom complet <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="clientName" name="clientName" autocomplete="name" required aria-required="true">
+                            <p class="field-error" id="clientNameError" role="alert"></p>
+                        </div>
+                        <div class="field" id="field-clientEmail">
+                            <label for="clientEmail">Courriel <span class="req" aria-hidden="true">*</span></label>
+                            <input type="email" id="clientEmail" name="clientEmail" autocomplete="email" required aria-required="true">
+                            <p class="field-error" id="clientEmailError" role="alert"></p>
+                        </div>
+                    </div>
+                    <div class="field-row field-row--phone">
+                        <div class="field field--phone" id="field-clientPhone">
+                            <label for="clientPhone">Téléphone <span class="req req--soft" aria-hidden="true">*</span></label>
+                            <input type="tel" id="clientPhone" name="clientPhone" autocomplete="tel" inputmode="tel" placeholder="514 555-1234">
+                            <p class="field-error" id="clientPhoneError" role="alert"></p>
+                        </div>
+                        <div class="field field--poste" id="field-clientPoste">
+                            <label for="clientPoste">Poste <span class="req req--soft" aria-hidden="true">*</span></label>
+                            <input type="text" id="clientPoste" name="clientPoste" inputmode="numeric" maxlength="8" autocomplete="tel-extension" placeholder="12345678" aria-describedby="clientPosteHint">
+                            <p class="field-hint" id="clientPosteHint">Jusqu’à 8 chiffres</p>
+                            <p class="field-error" id="clientPosteError" role="alert"></p>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="clientCompany">Entreprise <span class="optional">(facultatif)</span></label>
+                        <input type="text" id="clientCompany" name="clientCompany" autocomplete="organization">
+                    </div>
+                </div>
+
+                <div class="review-stack" id="reviewStack" aria-live="polite"></div>
+
+                <!-- Honeypot anti-bot (caché) -->
+                <div class="hp-field" aria-hidden="true">
+                    <label for="website">Site web</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="turnstile-wrap" id="turnstileWrap">
+                    <div class="cf-turnstile" id="turnstileWidget" data-theme="light" data-size="normal"></div>
+                    <p class="field-hint" id="turnstileHint" hidden>La vérification anti-robot sera activée après configuration.</p>
+                </div>
+
+                <p class="field-error" id="submitError" role="alert"></p>
+                <p class="submit-success" id="submitSuccess" hidden role="status"></p>
+
+                <div class="form-actions">
+                    <button class="btn btn-ghost" type="button" id="backToStep3">Précédent</button>
+                    <button class="btn btn-primary" type="button" id="submitBtn">Envoyer ma demande</button>
+                </div>
+            </section>
+        </form>
+
         <p class="field-error" id="formError" role="alert"></p>
     </main>
 
     <footer class="site-footer">
-        <p>Artisan FM — L'Artisan du numérique</p>
-        <p>Des solutions sur mesure, pensées dans les moindres détails.</p>
+        <p>&copy; ArtisanFM 2026</p>
     </footer>
+    <script src="../js/soumission-config.js"></script>
+    <script src="../js/soumission-mail-html.js"></script>
     <script src="../js/nav.js"></script>
     <script src="../js/soumission.js"></script>
 </body>

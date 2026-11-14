@@ -1,52 +1,70 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CA">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Réalisations d'Artisan FM : des solutions numériques avancées, avec leur valeur de travail lorsque l'estimation est prête.">
-    <title>Réalisations | Artisan FM</title>
-    <link rel="stylesheet" href="../css/site.css">
+    <meta name="robots" content="index, follow">
+    <title>Réalisations | Projets web et apps — Artisan FM</title>
+    <meta name="description" content="Découvrez des réalisations Artisan FM : sites, applications et systèmes interconnectés conçus pour simplifier le quotidien. Créateur numérique au Québec.">
+    <meta name="author" content="Francis Manseau">
+    <link rel="canonical" href="https://artisanfm.ca/realisations/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:site_name" content="Artisan FM">
+    <meta property="og:url" content="https://artisanfm.ca/realisations/">
+    <meta property="og:title" content="Mes réalisations | Artisan FM">
+    <meta property="og:description" content="Projets concrets : sites, applications et outils numériques interconnectés.">
+    <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mes réalisations | Artisan FM">
+    <meta name="twitter:description" content="Sites, applications et systèmes conçus sur mesure.">
+    <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
+    <link rel="stylesheet" href="../css/theme-lumineux.css?v=nav-text-1">
+    <link rel="stylesheet" href="../css/realisations.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Mes réalisations — Artisan FM",
+      "url": "https://artisanfm.ca/realisations/",
+      "description": "Galerie de projets : sites, applications et systèmes interconnectés.",
+      "isPartOf": { "@type": "WebSite", "name": "Artisan FM", "url": "https://artisanfm.ca/" }
+    }
+    </script>
 </head>
-<body>
+<body class="page-realisations theme-lumineux">
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header class="site-header">
         <a class="brand" href="../index.html">
-            <span class="brand-name">Artisan FM</span>
-            <span class="brand-mark">L'Artisan du numérique</span>
+            <img class="brand-logo" src="../assets/brand/logo-artisan-fm-complet.png" alt="Artisan FM — L'Artisan du numérique" width="1024" height="341" decoding="async">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
-            <a href="../index.html">Accueil</a>
-            <a href="index.html" aria-current="page">Réalisations</a>
-            <a href="../approche/index.html">Mon approche</a>
-            <a href="../soumission/index.html">Soumission</a>
-        </nav>
+        <nav class="site-nav" id="site-nav" data-root="../" data-active="realisations" aria-label="Navigation principale"></nav>
     </header>
 
     <main id="contenu">
-        <h1>Réalisations</h1>
-        <p class="lead measure">Deux solutions déjà construites. Elles montrent le travail réalisé, pas un catalogue à vendre.</p>
-        <p class="measure">Les montants, lorsqu'ils seront affichés, décrivent la valeur estimée du travail de conception et de développement. Ce n'est pas un prix de vente, ni une soumission.</p>
+        <header class="real-intro">
+            <p class="real-intro__eyebrow">Créations</p>
+            <h1>Mes réalisations</h1>
+            <p>Découvrez des projets concrets : sites, applications et systèmes interconnectés, conçus pour simplifier le quotidien et faire communiquer différents outils numériques.</p>
+        </header>
 
-        <div class="cards">
-            <a class="card" href="hk-crib-go.html">
-                <p class="state">Version avancée</p>
-                <h2>HK Crib GO</h2>
-                <p>Une application mobile pour jouer des parties courtes de cribbage Hong Kong, sans dépendre d'un jeu de cartes physique.</p>
-            </a>
-            <a class="card" href="haven.html">
-                <p class="state">Version avancée</p>
-                <h2>Haven</h2>
-                <p>Un outil qui réduit les interruptions du téléphone pendant le travail, la route ou le repos.</p>
-            </a>
-        </div>
+        <div class="real-liste" id="real-grille" aria-label="Liste des réalisations"></div>
+
+        <section
+            class="real-detail"
+            id="real-detail"
+            aria-hidden="true"
+            aria-labelledby="real-detail-titre">
+            <div id="real-detail-inner"></div>
+        </section>
     </main>
-
     <footer class="site-footer">
-        <p>Artisan FM — L'Artisan du numérique</p>
-        <p>Des solutions sur mesure, pensées dans les moindres détails.</p>
+        <p>&copy; ArtisanFM 2026</p>
     </footer>
+
     <script src="../js/nav.js"></script>
+    <script src="../js/realisations-data.js"></script>
+    <script src="../js/realisations.js"></script>
 </body>
 </html>

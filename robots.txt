@@ -1,0 +1,16 @@
+# Artisan FM — https://artisanfm.ca/
+User-agent: *
+Allow: /
+
+# Pages et dossiers non destinés à l'indexation
+Disallow: /workers/
+Disallow: /approche/
+Disallow: /savoir-faire/
+Disallow: /prototype-fibres.html
+Disallow: /soumission/apercu-courriel.html
+Disallow: /realisations/fiches/
+Disallow: /realisations/_backup-livre-20261112/
+Disallow: /realisations/haven.html
+Disallow: /realisations/hk-crib-go.html
+
+Sitemap: https://artisanfm.ca/sitemap.xml
