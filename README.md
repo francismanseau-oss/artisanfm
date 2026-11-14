@@ -8,7 +8,7 @@ Site statique pour [artisanfm.ca](https://artisanfm.ca/) — L'Artisan du numér
 |---|---|
 | L'Atelier | `/` |
 | Mes réalisations | `/realisations/` |
-| Mes services | `/univers/` |
+| Mes services | `/services/` |
 | Démarrer un projet | `/soumission/` |
 | Contact | `/contact/` |
 

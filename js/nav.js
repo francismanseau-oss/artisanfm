@@ -6,7 +6,7 @@
         var items = [
             { id: "atelier", href: root + "index.html", label: "L'Atelier" },
             { id: "realisations", href: root + "realisations/index.html", label: "Mes réalisations" },
-            { id: "services", href: root + "univers/index.html", label: "Mes services" },
+            { id: "services", href: root + "services/index.html", label: "Mes services" },
             { id: "projet", href: root + "soumission/index.html", label: "Démarrer un projet" },
             { id: "contact", href: root + "contact/index.html", label: "Contact" }
         ];
