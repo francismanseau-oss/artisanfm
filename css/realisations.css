@@ -297,14 +297,14 @@ body.page-realisations.theme-lumineux main#contenu {
     text-align: center;
 }
 
-/* Lightbox agrandissement (optionnel) */
+/* Lightbox agrandissement — carrousel limité au projet courant */
 .real-lightbox {
     position: fixed;
     inset: 0;
     z-index: 80;
     display: grid;
     place-items: center;
-    padding: 1.25rem;
+    padding: 1.25rem 3.5rem;
     background: rgba(20, 42, 64, 0.72);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -318,17 +318,27 @@ body.page-realisations.theme-lumineux main#contenu {
     margin: 0;
     max-width: min(96vw, 72rem);
     max-height: 90vh;
+    text-align: center;
 }
 
 .real-lightbox__figure img {
     display: block;
     max-width: 100%;
-    max-height: 90vh;
+    max-height: 82vh;
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 0.75rem;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    margin-inline: auto;
+}
+
+.real-lightbox__count {
+    margin: 0.75rem 0 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-family: var(--display, inherit);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
 }
 
 .real-lightbox__close {
@@ -345,10 +355,70 @@ body.page-realisations.theme-lumineux main#contenu {
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
+    z-index: 2;
+}
+
+.real-lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    appearance: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--profond);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.real-lightbox__nav--prev {
+    left: 0.75rem;
+}
+
+.real-lightbox__nav--next {
+    right: 0.75rem;
+}
+
+.real-lightbox__nav[hidden],
+.real-lightbox__count[hidden] {
+    display: none !important;
+}
+
+.real-accordeon__circuit-zoom {
+    appearance: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+.real-accordeon__circuit-zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 body.is-lightbox {
     overflow: hidden;
+}
+
+@media (max-width: 620px) {
+    .real-lightbox {
+        padding: 1rem 2.75rem;
+    }
+
+    .real-lightbox__nav {
+        width: 2.35rem;
+        height: 2.35rem;
+        font-size: 1.45rem;
+    }
 }
 
 /* ——— Détail ——— */

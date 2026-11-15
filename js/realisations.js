@@ -7,6 +7,8 @@
     var detailInner = document.getElementById("real-detail-inner");
     if (!liste || !detail || !detailInner) return;
 
+    var lightboxGalerie = { items: [], index: 0 };
+
     function esc(s) {
         return String(s || "")
             .replace(/&/g, "&amp;")
@@ -15,17 +17,39 @@
             .replace(/"/g, "&quot;");
     }
 
+    /** Toutes les images d'un même projet (Nexus = ensemble Mobile + PC + WSAI + circuit). */
+    function imagesGalerieProjet(projet) {
+        var images = [];
+        var alts = [];
+        function add(src, alt) {
+            if (!src || images.indexOf(src) !== -1) return;
+            images.push(src);
+            alts.push(alt || "");
+        }
+        if (projet.cover) add(projet.cover, projet.coverAlt || projet.titre);
+        if (projet.circuit && projet.circuit.src) {
+            add(projet.circuit.src, projet.circuit.alt || projet.titre);
+        }
+        (projet.pages || []).forEach(function (page) {
+            (page.images || []).forEach(function (src, i) {
+                add(src, (page.imageAlts && page.imageAlts[i]) || page.titre || projet.titre);
+            });
+        });
+        return { images: images, alts: alts };
+    }
+
     /** Carrousel de photos — toutes les <img> restent dans le HTML (src + alt). */
-    function renderCarrousel(images, alts, key, fallbackAlt) {
+    function renderCarrousel(images, alts, key, fallbackAlt, galleryId) {
         images = images || [];
         if (!images.length) return "";
         alts = alts || [];
+        var galAttr = galleryId ? ' data-lightbox-gallery="' + esc(galleryId) + '"' : "";
 
         var slides = images.map(function (src, i) {
             var alt = alts[i] || fallbackAlt || "";
             return (
                 '<figure class="real-carrousel__slide">' +
-                '<button type="button" class="real-carrousel__zoom" data-lightbox-src="' + esc(src) + '" data-lightbox-alt="' + esc(alt) + '" aria-label="Agrandir : ' + esc(alt) + '">' +
+                '<button type="button" class="real-carrousel__zoom" data-lightbox-src="' + esc(src) + '" data-lightbox-alt="' + esc(alt) + '"' + galAttr + ' aria-label="Agrandir : ' + esc(alt) + '">' +
                 '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="' + (i === 0 ? "eager" : "lazy") + '" decoding="async">' +
                 "</button>" +
                 "</figure>"
@@ -56,6 +80,12 @@
         return (projet.pages && projet.pages[0]) || {};
     }
 
+    /* Fiche détail seulement si plusieurs pages (sinon le bandeau suffit). */
+    function aFicheDetail(projet) {
+        if (!projet || projet.modeAccordeon || projet.ficheDetail === false) return false;
+        return (projet.pages || []).length > 1;
+    }
+
     function imagesApercu(projet) {
         if (projet.modeAccordeon && projet.cover) {
             return { images: [projet.cover], alts: [projet.coverAlt || projet.titre] };
@@ -76,7 +106,7 @@
         return index % 2 === 0 ? "texte-gauche" : "image-gauche";
     }
 
-    function renderSection(page, keyPrefix, index) {
+    function renderSection(page, keyPrefix, index, galleryId) {
         var alt = sectionAlternance(page, index);
         var points = (page.points || []).map(function (pt) {
             return "<li>" + esc(pt) + "</li>";
@@ -95,7 +125,7 @@
             '<section class="real-section real-section--' + alt + '">' +
             '<div class="real-section__texte">' + texte + "</div>" +
             '<div class="real-section__media">' +
-            renderCarrousel(page.images, page.imageAlts, keyPrefix + "-" + index, page.titre) +
+            renderCarrousel(page.images, page.imageAlts, keyPrefix + "-" + index, page.titre, galleryId) +
             "</div>" +
             "</section>"
         );
@@ -103,14 +133,17 @@
 
     function renderAccordeonBody(projet) {
         var sections = (projet.pages || []).map(function (page, i) {
-            return renderSection(page, "acc-" + projet.id, i);
+            return renderSection(page, "acc-" + projet.id, i, projet.id);
         }).join("");
 
         var circuit = "";
         if (projet.circuit && projet.circuit.src) {
+            var circuitAlt = projet.circuit.alt || "";
             circuit =
                 '<figure class="real-accordeon__circuit">' +
-                '<img src="' + esc(projet.circuit.src) + '" alt="' + esc(projet.circuit.alt || "") + '" loading="lazy" decoding="async">' +
+                '<button type="button" class="real-accordeon__circuit-zoom" data-lightbox-src="' + esc(projet.circuit.src) + '" data-lightbox-alt="' + esc(circuitAlt) + '" data-lightbox-gallery="' + esc(projet.id) + '" aria-label="Agrandir : ' + esc(circuitAlt || projet.titre) + '">' +
+                '<img src="' + esc(projet.circuit.src) + '" alt="' + esc(circuitAlt) + '" loading="lazy" decoding="async">' +
+                "</button>" +
                 (projet.circuit.caption
                     ? '<figcaption>' + esc(projet.circuit.caption) + "</figcaption>"
                     : "") +
@@ -158,16 +191,18 @@
                 "</button>" +
                 "</div>";
         } else {
-            actions =
-                '<div class="real-bandeau__actions">' +
-                '<button type="button" class="btn btn-primary" data-projet="' + esc(projet.id) + '">' +
-                esc(projet.boutonFiche || "Voir les détails") +
-                "</button>" +
-                (projet.url
-                    ? '<a class="btn btn-ghost" href="' + esc(projet.url) + '" target="_blank" rel="noopener noreferrer">' +
-                      esc(projet.lienLabel || "Lien externe") + "</a>"
-                    : "") +
-                "</div>";
+            var ficheBtn = aFicheDetail(projet)
+                ? '<button type="button" class="btn btn-primary" data-projet="' + esc(projet.id) + '">' +
+                  esc(projet.boutonFiche || "Voir les détails") +
+                  "</button>"
+                : "";
+            var lienBtn = projet.url
+                ? '<a class="btn ' + (ficheBtn ? "btn-ghost" : "btn-primary") + '" href="' + esc(projet.url) + '" target="_blank" rel="noopener noreferrer">' +
+                  esc(projet.lienLabel || "Lien externe") + "</a>"
+                : "";
+            actions = (ficheBtn || lienBtn)
+                ? '<div class="real-bandeau__actions">' + ficheBtn + lienBtn + "</div>"
+                : "";
         }
 
         return (
@@ -227,7 +262,7 @@
                 '<div class="real-bandeau__haut">' +
                 '<div class="real-bandeau__texte">' + texteListe(projet) + "</div>" +
                 '<div class="real-bandeau__media">' +
-                renderCarrousel(media.images, media.alts, "liste-" + projet.id, projet.titre) +
+                renderCarrousel(media.images, media.alts, "liste-" + projet.id, projet.titre, projet.id) +
                 "</div>" +
                 "</div>" +
                 panel +
@@ -277,7 +312,7 @@
 
     function renderDetail(projet) {
         var sections = (projet.pages || []).map(function (page, i) {
-            return renderSection(page, projet.id, i);
+            return renderSection(page, projet.id, i, projet.id);
         }).join("");
 
         var lienExterne = projet.url
@@ -316,24 +351,79 @@
         box.setAttribute("aria-label", "Image agrandie");
         box.innerHTML =
             '<button type="button" class="real-lightbox__close" data-lightbox-close aria-label="Fermer">×</button>' +
-            '<figure class="real-lightbox__figure"><img src="" alt=""></figure>';
+            '<button type="button" class="real-lightbox__nav real-lightbox__nav--prev" data-lightbox-prev aria-label="Image précédente">‹</button>' +
+            '<figure class="real-lightbox__figure"><img src="" alt=""><figcaption class="real-lightbox__count" data-lightbox-count hidden></figcaption></figure>' +
+            '<button type="button" class="real-lightbox__nav real-lightbox__nav--next" data-lightbox-next aria-label="Image suivante">›</button>';
         document.body.appendChild(box);
         box.addEventListener("click", function (e) {
             if (e.target === box || e.target.closest("[data-lightbox-close]")) {
                 fermerLightbox();
+                return;
+            }
+            if (e.target.closest("[data-lightbox-prev]")) {
+                naviguerLightbox(-1);
+                return;
+            }
+            if (e.target.closest("[data-lightbox-next]")) {
+                naviguerLightbox(1);
             }
         });
         return box;
     }
 
-    function ouvrirLightbox(src, alt) {
+    function syncLightbox() {
         var box = ensureLightbox();
+        var item = lightboxGalerie.items[lightboxGalerie.index];
+        if (!item) return;
         var img = box.querySelector("img");
-        img.src = src;
-        img.alt = alt || "";
-        box.removeAttribute("hidden");
+        img.src = item.src;
+        img.alt = item.alt || "";
+        var count = box.querySelector("[data-lightbox-count]");
+        var multi = lightboxGalerie.items.length > 1;
+        if (count) {
+            count.hidden = !multi;
+            count.textContent = multi
+                ? (lightboxGalerie.index + 1) + " / " + lightboxGalerie.items.length
+                : "";
+        }
+        var prev = box.querySelector("[data-lightbox-prev]");
+        var next = box.querySelector("[data-lightbox-next]");
+        if (prev) prev.hidden = !multi;
+        if (next) next.hidden = !multi;
+    }
+
+    function naviguerLightbox(delta) {
+        var n = lightboxGalerie.items.length;
+        if (n < 2) return;
+        lightboxGalerie.index = (lightboxGalerie.index + delta + n) % n;
+        syncLightbox();
+    }
+
+    function ouvrirLightboxDepuis(el) {
+        var src = el.getAttribute("data-lightbox-src");
+        if (!src) return;
+        var galleryId = el.getAttribute("data-lightbox-gallery") || "";
+        if (!galleryId) {
+            var article = el.closest("[id^='apercu-']");
+            if (article) galleryId = article.id.replace(/^apercu-/, "");
+        }
+        var projet = galleryId ? data.get(galleryId) : null;
+        var gal = projet
+            ? imagesGalerieProjet(projet)
+            : { images: [src], alts: [el.getAttribute("data-lightbox-alt") || ""] };
+        var index = gal.images.indexOf(src);
+        if (index < 0) index = 0;
+        lightboxGalerie = {
+            items: gal.images.map(function (s, i) {
+                return { src: s, alt: gal.alts[i] || "" };
+            }),
+            index: index
+        };
+        ensureLightbox();
+        syncLightbox();
+        ensureLightbox().removeAttribute("hidden");
         document.body.classList.add("is-lightbox");
-        var closeBtn = box.querySelector("[data-lightbox-close]");
+        var closeBtn = ensureLightbox().querySelector("[data-lightbox-close]");
         if (closeBtn) closeBtn.focus();
     }
 
@@ -346,6 +436,7 @@
             img.removeAttribute("src");
             img.alt = "";
         }
+        lightboxGalerie = { items: [], index: 0 };
         document.body.classList.remove("is-lightbox");
     }
 
@@ -364,6 +455,13 @@
         if (!projet) return;
         if (projet.modeAccordeon) {
             setAccordeon(id, true);
+            return;
+        }
+        if (!aFicheDetail(projet)) {
+            var apercu = document.getElementById("apercu-" + id);
+            if (apercu) {
+                apercu.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
             return;
         }
         renderDetail(projet);
@@ -399,7 +497,7 @@
         var zoom = e.target.closest("[data-lightbox-src]");
         if (zoom) {
             e.preventDefault();
-            ouvrirLightbox(zoom.getAttribute("data-lightbox-src"), zoom.getAttribute("data-lightbox-alt"));
+            ouvrirLightboxDepuis(zoom);
             return;
         }
         if (onCarrouselNav(e)) return;
@@ -425,18 +523,30 @@
         var zoom = e.target.closest("[data-lightbox-src]");
         if (zoom) {
             e.preventDefault();
-            ouvrirLightbox(zoom.getAttribute("data-lightbox-src"), zoom.getAttribute("data-lightbox-alt"));
+            ouvrirLightboxDepuis(zoom);
             return;
         }
         onCarrouselNav(e);
     });
 
     document.addEventListener("keydown", function (e) {
-        if (e.key !== "Escape") return;
         if (document.body.classList.contains("is-lightbox")) {
-            fermerLightbox();
-            return;
+            if (e.key === "Escape") {
+                fermerLightbox();
+                return;
+            }
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                naviguerLightbox(-1);
+                return;
+            }
+            if (e.key === "ArrowRight") {
+                e.preventDefault();
+                naviguerLightbox(1);
+                return;
+            }
         }
+        if (e.key !== "Escape") return;
         if (detail.classList.contains("is-open")) {
             fermer();
             return;

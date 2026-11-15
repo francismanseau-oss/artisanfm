@@ -1,4 +1,4 @@
-/* Accueil — L'Atelier (référence visuelle réseau + animations) */
+/* Accueil — présentation courte + illustration réseau */
 
 body.page-atelier.theme-lumineux main#contenu {
     width: min(var(--page), calc(100% - 2rem));
@@ -9,20 +9,21 @@ body.page-atelier.theme-lumineux main#contenu {
 .hero-assemble {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: clamp(1.75rem, 4vw, 3.5rem);
-    align-items: start;
-    padding: clamp(0.75rem, 2vw, 1.5rem) 0 2rem;
+    align-items: center;
+    min-height: min(68vh, 36rem);
+    padding: clamp(1.25rem, 3vw, 2.5rem) 0 clamp(2rem, 4vw, 3rem);
 }
 
 .hero-assemble__copy {
     position: relative;
     z-index: 2;
-    max-width: 38rem;
-    padding: 1.15rem 1.25rem 1.35rem;
+    max-width: 34rem;
+    padding: clamp(1.35rem, 2.8vw, 2rem) clamp(1.25rem, 2.5vw, 1.85rem);
     border-radius: 1.5rem;
     background:
-        linear-gradient(155deg, rgba(255, 255, 255, 0.72), rgba(241, 250, 255, 0.45));
+        linear-gradient(155deg, rgba(255, 255, 255, 0.78), rgba(241, 250, 255, 0.48));
     border: 1px solid rgba(139, 207, 244, 0.28);
     box-shadow:
         0 20px 50px rgba(36, 75, 105, 0.07),
@@ -31,24 +32,16 @@ body.page-atelier.theme-lumineux main#contenu {
     -webkit-backdrop-filter: blur(12px);
 }
 
-.hero-assemble__eyebrow {
-    margin: 0 0 0.65rem;
-    font-family: var(--display);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--azur-vif);
-}
-
 .hero-assemble__titre {
-    margin: 0 0 1.1rem;
+    margin: 0 0 1.35rem;
+    padding-bottom: 1.15rem;
     font-family: var(--display);
     font-weight: 700;
-    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-    line-height: 1.28;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.55rem, 3.2vw, 2.15rem);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
     color: var(--profond);
+    border-bottom: 1px solid rgba(139, 207, 244, 0.35);
 }
 
 .hero-assemble__titre-suite {
@@ -59,126 +52,26 @@ body.page-atelier.theme-lumineux main#contenu {
 
 .hero-assemble__lead,
 .hero-assemble__p {
-    margin: 0 0 0.9rem;
+    margin: 0 0 1rem;
     color: var(--profond-soft);
-    font-size: clamp(0.98rem, 1.35vw, 1.08rem);
-    line-height: 1.62;
+    font-size: clamp(1.02rem, 1.45vw, 1.12rem);
+    line-height: 1.68;
 }
 
 .hero-assemble__lead {
     color: var(--profond);
     font-weight: 600;
-    font-size: clamp(1.02rem, 1.45vw, 1.14rem);
+    font-size: clamp(1.06rem, 1.55vw, 1.18rem);
 }
 
-.hero-assemble__p--engage {
-    margin-top: 0.35rem;
-    padding: 0.75rem 0.9rem;
-    border-radius: 0.9rem;
-    background: rgba(217, 240, 255, 0.45);
-    border: 1px solid rgba(139, 207, 244, 0.28);
-}
-
-/* ——— Ce qui guide mes créations ——— */
-
-.valeurs-guide {
-    margin: clamp(0.85rem, 2.4vw, 1.65rem) 0 0.5rem;
-    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2.5vw, 1.75rem);
-    border-radius: 1.6rem;
-    background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.78), rgba(241, 250, 255, 0.5));
-    border: 1px solid rgba(139, 207, 244, 0.32);
-    box-shadow:
-        0 22px 55px rgba(36, 75, 105, 0.07),
-        inset 0 1px 0 rgba(255, 255, 255, 0.92);
-}
-
-.valeurs-guide__intro {
-    max-width: 40rem;
-    margin: 0 auto 1.75rem;
-    text-align: center;
-}
-
-.valeurs-guide__titre {
-    margin: 0 0 0.55rem;
-    font-family: var(--display);
-    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--profond);
-}
-
-.valeurs-guide__lead {
-    margin: 0;
-    color: var(--profond-soft);
-    font-size: clamp(0.98rem, 1.4vw, 1.08rem);
-    line-height: 1.55;
-}
-
-.valeurs-guide__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2.2vw, 1.5rem);
-}
-
-.valeur-card {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    gap: 0.35rem;
-    padding: 0.55rem 0.7rem 1.15rem;
-    border-radius: 1.2rem;
-    background: #ffffff;
-    border: 1px solid rgba(139, 207, 244, 0.38);
-    box-shadow: 0 12px 28px rgba(36, 75, 105, 0.05);
-}
-
-.valeur-card__media {
-    margin: 0;
-    line-height: 0;
+.hero-assemble__p--invite {
+    margin: 1.15rem 0 0;
+    padding: 0.95rem 1.05rem;
     border-radius: 0.95rem;
-    overflow: hidden;
-    background: #ffffff;
-}
-
-.valeur-card__media img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1024 / 682;
-    object-fit: contain;
-    object-position: center top;
-}
-
-.valeur-card__nom {
-    margin: 0.15rem 0.35rem 0;
-    font-family: var(--display);
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    background: rgba(217, 240, 255, 0.42);
+    border: 1px solid rgba(139, 207, 244, 0.28);
     color: var(--profond);
-    min-height: 1.45em;
-}
-
-.valeur-card__texte {
-    margin: 0 0.35rem;
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: var(--profond-soft);
-}
-
-.hero-assemble__philosophie {
-    margin: 1.15rem 0 1.35rem;
-    font-family: var(--display);
-    font-size: clamp(0.92rem, 1.3vw, 1.05rem);
-    font-weight: 600;
-    letter-spacing: 0.035em;
-    color: var(--profond);
-}
-
-.hero-assemble__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    font-size: clamp(1rem, 1.4vw, 1.08rem);
 }
 
 /* ——— Illustration (référence + surcouches animées) ——— */
@@ -187,7 +80,6 @@ body.page-atelier.theme-lumineux main#contenu {
     position: sticky;
     top: 6.5rem;
     z-index: 1;
-    /* Proportions exactes de reseau-reference.jpg (1024×682) */
     aspect-ratio: 1024 / 682;
     width: min(100%, 36rem);
     max-width: 100%;
@@ -352,6 +244,8 @@ body.page-atelier.theme-lumineux main#contenu {
     .hero-assemble {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        min-height: 0;
+        align-items: start;
     }
 
     .assemble-scene {
@@ -370,37 +264,17 @@ body.page-atelier.theme-lumineux main#contenu {
     }
 
     .hero-assemble__titre {
-        font-size: clamp(1.2rem, 5.2vw, 1.55rem);
-    }
-
-    .valeurs-guide__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 620px) {
-    .valeurs-guide {
-        padding: 1.25rem 0.9rem 1.4rem;
-    }
-
-    .valeurs-guide__grid {
-        grid-template-columns: 1fr;
-        gap: 0.9rem;
+        font-size: clamp(1.4rem, 5.5vw, 1.85rem);
     }
 }
 
 @media (max-width: 520px) {
     .hero-assemble__copy {
-        padding: 1rem 0.95rem 1.15rem;
+        padding: 1.15rem 1rem 1.25rem;
     }
 
-    .hero-assemble__actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .hero-assemble__actions .btn {
-        width: 100%;
+    .hero-assemble__p--invite {
+        padding: 0.85rem 0.9rem;
     }
 }
 
@@ -410,8 +284,7 @@ body.page-atelier.theme-lumineux main#contenu {
     .assemble-scene.is-linked .fiber-pulses,
     .assemble-scene.is-wireless .wifi-boost,
     .assemble-scene.is-alive .wifi-boost,
-    .assemble-scene.is-alive .wifi-ring,
-    body.theme-lumineux .btn-primary {
+    .assemble-scene.is-alive .wifi-ring {
         animation: none !important;
         transition: none !important;
     }
@@ -431,9 +304,5 @@ body.page-atelier.theme-lumineux main#contenu {
 
     .wifi-boost {
         opacity: 0.45 !important;
-    }
-
-    body.theme-lumineux .btn-primary:hover {
-        transform: none;
     }
 }

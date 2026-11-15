@@ -38,7 +38,7 @@ window.AFM_REALISATIONS = (function () {
             resume: "Écosystème privé reliant Nexus Mobile, WSAI et Nexus PC pour piloter des agents IA à distance et faire évoluer des projets depuis le téléphone.",
             cover: assetBase + "nexus/nexus-bridge.png",
             coverAlt: "Nexus — vue d'ensemble Mobile, WSAI et PC",
-            intro: "Écosystème privé reliant Nexus Mobile, WSAI et Nexus PC pour piloter mes agents IA à distance depuis mon cellulaire et mettre à jour mes projets de partout dans le monde.",
+            intro: "Écosystème privé reliant Nexus Mobile, WSAI et Nexus PC : depuis mon cellulaire, je pilote mon agent de développement (Cursor) comme si j’étais devant l’ordinateur, pour faire avancer mes projets de partout.",
             /* Accordéon in-page — aucun lien externe, aucune page séparée */
             modeAccordeon: true,
             boutonOuvrir: "Découvrir Nexus",
@@ -46,8 +46,7 @@ window.AFM_REALISATIONS = (function () {
             url: null,
             circuit: {
                 src: assetBase + "nexus/ecosysteme-nexus-circuit-complet.jpg",
-                alt: "Schéma de l'écosystème Nexus montrant les connexions entre Nexus Mobile, WSAI, Nexus PC, l'IA codeur locale, Git et le Web.",
-                caption: "Boucle assemblée : idée sur le téléphone → Nexus Mobile → WSAI → Nexus PC → Cursor CLI / agents → développement → puis, selon le projet, dépôt Git, build et retour vers le téléphone pour test."
+                alt: "Schéma de l'écosystème Nexus montrant les connexions entre Nexus Mobile, WSAI, Nexus PC, l'IA codeur locale, Git et le Web."
             },
             /* Ordre obligatoire dans l'accordéon : Mobile → PC → WSAI */
             pages: [
@@ -57,7 +56,7 @@ window.AFM_REALISATIONS = (function () {
                     desc: "Application Android conçue comme point d'entrée de l'écosystème : écrire les demandes, choisir l'agent et suivre le travail à distance, sans rester devant l'ordinateur.",
                     points: [
                         "Objectif — poursuivre un projet depuis le téléphone, là où je me trouve",
-                        "Fonctionnalités — chat mission, choix d'agent (dont Virtuose / Cursor), options et préférences",
+                        "Fonctionnalités — chat mission, choix d'agent (dont le programmeur IA intégré sur le PC), options et préférences",
                         "Fonctionnement — envoi des missions vers WSAI ; suivi du travail à distance",
                         "Rôle dans Nexus — interface mobile de pilotage de l'écosystème",
                         "Interactions vérifiées — dialogue avec WSAI ; réveil du PC via Wake-on-LAN",
@@ -70,7 +69,7 @@ window.AFM_REALISATIONS = (function () {
                         assetBase + "nexus/01-options.png"
                     ],
                     imageAlts: [
-                        "Nexus Mobile — chat mission et session Cursor",
+                        "Nexus Mobile — chat mission et session avec le programmeur IA",
                         "Nexus Mobile — menu agents",
                         "Nexus Mobile — options et Wake-on-LAN"
                     ]
@@ -78,14 +77,14 @@ window.AFM_REALISATIONS = (function () {
                 {
                     titre: "Nexus PC",
                     layout: "a",
-                    desc: "Logiciel Windows qui fait le pont avec Cursor CLI et l'environnement de développement local. Le centre de contrôle reçoit le travail par WSAI, le transmet à Cursor CLI ou à l'agent choisi, maintient le contexte de la session et retourne le résultat vers le mobile.",
+                    desc: "Logiciel Windows permettant de contrôler à distance un agent IA spécialisé en programmation, directement sur mon ordinateur, à partir de mon téléphone.",
                     points: [
-                        "Objectif — exécuter et poursuivre le travail de développement sur le poste Windows",
-                        "Fonctionnalités — Control Center, pont Cursor CLI, maintien du fil de discussion",
-                        "Fonctionnement — réception via WSAI, transmission à l'agent choisi, retour du résultat vers le mobile",
-                        "Rôle dans Nexus — moteur d'exécution local de l'écosystème",
-                        "Interactions vérifiées — échanges bidirectionnels avec WSAI ; dialogue avec l'IA codeur en local",
-                        "Conception et assemblage — intégration du poste de travail dans la boucle Mobile ↔ WSAI ↔ PC"
+                        "Objectif — Piloter et poursuivre des projets de développement à distance.",
+                        "Fonctionnalités — Centre de contrôle, communication avec l'IA codeur et maintien du contexte de travail.",
+                        "Fonctionnement — Les instructions envoyées depuis le mobile sont transmises à l'IA sur le PC, puis les résultats sont retournés au téléphone.",
+                        "Rôle dans Nexus — Centre d'exécution local de l'écosystème.",
+                        "Interactions vérifiées — Communication bidirectionnelle entre le mobile et le PC.",
+                        "Conception et assemblage — Intégration du poste Windows dans l'écosystème Mobile ↔ WSAI ↔ PC."
                     ],
                     carrousel: true,
                     images: [
