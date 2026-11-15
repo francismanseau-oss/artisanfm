@@ -74,16 +74,15 @@
 
         var prev = pageIndex > 0 ? PAGE_ORDER[pageIndex - 1] : null;
         var next = pageIndex < PAGE_ORDER.length - 1 ? PAGE_ORDER[pageIndex + 1] : null;
-        var showSideArrows = active !== "services";
 
         var chrome = document.createElement("div");
         chrome.id = "site-page-chrome";
         chrome.className = "site-page-chrome";
         chrome.innerHTML =
-            (showSideArrows && prev
+            (prev
                 ? '<a class="site-page-arrow site-page-arrow--prev" href="' + root + prev.file + '" aria-label="Page précédente : ' + prev.label + '" title="' + prev.label + '">' + CHEV_PREV + "</a>"
                 : "") +
-            (showSideArrows && next
+            (next
                 ? '<a class="site-page-arrow site-page-arrow--next" href="' + root + next.file + '" aria-label="Page suivante : ' + next.label + '" title="' + next.label + '">' + CHEV_NEXT + "</a>"
                 : "") +
             '<button type="button" class="site-back-top" id="site-back-top" aria-label="Remonter en haut" hidden>↑</button>';
