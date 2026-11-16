@@ -138,9 +138,17 @@ body.page-atelier.theme-lumineux main#contenu {
 }
 
 .fiber-pulse {
-    fill: #ffffff;
-    stroke: rgba(160, 220, 245, 0.9);
-    stroke-width: 0.55;
+    stroke-width: 1.1;
+}
+
+.fiber-pulse--in {
+    fill: #e53935;
+    stroke: rgba(255, 200, 190, 0.95);
+}
+
+.fiber-pulse--out {
+    fill: #2ecc71;
+    stroke: rgba(200, 255, 220, 0.95);
 }
 
 .wifi-boost {

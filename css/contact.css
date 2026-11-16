@@ -128,67 +128,56 @@ body.page-contact.theme-lumineux main#contenu {
 
 .contact-dispo {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(12rem, 0.85fr);
-    gap: 1.25rem 1.75rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem 1.35rem;
     align-items: center;
+}
+
+.contact-dispo__texte {
+    min-width: 0;
 }
 
 .contact-dispo__texte .contact-card__titre {
     margin-bottom: 0.55rem;
 }
 
-.contact-mini-cal {
+.contact-dispo__icone {
     margin: 0;
-    padding: 0.85rem 0.9rem 0.95rem;
-    border-radius: 1rem;
-    background:
-        linear-gradient(160deg, rgba(255, 255, 255, 0.98), rgba(241, 250, 255, 0.92));
-    border: 1px solid rgba(139, 207, 244, 0.4);
-    box-shadow: 0 10px 22px rgba(36, 75, 105, 0.06);
+    flex-shrink: 0;
+    display: block;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    transition: transform 0.18s ease, opacity 0.18s ease;
 }
 
-.contact-mini-cal__mois {
-    margin: 0 0 0.65rem;
-    font-family: var(--display);
-    font-size: 0.92rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--profond);
-    text-align: center;
+.contact-dispo__icone:hover {
+    transform: scale(1.04);
+    opacity: 0.92;
 }
 
-.contact-mini-cal__jours,
-.contact-mini-cal__grille {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 0.2rem;
-    text-align: center;
+.contact-dispo__icone:focus-visible {
+    outline: 2px solid var(--azur-vif);
+    outline-offset: 3px;
 }
 
-.contact-mini-cal__jours {
-    margin-bottom: 0.35rem;
+.contact-dispo__icone--signal {
+    width: 7.25rem;
 }
 
-.contact-mini-cal__jours span {
-    font-family: var(--display);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--azur-vif);
+.contact-dispo__icone--email {
+    width: 5.5rem;
 }
 
-.contact-mini-cal__grille span {
-    display: grid;
-    place-items: center;
-    min-height: 1.55rem;
-    border-radius: 0.45rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--profond-soft);
+.contact-dispo__icone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.contact-mini-cal__grille span.is-empty {
-    visibility: hidden;
+.contact-dispo__icone--email img {
+    /* fond blanc de l’illustration → se fond dans la carte */
+    mix-blend-mode: multiply;
 }
 
 .contact-card__list {
@@ -280,14 +269,16 @@ body.page-contact.theme-lumineux main#contenu {
     }
 
     .contact-dispo {
-        grid-template-columns: 1fr;
-        gap: 1.1rem;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 0.85rem 1rem;
     }
 
-    .contact-mini-cal {
-        max-width: 18rem;
-        width: 100%;
-        justify-self: start;
+    .contact-dispo__icone--signal {
+        width: 5.75rem;
+    }
+
+    .contact-dispo__icone--email {
+        width: 4.25rem;
     }
 
     .contact-signal {
@@ -300,6 +291,18 @@ body.page-contact.theme-lumineux main#contenu {
 }
 
 @media (max-width: 420px) {
+    .contact-dispo {
+        gap: 0.7rem 0.65rem;
+    }
+
+    .contact-dispo__icone--signal {
+        width: 4.75rem;
+    }
+
+    .contact-dispo__icone--email {
+        width: 3.5rem;
+    }
+
     .contact-signal {
         grid-template-columns: 1fr;
         justify-items: start;

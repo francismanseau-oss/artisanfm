@@ -22,7 +22,7 @@
     <link rel="icon" href="assets/brand/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
     <link rel="stylesheet" href="css/theme-lumineux.css?v=page-arrows-4">
-    <link rel="stylesheet" href="css/accueil.css?v=accueil-court-2">
+    <link rel="stylesheet" href="css/accueil.css?v=accueil-billes-2">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -96,28 +96,50 @@
                           Chemins maîtres alignés sur reseau-reference.jpg (1024×682, illustration Néo v2).
                           Un chemin par fibre — animations aller/retour partagent le même tracé.
                         -->
-                        <path id="fiber-site" fill="none" d="M 253 222 L 253 225 L 252 231 L 248 234 L 244 235 L 242 238 L 239 240 L 234 243 L 232 248 L 229 248 L 225 249 L 225 253 L 223 255 L 224 258 L 223 262 L 223 267 L 223 270 L 223 273 L 224 278 L 224 281 L 224 284 L 225 287 L 225 291 L 226 297 L 227 300 L 228 303 L 230 306 L 232 310 L 236 314 L 240 318 L 243 320 L 245 321 L 247 322 L 249 323 L 254 325 L 261 326 L 264 326 L 267 326 L 270 326 L 273 326 L 277 327 L 281 326 L 283 327 L 286 327 L 289 327 L 291 326 L 295 326 L 299 327 L 301 326 L 304 326 L 307 326 L 311 326 L 315 326 L 319 326 L 323 326 L 327 326 L 331 326 L 335 326 L 339 326 L 344 326 L 347 326 L 351 326 L 355 326 L 359 326 L 363 326 L 367 326 L 371 326 L 375 326 L 379 326 L 383 326 L 387 326 L 391 326 L 395 326 L 399 326 L 403 326 L 407 326 L 410 326 L 414 326 L 418 325 L 423 325 L 428 325 L 434 325 L 438 325 L 441 326" />
-                        <path id="fiber-soft" fill="none" d="M 478 577 L 478 574 L 478 570 L 478 566 L 478 562 L 478 559 L 478 554 L 477 551 L 478 548 L 478 543 L 478 540 L 478 535 L 478 531 L 478 527 L 478 523 L 478 519 L 478 514 L 478 511 L 478 508 L 478 505 L 478 502 L 478 499 L 478 496 L 478 493 L 478 489 L 478 485 L 477 479 L 476 476 L 474 472 L 476 466 L 479 462 L 476 459 L 473 455 L 473 450 L 472 448 L 471 444 L 469 440 L 470 438 L 468 434 L 466 430 L 465 427 L 464 425 L 464 422 L 461 420 L 459 418 L 458 416 L 457 406 L 461 402 L 460 400" />
+                        <path id="fiber-site" fill="none" d="M 252 220 C 248 232, 242 242, 228 256 C 220 268, 224 288, 227 306 C 229 318, 242 328, 268 333 L 420 333 C 432 333, 440 330, 445 324" />
+                        <path id="fiber-soft" fill="none" d="M 475 501 L 485 501 L 497 501 L 504 499 L 511 497 L 513 492 L 520 489 L 529 490 L 533 485 L 535 479 L 530 470 L 532 464 L 538 456 L 532 448 L 536 440 L 534 432 L 533 424 L 530 419 L 526 410 L 530 400 L 536 395 L 536 388 L 536 382" />
                     </defs>
 
                     <g class="fiber-pulses">
-                        <circle class="fiber-pulse" r="2.4" cx="0" cy="0">
-                            <animateMotion dur="2.8s" repeatCount="indefinite" calcMode="linear">
+                        <!-- Rouge : vers le serveur � 2 par fibre -->
+                        <circle class="fiber-pulse fiber-pulse--in" r="6.6" cx="0" cy="0">
+                            <animateMotion dur="3.5s" repeatCount="indefinite" calcMode="linear">
                                 <mpath href="#fiber-site" />
                             </animateMotion>
                         </circle>
-                        <circle class="fiber-pulse" r="2.4" cx="0" cy="0">
-                            <animateMotion dur="2.8s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+                        <circle class="fiber-pulse fiber-pulse--in" r="6.6" cx="0" cy="0">
+                            <animateMotion dur="3.5s" repeatCount="indefinite" calcMode="linear" begin="1.75s">
                                 <mpath href="#fiber-site" />
                             </animateMotion>
                         </circle>
-                        <circle class="fiber-pulse" r="2.3" cx="0" cy="0">
-                            <animateMotion dur="2.5s" repeatCount="indefinite" calcMode="linear">
+                        <circle class="fiber-pulse fiber-pulse--in" r="6.3" cx="0" cy="0">
+                            <animateMotion dur="3.2s" repeatCount="indefinite" calcMode="linear">
                                 <mpath href="#fiber-soft" />
                             </animateMotion>
                         </circle>
-                        <circle class="fiber-pulse" r="2.3" cx="0" cy="0">
-                            <animateMotion dur="2.5s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1" begin="0.2s">
+                        <circle class="fiber-pulse fiber-pulse--in" r="6.3" cx="0" cy="0">
+                            <animateMotion dur="3.2s" repeatCount="indefinite" calcMode="linear" begin="1.6s">
+                                <mpath href="#fiber-soft" />
+                            </animateMotion>
+                        </circle>
+                        <!-- Vert : en aval du serveur � 2 par fibre -->
+                        <circle class="fiber-pulse fiber-pulse--out" r="6.6" cx="0" cy="0">
+                            <animateMotion dur="3.5s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+                                <mpath href="#fiber-site" />
+                            </animateMotion>
+                        </circle>
+                        <circle class="fiber-pulse fiber-pulse--out" r="6.6" cx="0" cy="0">
+                            <animateMotion dur="3.5s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1" begin="1.75s">
+                                <mpath href="#fiber-site" />
+                            </animateMotion>
+                        </circle>
+                        <circle class="fiber-pulse fiber-pulse--out" r="6.3" cx="0" cy="0">
+                            <animateMotion dur="3.2s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+                                <mpath href="#fiber-soft" />
+                            </animateMotion>
+                        </circle>
+                        <circle class="fiber-pulse fiber-pulse--out" r="6.3" cx="0" cy="0">
+                            <animateMotion dur="3.2s" repeatCount="indefinite" calcMode="linear" keyPoints="1;0" keyTimes="0;1" begin="1.6s">
                                 <mpath href="#fiber-soft" />
                             </animateMotion>
                         </circle>
