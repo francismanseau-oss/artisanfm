@@ -243,6 +243,11 @@
     }
 
     function renderListe() {
+        /* Contenu déjà présent dans le HTML initial (SEO / no-JS) : ne pas écraser. */
+        if (liste.getAttribute("data-static") === "true" && liste.querySelector(".real-bandeau")) {
+            initCarrousels(liste);
+            return;
+        }
         liste.innerHTML = data.list().map(function (projet, index) {
             var alt = index % 2 === 0 ? "texte-gauche" : "image-gauche";
             var media = imagesApercu(projet);

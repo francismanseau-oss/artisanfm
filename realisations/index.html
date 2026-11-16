@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow">
-    <title>Réalisations | Projets web et apps — Artisan FM</title>
-    <meta name="description" content="Découvrez des réalisations Artisan FM : sites, applications et systèmes interconnectés conçus pour simplifier le quotidien. Créateur numérique au Québec.">
+    <title>Réalisations | Sites, apps et systèmes interconnectés — Artisan FM</title>
+    <meta name="description" content="Réalisations Artisan FM : Fourrures Boréales, Nexus, HK Crib GO et Haven. Sites, applications et systèmes interconnectés conçus sur mesure.">
     <meta name="author" content="Francis Manseau">
     <link rel="canonical" href="https://artisanfm.ca/realisations/">
     <meta property="og:type" content="website">
@@ -13,24 +13,33 @@
     <meta property="og:site_name" content="Artisan FM">
     <meta property="og:url" content="https://artisanfm.ca/realisations/">
     <meta property="og:title" content="Mes réalisations | Artisan FM">
-    <meta property="og:description" content="Projets concrets : sites, applications et outils numériques interconnectés.">
+    <meta property="og:description" content="Projets concrets : sites web, applications et outils numériques interconnectés par un artisan numérique indépendant.">
     <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mes réalisations | Artisan FM">
-    <meta name="twitter:description" content="Sites, applications et systèmes conçus sur mesure.">
+    <meta name="twitter:description" content="Sites, applications et systèmes conçus sur mesure — Artisan FM.">
     <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
     <link rel="icon" href="../assets/brand/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
-    <link rel="stylesheet" href="../css/theme-lumineux.css?v=page-arrows-4">
-    <link rel="stylesheet" href="../css/realisations.css?v=lightbox-galerie-1">
+    <link rel="stylesheet" href="../css/theme-lumineux.css?v=seo-content-1">
+    <link rel="stylesheet" href="../css/realisations.css?v=seo-content-1">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Mes réalisations — Artisan FM",
       "url": "https://artisanfm.ca/realisations/",
-      "description": "Galerie de projets : sites, applications et systèmes interconnectés.",
-      "isPartOf": { "@type": "WebSite", "name": "Artisan FM", "url": "https://artisanfm.ca/" }
+      "description": "Galerie de projets : sites web, applications et systèmes interconnectés.",
+      "isPartOf": { "@type": "WebSite", "name": "Artisan FM", "url": "https://artisanfm.ca/" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Les Fourrures Boréales", "url": "https://artisanfm.ca/realisations/#apercu-fourrures" },
+          { "@type": "ListItem", "position": 2, "name": "Nexus Mobile, PC et WSAI", "url": "https://artisanfm.ca/realisations/#apercu-nexus" },
+          { "@type": "ListItem", "position": 3, "name": "HK Crib GO", "url": "https://artisanfm.ca/realisations/#apercu-hk" },
+          { "@type": "ListItem", "position": 4, "name": "Haven", "url": "https://artisanfm.ca/realisations/#apercu-haven" }
+        ]
+      }
     }
     </script>
 </head>
@@ -41,17 +50,245 @@
             <img class="brand-logo" src="../assets/brand/logo-artisan-fm-complet.png" alt="Artisan FM — L'Artisan du numérique" width="1024" height="341" decoding="async">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <nav class="site-nav" id="site-nav" data-root="../" data-active="realisations" aria-label="Navigation principale"></nav>
+        <nav class="site-nav" id="site-nav" data-root="../" data-active="realisations" aria-label="Navigation principale">
+            <a href="../index.html">L'Atelier</a>
+            <a href="../realisations/index.html" aria-current="page">Mes réalisations</a>
+            <a href="../services/index.html">Mes services</a>
+            <a href="../soumission/index.html">Démarrer un projet</a>
+            <a href="../contact/index.html">Contact</a>
+        </nav>
     </header>
 
     <main id="contenu">
         <header class="real-intro">
             <p class="real-intro__eyebrow">Créations</p>
             <h1>Mes réalisations</h1>
-            <p>Découvrez des projets concrets : sites, applications et systèmes interconnectés, conçus pour simplifier le quotidien et faire communiquer différents outils numériques.</p>
+            <p>Chaque réalisation répond à un besoin particulier.</p>
+            <p>Sites web, applications, logiciels et systèmes interconnectés : découvrez différentes façons dont je transforme une idée ou un problème en solution numérique fonctionnelle.</p>
+            <p>Chaque projet reflète ma démarche : comprendre, concevoir, assembler, tester et améliorer.</p>
         </header>
 
-        <div class="real-liste" id="real-grille" aria-label="Liste des réalisations"></div>
+        <div class="real-liste" id="real-grille" data-static="true" aria-label="Liste des réalisations">
+
+            <article class="real-bandeau real-bandeau--texte-gauche" id="apercu-fourrures">
+                <div class="real-bandeau__haut">
+                    <div class="real-bandeau__texte">
+                        <span class="real-bandeau__cat">Site web</span>
+                        <h2 class="real-bandeau__titre" id="titre-fourrures">Les Fourrures Boréales</h2>
+                        <p class="real-bandeau__sous">Boutique en ligne artisanale</p>
+                        <p class="real-bandeau__desc">Boutique en ligne artisanale.</p>
+                        <div class="real-bandeau__actions">
+                            <a class="btn btn-primary" href="https://lesfourruresboreales.ca" target="_blank" rel="noopener noreferrer">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="real-bandeau__media">
+                        <div class="real-carrousel" data-carrousel="liste-fourrures" data-index="0" data-count="2">
+                            <div class="real-carrousel__viewport">
+                                <div class="real-carrousel__track">
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/fourrures-mitaines.png" data-lightbox-alt="Les Fourrures Boréales — mitaines" data-lightbox-gallery="fourrures" aria-label="Agrandir : Les Fourrures Boréales — mitaines">
+                                            <img src="../assets/realisations/fourrures-mitaines.png" alt="Les Fourrures Boréales — mitaines" loading="eager" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/fourrures-ambiance.png" data-lightbox-alt="Les Fourrures Boréales — ambiance" data-lightbox-gallery="fourrures" aria-label="Agrandir : Les Fourrures Boréales — ambiance">
+                                            <img src="../assets/realisations/fourrures-ambiance.png" alt="Les Fourrures Boréales — ambiance" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="real-carrousel__nav">
+                                <button type="button" class="real-carrousel__btn" data-carrousel-prev="liste-fourrures" aria-label="Photo précédente">‹</button>
+                                <span class="real-carrousel__compteur" data-carrousel-count="liste-fourrures" aria-live="polite">1 / 2</span>
+                                <button type="button" class="real-carrousel__btn" data-carrousel-next="liste-fourrures" aria-label="Photo suivante">›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="real-bandeau real-bandeau--image-gauche real-bandeau--accordeon" id="apercu-nexus">
+                <div class="real-bandeau__haut">
+                    <div class="real-bandeau__texte">
+                        <span class="real-bandeau__cat">Assemblage et interconnexion</span>
+                        <h2 class="real-bandeau__titre" id="titre-nexus">Nexus Mobile, PC et WSAI</h2>
+                        <p class="real-bandeau__sous">Écosystème d'agents IA</p>
+                        <p class="real-bandeau__desc">Écosystème privé reliant Nexus Mobile, WSAI et Nexus PC : depuis mon cellulaire, je pilote mon agent de développement (Cursor) comme si j’étais devant l’ordinateur, pour faire avancer mes projets de partout.</p>
+                        <div class="real-bandeau__actions">
+                            <button type="button" class="btn btn-primary" data-accordeon-toggle="nexus" aria-expanded="false" aria-controls="accordeon-nexus" id="btn-accordeon-nexus">Découvrir Nexus</button>
+                        </div>
+                    </div>
+                    <div class="real-bandeau__media">
+                        <div class="real-carrousel" data-carrousel="liste-nexus" data-index="0" data-count="1">
+                            <div class="real-carrousel__viewport">
+                                <div class="real-carrousel__track">
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/nexus/nexus-bridge.png" data-lightbox-alt="Nexus — vue d'ensemble Mobile, WSAI et PC" data-lightbox-gallery="nexus" aria-label="Agrandir : Nexus — vue d'ensemble Mobile, WSAI et PC">
+                                            <img src="../assets/realisations/nexus/nexus-bridge.png" alt="Nexus — vue d'ensemble Mobile, WSAI et PC" loading="eager" decoding="async">
+                                        </button>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="real-accordeon" id="accordeon-nexus" role="region" aria-labelledby="titre-nexus" hidden>
+                    <div class="real-accordeon__inner">
+                        <figure class="real-accordeon__circuit">
+                            <button type="button" class="real-accordeon__circuit-zoom" data-lightbox-src="../assets/realisations/nexus/ecosysteme-nexus-circuit-complet.jpg" data-lightbox-alt="Schéma de l'écosystème Nexus montrant les connexions entre Nexus Mobile, WSAI, Nexus PC, l'IA codeur locale, Git et le Web." data-lightbox-gallery="nexus" aria-label="Agrandir le schéma Nexus">
+                                <img src="../assets/realisations/nexus/ecosysteme-nexus-circuit-complet.jpg" alt="Schéma de l'écosystème Nexus montrant les connexions entre Nexus Mobile, WSAI, Nexus PC, l'IA codeur locale, Git et le Web." loading="lazy" decoding="async">
+                            </button>
+                        </figure>
+                        <section class="real-section real-section--texte-gauche">
+                            <div class="real-section__texte">
+                                <h3>Nexus Mobile</h3>
+                                <p>Application Android conçue comme point d'entrée de l'écosystème : écrire les demandes, choisir l'agent et suivre le travail à distance, sans rester devant l'ordinateur.</p>
+                                <ul>
+                                    <li>Objectif — poursuivre un projet depuis le téléphone, là où je me trouve</li>
+                                    <li>Fonctionnalités — chat mission, choix d'agent (dont le programmeur IA intégré sur le PC), options et préférences</li>
+                                    <li>Fonctionnement — envoi des missions vers WSAI ; suivi du travail à distance</li>
+                                    <li>Rôle dans Nexus — interface mobile de pilotage de l'écosystème</li>
+                                    <li>Interactions vérifiées — dialogue avec WSAI ; réveil du PC via Wake-on-LAN</li>
+                                    <li>Conception et assemblage — application Android intégrée au reste du circuit Nexus</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="real-section real-section--image-gauche">
+                            <div class="real-section__texte">
+                                <h3>Nexus PC</h3>
+                                <p>Logiciel Windows permettant de contrôler à distance un agent IA spécialisé en programmation, directement sur mon ordinateur, à partir de mon téléphone.</p>
+                                <ul>
+                                    <li>Objectif — Piloter et poursuivre des projets de développement à distance.</li>
+                                    <li>Fonctionnalités — Centre de contrôle, communication avec l'IA codeur et maintien du contexte de travail.</li>
+                                    <li>Fonctionnement — Les instructions envoyées depuis le mobile sont transmises à l'IA sur le PC, puis les résultats sont retournés au téléphone.</li>
+                                    <li>Rôle dans Nexus — Centre d'exécution local de l'écosystème.</li>
+                                    <li>Interactions vérifiées — Communication bidirectionnelle entre le mobile et le PC.</li>
+                                    <li>Conception et assemblage — Intégration du poste Windows dans l'écosystème Mobile ↔ WSAI ↔ PC.</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="real-section real-section--texte-gauche">
+                            <div class="real-section__texte">
+                                <h3>WSAI</h3>
+                                <p>Serveur intermédiaire privé qui relie les systèmes, transporte les demandes et permet de communiquer avec les agents. Il se situe entre Nexus Mobile et Nexus PC dans la boucle de travail. La console WSAI sert de tableau de bord en arrière-plan de Nexus.</p>
+                                <ul>
+                                    <li>Objectif — relayer les demandes et faire communiquer Mobile, PC et agents</li>
+                                    <li>Fonctionnalités — transport des missions, communication avec les agents, console tableau de bord</li>
+                                    <li>Fonctionnement — position centrale entre Nexus Mobile et Nexus PC</li>
+                                    <li>Rôle dans Nexus — serveur IA privé et plaque tournante de l'écosystème</li>
+                                    <li>Interactions vérifiées — relais Mobile ↔ WSAI ↔ Nexus PC</li>
+                                    <li>Conception et assemblage — serveur conçu pour interconnecter les composantes sans les fusionner</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <article class="real-bandeau real-bandeau--texte-gauche" id="apercu-hk">
+                <div class="real-bandeau__haut">
+                    <div class="real-bandeau__texte">
+                        <span class="real-bandeau__cat">Application</span>
+                        <h2 class="real-bandeau__titre" id="titre-hk">HK Crib GO</h2>
+                        <p class="real-bandeau__sous">Application de jeu</p>
+                        <p class="real-bandeau__desc">HK Crib GO — Hong Kong Cribbage en version rapide : parties en rounds d'environ 5 minutes, cinq adversaires IA, six langues, pointage visuel, statistiques, récompenses et support technique intégré. Le projet est né du besoin de jouer au cribbage Hong Kong dehors sans que les cartes s'envolent.</p>
+                        <ul class="real-bandeau__points">
+                            <li>Jeu hors ligne, sans connexion</li>
+                            <li>Cinq adversaires IA et personnalisation (cartes, table, comptage)</li>
+                            <li>Interface disponible en six langues</li>
+                            <li>Pointage visible sous les cartes, avec pastilles lorsque une carte compte plusieurs fois</li>
+                            <li>Historique, médailles et trophées selon les performances</li>
+                            <li>Centre de soutien relié à WSAI (accusé de réception puis réponse adaptée)</li>
+                        </ul>
+                        <div class="real-bandeau__actions">
+                            <a class="btn btn-primary" href="https://github.com/francismanseau-oss/hk-crib-go-apk/releases/download/v2.0.11/HK-Crib-GO-2.0.11.apk" target="_blank" rel="noopener noreferrer">Télécharger l'APK</a>
+                        </div>
+                    </div>
+                    <div class="real-bandeau__media">
+                        <div class="real-carrousel" data-carrousel="liste-hk" data-index="0" data-count="3">
+                            <div class="real-carrousel__viewport">
+                                <div class="real-carrousel__track">
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/hk/partie-en-cours.png" data-lightbox-alt="HK Crib GO — Partie en cours contre l'IA" data-lightbox-gallery="hk" aria-label="Agrandir : HK Crib GO — Partie en cours contre l'IA">
+                                            <img src="../assets/realisations/hk/partie-en-cours.png" alt="HK Crib GO — Partie en cours contre l'IA" loading="eager" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/hk/menu-parametres.png" data-lightbox-alt="HK Crib GO — Fin d'un round" data-lightbox-gallery="hk" aria-label="Agrandir : HK Crib GO — Fin d'un round">
+                                            <img src="../assets/realisations/hk/menu-parametres.png" alt="HK Crib GO — Fin d'un round" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/hk/support-centre.png" data-lightbox-alt="HK Crib GO — Centre de support technique" data-lightbox-gallery="hk" aria-label="Agrandir : HK Crib GO — Centre de support technique">
+                                            <img src="../assets/realisations/hk/support-centre.png" alt="HK Crib GO — Centre de support technique" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="real-carrousel__nav">
+                                <button type="button" class="real-carrousel__btn" data-carrousel-prev="liste-hk" aria-label="Photo précédente">‹</button>
+                                <span class="real-carrousel__compteur" data-carrousel-count="liste-hk" aria-live="polite">1 / 3</span>
+                                <button type="button" class="real-carrousel__btn" data-carrousel-next="liste-hk" aria-label="Photo suivante">›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="real-bandeau real-bandeau--image-gauche" id="apercu-haven">
+                <div class="real-bandeau__haut">
+                    <div class="real-bandeau__texte">
+                        <span class="real-bandeau__cat">Application</span>
+                        <h2 class="real-bandeau__titre" id="titre-haven">Haven</h2>
+                        <p class="real-bandeau__sous">Refuge numérique Android</p>
+                        <p class="real-bandeau__desc">Haven est un refuge numérique Android conçu pour réduire les interruptions du téléphone — appels, notifications et autres sollicitations — sans couper l'utilisateur des communications importantes. Ce n'est pas un simple mode « Ne pas déranger » : Haven adapte le comportement du téléphone selon le contexte (travail, conduite, sommeil, école ou repos). En phase de test sur Google Play.</p>
+                        <ul class="real-bandeau__points">
+                            <li>Modes selon le contexte, avec règles et exceptions configurables</li>
+                            <li>Mode conduite pouvant s'activer via Android Auto ou Bluetooth du véhicule</li>
+                            <li>Alertes gouvernementales (ex. AMBER) et accès d'urgence (911) préservés</li>
+                            <li>Contacts d'urgence et logique du deuxième appel en moins de 5 minutes</li>
+                            <li>Historique des interruptions évitées et horaire d'automatisation</li>
+                        </ul>
+                        <div class="real-bandeau__actions">
+                            <a class="btn btn-primary" href="https://github.com/francismanseau-oss/haven-apk/releases/latest/download/haven.apk" target="_blank" rel="noopener noreferrer">Télécharger l'APK</a>
+                        </div>
+                    </div>
+                    <div class="real-bandeau__media">
+                        <div class="real-carrousel" data-carrousel="liste-haven" data-index="0" data-count="4">
+                            <div class="real-carrousel__viewport">
+                                <div class="real-carrousel__track">
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/haven/01-accueil.png" data-lightbox-alt="Haven — Accueil : modes Jour, Conduite, Sommeil, Travail" data-lightbox-gallery="haven" aria-label="Agrandir : Haven — Accueil">
+                                            <img src="../assets/realisations/haven/01-accueil.png" alt="Haven — Accueil : modes Jour, Conduite, Sommeil, Travail" loading="eager" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/haven/02-historique.png" data-lightbox-alt="Haven — Historique : interruptions évitées" data-lightbox-gallery="haven" aria-label="Agrandir : Haven — Historique">
+                                            <img src="../assets/realisations/haven/02-historique.png" alt="Haven — Historique : interruptions évitées" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/haven/03-horaire.png" data-lightbox-alt="Haven — Horaire automatique hebdomadaire" data-lightbox-gallery="haven" aria-label="Agrandir : Haven — Horaire">
+                                            <img src="../assets/realisations/haven/03-horaire.png" alt="Haven — Horaire automatique hebdomadaire" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                    <figure class="real-carrousel__slide">
+                                        <button type="button" class="real-carrousel__zoom" data-lightbox-src="../assets/realisations/haven/haven.png" data-lightbox-alt="Haven — refuge numérique Android" data-lightbox-gallery="haven" aria-label="Agrandir : Haven — refuge numérique Android">
+                                            <img src="../assets/realisations/haven/haven.png" alt="Haven — refuge numérique Android" loading="lazy" decoding="async">
+                                        </button>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="real-carrousel__nav">
+                                <button type="button" class="real-carrousel__btn" data-carrousel-prev="liste-haven" aria-label="Photo précédente">‹</button>
+                                <span class="real-carrousel__compteur" data-carrousel-count="liste-haven" aria-live="polite">1 / 4</span>
+                                <button type="button" class="real-carrousel__btn" data-carrousel-next="liste-haven" aria-label="Photo suivante">›</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
 
         <section
             class="real-detail"
@@ -67,6 +304,6 @@
 
     <script src="../js/nav.js?v=page-arrows-4"></script>
     <script src="../js/realisations-data.js"></script>
-    <script src="../js/realisations.js?v=lightbox-galerie-1"></script>
+    <script src="../js/realisations.js?v=seo-content-1"></script>
 </body>
 </html>

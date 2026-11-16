@@ -74,6 +74,17 @@ body.page-atelier.theme-lumineux main#contenu {
     font-size: clamp(1rem, 1.4vw, 1.08rem);
 }
 
+.hero-assemble__p--invite a {
+    color: var(--azur-vif);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.hero-assemble__p--invite a:hover {
+    color: var(--profond);
+}
+
 /* ——— Illustration (référence + surcouches animées) ——— */
 
 .assemble-scene {

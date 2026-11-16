@@ -7,7 +7,8 @@ body.page-services.theme-lumineux main#contenu {
 }
 
 .services-intro {
-    max-width: 40rem;
+    width: 100%;
+    max-width: none;
     margin: 0 0 2.75rem;
     padding: 1.25rem 1.35rem 1.4rem;
     border-radius: 1.5rem;
@@ -16,6 +17,7 @@ body.page-services.theme-lumineux main#contenu {
     box-shadow: var(--ombre-douce), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
 }
 
 .services-intro__eyebrow {
@@ -39,10 +41,14 @@ body.page-services.theme-lumineux main#contenu {
 }
 
 .services-intro p {
-    margin: 0;
+    margin: 0 0 0.75rem;
     color: var(--profond-soft);
     font-size: 1.05rem;
     line-height: 1.65;
+}
+
+.services-intro p:last-child {
+    margin-bottom: 0;
 }
 
 /* ——— Blocs service ——— */
@@ -111,6 +117,15 @@ body.page-services.theme-lumineux main#contenu {
     margin: 0 0 0.55rem;
     font-family: var(--display);
     font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    font-weight: 600;
+    color: var(--profond);
+    letter-spacing: -0.01em;
+}
+
+.service-block__body h3 {
+    margin: 0.85rem 0 0.45rem;
+    font-family: var(--display);
+    font-size: clamp(1.02rem, 1.8vw, 1.12rem);
     font-weight: 600;
     color: var(--profond);
     letter-spacing: -0.01em;

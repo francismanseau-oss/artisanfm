@@ -43,12 +43,24 @@
 }
 
 .soumission-page-title {
-    margin: 0;
+    margin: 0 0 0.85rem;
     font-family: var(--display);
     font-size: clamp(1.55rem, 3vw, 2rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--profond);
+}
+
+.soumission-page-lead {
+    margin: 0 auto 0.65rem;
+    max-width: 40rem;
+    color: var(--profond-soft);
+    font-size: 1.02rem;
+    line-height: 1.65;
+}
+
+.soumission-page-lead:last-child {
+    margin-bottom: 0;
 }
 
 /* Progression */
