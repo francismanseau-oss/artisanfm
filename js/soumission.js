@@ -405,6 +405,12 @@
     clearErrorOnInput("clientPhone");
     clearErrorOnInput("clientPoste");
 
+    document.querySelectorAll('input[name="budgetType"]').forEach(function (radio) {
+        radio.addEventListener("change", function () {
+            setError("budgetType", "");
+        });
+    });
+
     ["clientName", "clientEmail", "clientPhone", "clientPoste"].forEach(function (id) {
         on(id, "input", refreshContactStars);
         on(id, "blur", refreshContactStars);
@@ -479,16 +485,33 @@
     });
 
     on("toStep4", "click", function () {
+        var ok = true;
         if (!value("featuresDescription")) {
             setError(
                 "featuresDescription",
                 "Décrivez les fonctionnalités ou résultats souhaités."
             );
+            ok = false;
             var area = field("featuresDescription");
             if (area) area.focus();
-            return;
+        } else {
+            setError("featuresDescription", "");
         }
-        setError("featuresDescription", "");
+        if (!value("budgetType")) {
+            setError("budgetType", "Choisissez une fourchette de budget.");
+            ok = false;
+            var budgetFirst = document.querySelector(
+                'input[name="budgetType"]'
+            );
+            if (budgetFirst && !value("featuresDescription")) {
+                /* focus déjà sur features */
+            } else if (budgetFirst) {
+                budgetFirst.focus();
+            }
+        } else {
+            setError("budgetType", "");
+        }
+        if (!ok) return;
         var submitError = field("submitError");
         var submitSuccess = field("submitSuccess");
         if (submitError) submitError.textContent = "";
