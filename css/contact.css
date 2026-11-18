@@ -1,9 +1,10 @@
 /* Page Contact — intro centrée + duo Courriel / Signal + disponibilité */
 
 body.page-contact.theme-lumineux main#contenu {
-    width: min(64rem, calc(100% - 2rem));
+    width: min(64rem, 100%);
     margin: 0 auto;
-    padding: 0.75rem 0 3.5rem;
+    padding: 0.75rem var(--page-inline) 3.5rem;
+    box-sizing: border-box;
 }
 
 .contact-intro {

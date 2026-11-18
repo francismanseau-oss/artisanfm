@@ -1,9 +1,10 @@
 /* Accueil — présentation courte + illustration réseau */
 
 body.page-atelier.theme-lumineux main#contenu {
-    width: min(var(--page), calc(100% - 2rem));
+    width: min(var(--page), 100%);
     margin: 0 auto;
-    padding: 1rem 0 3rem;
+    padding: 1rem var(--page-inline) 3rem;
+    box-sizing: border-box;
 }
 
 .hero-assemble {

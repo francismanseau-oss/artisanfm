@@ -13,7 +13,7 @@
     <meta property="og:site_name" content="Artisan FM">
     <meta property="og:url" content="https://artisanfm.ca/soumission/">
     <meta property="og:title" content="Démarrer un projet | Artisan FM">
-    <meta property="og:description" content="Expliquez vos besoins en quelques étapes — création de sites web, applications, logiciels et interconnexion.">
+    <meta property="og:description" content="Donnez vie à votre projet numérique : décrivez vos besoins en quelques étapes — sites web, applications, logiciels et interconnexion.">
     <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Démarrer un projet | Artisan FM">
@@ -21,8 +21,8 @@
     <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
     <link rel="icon" href="../assets/brand/favicon.png?v=logo-hex-1" type="image/png">
     <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png?v=logo-hex-1">
-    <link rel="stylesheet" href="../css/theme-lumineux.css?v=seo-content-1">
-    <link rel="stylesheet" href="../css/soumission.css?v=maint-2">
+    <link rel="stylesheet" href="../css/theme-lumineux.css?v=page-gutter-4">
+    <link rel="stylesheet" href="../css/soumission.css?v=page-gutter-4">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -54,10 +54,8 @@
         <!-- Futur : après envoi confirmé — papier → avion → décollage → disparition. Non programmé. Échec : conserver les données. -->
 
         <header class="soumission-head">
-            <h1 class="soumission-page-title">Démarrer un projet</h1>
-            <p class="soumission-page-lead">Vous avez une idée, un besoin particulier ou un problème technique à résoudre?</p>
-            <p class="soumission-page-lead">Décrivez votre projet à l'aide du formulaire. Qu'il s'agisse d'un site web, d'une application, d'un logiciel ou de plusieurs outils à faire fonctionner ensemble, nous pourrons explorer les solutions possibles.</p>
-            <p class="soumission-page-lead">Chaque demande est étudiée individuellement, avec une approche adaptée à vos besoins et à votre budget.</p>
+            <h1 class="soumission-page-title">Donnons vie à votre projet numérique.</h1>
+            <p class="soumission-page-lead">Vous avez une idée à concrétiser ou des outils numériques à améliorer&nbsp;? Décrivez-moi vos besoins et nous explorerons ensemble la meilleure façon de construire votre solution.</p>
         </header>
 
         <ol class="soumission-progress" aria-label="Progression du formulaire">
@@ -71,7 +69,7 @@
             <!-- Étape 1 — Vos besoins -->
             <section class="form-panel" id="stepNeeds" aria-labelledby="needsTitle">
                 <h2 id="needsTitle" class="soumission-title">Parlons de vos besoins</h2>
-                <p class="soumission-lead">Décrivez votre besoin, votre idée ou ce que vous souhaitez accomplir, avec vos propres mots.</p>
+                <p class="soumission-lead">Expliquez votre idée ou votre besoin avec vos propres mots — simplement, comme vous le diriez à quelqu’un.</p>
 
                 <div class="field">
                     <label for="needDescription">Votre besoin <span class="req" aria-hidden="true">*</span></label>
@@ -89,7 +87,7 @@
             <!-- Étape 2 — Votre projet -->
             <section class="form-panel" id="stepProject" hidden aria-labelledby="projectTitle">
                 <h2 id="projectTitle" class="soumission-title">Votre projet</h2>
-                <p class="soumission-lead">Cliquez sur le ou les types de projets qui correspondent à vos besoins. Vous pouvez sélectionner plusieurs choix. Cliquez de nouveau sur un choix pour le retirer.</p>
+                <p class="soumission-lead">Choisissez ce qui correspond le mieux à votre projet. Plusieurs choix sont possibles ; recliquez pour retirer une sélection.</p>
 
                 <fieldset class="choice-fieldset">
                     <legend class="visually-hidden">Types de projet</legend>
@@ -284,11 +282,12 @@
             <!-- Étape 3 — Vos attentes -->
             <section class="form-panel" id="stepExpectations" hidden aria-labelledby="expectationsTitle">
                 <h2 id="expectationsTitle" class="soumission-title">Vos attentes</h2>
+                <p class="soumission-lead">Précisez ce que vous souhaitez obtenir, le délai et le budget envisagé. Tout reste indicatif pour démarrer la discussion.</p>
 
                 <div class="form-group">
                     <div class="field">
                         <label for="featuresDescription">Fonctionnalités souhaitées <span class="req" aria-hidden="true">*</span></label>
-                        <textarea id="featuresDescription" name="featuresDescription" maxlength="5000" rows="6" placeholder="Quelles fonctionnalités, résultats ou problèmes aimeriez-vous résoudre ?" required></textarea>
+                        <textarea id="featuresDescription" name="featuresDescription" maxlength="5000" rows="6" placeholder="Qu’aimeriez-vous que la solution fasse ? Quels résultats ou problèmes souhaitez-vous résoudre ?" required></textarea>
                         <p class="counter" id="featuresDescriptionCounter">0 / 5000</p>
                         <p class="field-error" id="featuresDescriptionError" role="alert"></p>
                     </div>
@@ -320,7 +319,7 @@
                                 <option value="10000-plus">10 000 $ et plus</option>
                                 <option value="inconnu">Je ne sais pas encore</option>
                             </select>
-                            <p class="field-hint">Ce montant représente ce que vous envisagez de dépenser. Ce n’est ni une soumission ni une promesse de prix.</p>
+                            <p class="field-hint">Indiquez ce que vous envisagez — ce n’est ni une soumission ni un engagement de prix.</p>
                         </div>
                     </div>
                 </div>
@@ -329,7 +328,7 @@
                 <div class="price-slot" aria-hidden="true" data-slot="prix-depart-indicatifs" hidden></div>
 
                 <aside class="support-note">
-                    <p>Un accompagnement qui se poursuit après la livraison. Si votre projet nécessite de la maintenance, du soutien technique ou des ajustements, je peux également vous accompagner selon vos besoins.</p>
+                    <p>Après la livraison, je peux aussi vous accompagner pour la maintenance, le soutien technique ou de petits ajustements — selon vos besoins.</p>
                 </aside>
 
                 <div class="form-actions">
@@ -341,7 +340,7 @@
             <!-- Étape 4 — Faisons connaissance -->
             <section class="form-panel" id="stepContact" hidden aria-labelledby="contactTitle">
                 <h2 id="contactTitle" class="soumission-title">Faisons connaissance</h2>
-                <p class="soumission-lead">Vos coordonnées et un récapitulatif avant l’envoi.</p>
+                <p class="soumission-lead">Laissez vos coordonnées, vérifiez le récapitulatif, puis envoyez votre demande.</p>
 
                 <div class="form-group">
                     <div class="field-row">

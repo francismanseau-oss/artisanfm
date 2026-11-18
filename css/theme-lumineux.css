@@ -18,6 +18,8 @@
     --focus: #3d8eb8;
     --mesure: 38rem;
     --page: 72rem;
+    /* Gouttières latérales : laissent la place aux flèches de page fixes */
+    --page-inline: clamp(2.4rem, 6vw, 3.25rem);
     --font: "Source Sans 3", "Segoe UI", sans-serif;
     --display: "Outfit", "Segoe UI", sans-serif;
     --rayon: 1.25rem;
@@ -32,6 +34,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* both-edges : évite le décalage à gauche quand la barre de scroll est à droite */
+    scrollbar-gutter: stable both-edges;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -226,9 +230,11 @@ body.theme-lumineux .site-nav a[aria-current="page"]::after {
 }
 
 body.theme-lumineux .site-footer {
-    width: min(var(--page), calc(100% - 2rem));
+    width: min(var(--page), 100%);
     margin: 0 auto;
-    padding: 1.35rem 0 1.6rem;
+    padding: 1.35rem var(--page-inline) 1.6rem;
+    box-sizing: border-box;
+}
     border-top: 1px solid rgba(139, 207, 244, 0.28);
     color: var(--profond-soft);
     font-family: var(--display);
@@ -244,15 +250,19 @@ body.theme-lumineux .site-footer p {
 
 body.theme-lumineux main#contenu.measure,
 body.theme-lumineux .measure {
-    width: min(40rem, calc(100% - 2rem));
+    width: min(40rem, 100%);
     margin-left: auto;
     margin-right: auto;
+    padding-left: var(--page-inline);
+    padding-right: var(--page-inline);
+    box-sizing: border-box;
 }
 
 body.theme-lumineux main#contenu {
-    width: min(var(--page), calc(100% - 2rem));
+    width: min(var(--page), 100%);
     margin: 0 auto;
-    padding: 1.75rem 0 3.5rem;
+    padding: 1.75rem var(--page-inline) 3.5rem;
+    box-sizing: border-box;
 }
 
 body.theme-lumineux .temp {
@@ -406,11 +416,11 @@ body.theme-lumineux .btn-ghost:hover {
 }
 
 .site-page-arrow--prev {
-    left: max(0.15rem, env(safe-area-inset-left, 0px));
+    left: max(0.35rem, env(safe-area-inset-left, 0px));
 }
 
 .site-page-arrow--next {
-    right: max(0.15rem, env(safe-area-inset-right, 0px));
+    right: max(0.35rem, env(safe-area-inset-right, 0px));
 }
 
 a.site-page-arrow:hover {

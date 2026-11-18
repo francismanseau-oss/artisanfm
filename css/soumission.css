@@ -13,9 +13,10 @@
 }
 
 .page-soumission .soumission {
-    width: min(56rem, calc(100% - 2rem));
+    width: min(56rem, 100%);
     margin: 0 auto;
-    padding: 0.65rem 0 2.5rem;
+    padding: 0.65rem var(--page-inline) 2.5rem;
+    box-sizing: border-box;
 }
 
 .page-soumission .btn,
@@ -38,29 +39,34 @@
 }
 
 .soumission-head {
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
+    padding: clamp(1.15rem, 2.4vw, 1.55rem) clamp(1.1rem, 2.6vw, 1.7rem);
     text-align: center;
+    border-radius: 1.35rem;
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(241, 250, 255, 0.55));
+    border: 1px solid rgba(139, 207, 244, 0.3);
+    box-shadow: var(--ombre-douce), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
 }
 
 .soumission-page-title {
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.75rem;
     font-family: var(--display);
-    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-size: clamp(1.55rem, 3.2vw, 2.05rem);
     font-weight: 700;
+    line-height: 1.25;
     letter-spacing: -0.02em;
     color: var(--profond);
 }
 
 .soumission-page-lead {
-    margin: 0 auto 0.65rem;
+    margin: 0 auto;
     max-width: 40rem;
     color: var(--profond-soft);
-    font-size: 1.02rem;
+    font-size: clamp(1rem, 2.2vw, 1.06rem);
     line-height: 1.65;
-}
-
-.soumission-page-lead:last-child {
-    margin-bottom: 0;
 }
 
 /* Progression */

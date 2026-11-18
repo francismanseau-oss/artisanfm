@@ -1,9 +1,10 @@
 /* Mes réalisations — alternance texte / image (thème lumineux) */
 
 body.page-realisations.theme-lumineux main#contenu {
-    width: min(var(--page), calc(100% - 2rem));
+    width: min(var(--page), 100%);
     margin: 0 auto;
-    padding: 1.25rem 0 3.5rem;
+    padding: 1.25rem var(--page-inline) 3.5rem;
+    box-sizing: border-box;
 }
 
 .real-intro {
@@ -193,6 +194,37 @@ body.page-realisations.theme-lumineux main#contenu {
 .real-bandeau__points li {
     margin: 0.28rem 0;
     line-height: 1.5;
+}
+
+.real-apk-warn {
+    margin: 0.85rem 0 0.95rem;
+    padding: 0.9rem 1rem 0.95rem;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(183, 123, 0, 0.55);
+    border-left: 4px solid #b77b00;
+    background: linear-gradient(155deg, #fff6de 0%, #ffe4a8 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 10px 24px rgba(183, 123, 0, 0.12);
+    color: #5c3d00;
+}
+
+.real-apk-warn__title {
+    margin: 0 0 0.5rem;
+    font-family: var(--display);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #8a5a00;
+}
+
+.real-apk-warn p {
+    margin: 0 0 0.55rem;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: #5c3d00;
+}
+
+.real-apk-warn p:last-child {
+    margin-bottom: 0;
 }
 
 .real-bandeau__actions {
@@ -658,8 +690,16 @@ body.is-lightbox {
     line-height: 1.5;
 }
 
+.real-section__media {
+    min-width: 0;
+}
+
 .real-section__media .real-carrousel__zoom img {
-    max-height: 18rem;
+    max-height: 22rem;
+}
+
+.real-section__media .real-carrousel__viewport {
+    background: linear-gradient(160deg, #eaf7ff, #f7fcff);
 }
 
 .real-detail__actions {
