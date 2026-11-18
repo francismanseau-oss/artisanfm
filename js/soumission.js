@@ -817,8 +817,8 @@
                                     "Aperçu HTML ouvert (pas d’envoi, pas d’Outlook). L’envoi réel demandera une clé Web3Forms.";
                             } else {
                                 successText.innerHTML =
-                                    '<strong class="submit-success__lead">Votre demande a été transmise avec succès.</strong>' +
-                                    '<span class="submit-success__body">Merci de votre confiance envers Artisan FM. Je prendrai connaissance de votre projet et vous répondrai dans un délai de 1 à 2 jours ouvrables.</span>';
+                                    '<strong class="submit-success__lead">Votre demande d’évaluation a bien été envoyée !</strong>' +
+                                    '<span class="submit-success__body">Merci de votre confiance envers Artisan FM. Je prendrai le temps d’examiner votre projet avec attention et vous répondrai dans un délai maximal de deux jours ouvrables, généralement plus rapidement.</span>';
                             }
                         }
                     }
