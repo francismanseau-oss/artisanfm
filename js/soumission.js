@@ -72,6 +72,18 @@
         return String(phone || "").replace(/\D/g, "");
     }
 
+    function formatPhoneDisplay(phone) {
+        var digits = phoneDigits(phone);
+        if (!digits) return "";
+        if (digits.length === 11 && digits.charAt(0) === "1") {
+            digits = digits.slice(1);
+        }
+        if (digits.length === 10) {
+            return digits.slice(0, 3) + " " + digits.slice(3, 6) + "-" + digits.slice(6);
+        }
+        return String(phone || "").trim();
+    }
+
     function phoneOk(phone) {
         var digits = phoneDigits(phone);
         if (!digits) return true;
@@ -248,8 +260,32 @@
             setError("categories", "Sélectionnez au moins un type de projet.");
             return false;
         }
+        var maintenance = cats.some(function (input) {
+            return input.value === "maintenance";
+        });
+        if (maintenance) {
+            var maintSubs = document.querySelectorAll(
+                'input[name="sub-maintenance"]:checked'
+            );
+            if (!maintSubs.length) {
+                setError(
+                    "categories",
+                    "Pour la maintenance, cochez au moins une des deux options."
+                );
+                return false;
+            }
+        }
         setError("categories", "");
         return true;
+    }
+
+    function syncMaintenanceExterneNote() {
+        var note = field("maintenance-externe-note");
+        var externe = document.querySelector(
+            'input[name="sub-maintenance"][value="externe"]'
+        );
+        if (!note) return;
+        note.hidden = !(externe && externe.checked);
     }
 
     function buildReview() {
@@ -338,8 +374,9 @@
             clientName: value("clientName"),
             clientEmail: value("clientEmail"),
             clientCompany: value("clientCompany"),
-            clientPhone: value("clientPhone"),
-            clientPoste: value("clientPoste")
+            clientPhone: formatPhoneDisplay(value("clientPhone")),
+            clientPoste: value("clientPoste"),
+            clientSignal: value("clientSignal")
         };
     }
 
@@ -388,10 +425,21 @@
             if (!target || target.name !== "categories") {
                 if (target && String(target.name || "").indexOf("sub-") === 0) {
                     updateSelectionSummary();
+                    if (target.name === "sub-maintenance") {
+                        syncMaintenanceExterneNote();
+                        if (
+                            document.querySelectorAll(
+                                'input[name="sub-maintenance"]:checked'
+                            ).length
+                        ) {
+                            setError("categories", "");
+                        }
+                    }
                 }
                 return;
             }
             syncCategorySubs();
+            syncMaintenanceExterneNote();
             if (selectedCategories().length) setError("categories", "");
         });
     }
@@ -442,7 +490,8 @@
         if (submitError) submitError.textContent = "";
         if (submitSuccess) {
             submitSuccess.hidden = true;
-            submitSuccess.textContent = "";
+            var successClear = field("submitSuccessText");
+            if (successClear) successClear.textContent = "";
         }
         showStep("stepContact");
     });
@@ -550,6 +599,7 @@
             clientCompany: data.clientCompany,
             clientPhone: data.clientPhone,
             clientPoste: data.clientPoste,
+            clientSignal: data.clientSignal,
             turnstileToken: getTurnstileToken(),
             website: value("website")
         };
@@ -568,42 +618,40 @@
     function sendViaWeb3Forms(data) {
         var cfg = getConfig();
         var mail = window.ArtisanSoumissionMail;
-        var html = mail ? mail.buildHtml(data) : "";
         var text = mail ? mail.buildText(data) : "";
-        var projetLines = (data.selections || [])
-            .map(function (item) {
-                if (item.details && item.details.length) {
-                    return item.category + " (" + item.details.join(", ") + ")";
-                }
-                return item.category;
-            })
-            .join(" · ");
+        var phoneDigits = String(data.clientPhone || "").replace(/\D/g, "");
+        if (phoneDigits.length === 10) phoneDigits = "1" + phoneDigits;
+        var phoneIntl = "";
+        if (phoneDigits.length === 11 && phoneDigits.charAt(0) === "1") {
+            phoneIntl =
+                "+1 " +
+                phoneDigits.slice(1, 4) +
+                "-" +
+                phoneDigits.slice(4, 7) +
+                "-" +
+                phoneDigits.slice(7);
+        }
+        var signalRaw = String(data.clientSignal || "").trim();
+        var signalUrl = signalRaw
+            ? "https://signal.me/#u/" + encodeURIComponent(signalRaw.replace(/^@/, ""))
+            : "";
 
+        /* Web3Forms = texte seulement (pas de vrais <a href>).
+           Champs séparés + valeurs « nues » pour que Gmail mobile les lie. */
         var payload = {
             access_key: cfg.web3formsAccessKey,
             subject: "Demande de projet — " + data.clientName,
-            from_name: data.clientName,
+            from_name: "Artisan FM",
             name: data.clientName,
             email: data.clientEmail,
             replyto: data.clientEmail,
             message: text,
-            html: html,
-            content_type: "text/html",
-            Entreprise: data.clientCompany || "—",
-            Telephone: data.clientPhone
-                ? data.clientPhone + (data.clientPoste ? " poste " + data.clientPoste : "")
-                : "—",
-            Besoins: data.needDescription || "",
-            Projet: projetLines || "—",
-            Attentes: data.featuresDescription || "",
-            Delai: data.timelineType
-                ? (mail && mail.TIMELINE_LABELS[data.timelineType]) || data.timelineType
-                : "Non précisé",
-            Budget: data.budgetType
-                ? (mail && mail.BUDGET_LABELS[data.budgetType]) || data.budgetType
-                : "Non précisé",
+            Telephone: phoneIntl || data.clientPhone || "—",
             botcheck: value("website")
         };
+        if (signalUrl) {
+            payload.Signal = signalUrl;
+        }
 
         return fetch("https://api.web3forms.com/submit", {
             method: "POST",
@@ -699,10 +747,11 @@
         var btn = field("submitBtn");
         var err = field("submitError");
         var success = field("submitSuccess");
+        var successText = field("submitSuccessText");
         if (err) err.textContent = "";
         if (success) {
             success.hidden = true;
-            success.textContent = "";
+            if (successText) successText.textContent = "";
         }
         if (formError) formError.textContent = "";
 
@@ -735,10 +784,16 @@
                 if (resultIsOk(result)) {
                     if (success) {
                         success.hidden = false;
-                        success.textContent =
-                            cfg.provider === "preview"
-                                ? "Aperçu HTML ouvert (pas d’envoi, pas d’Outlook). L’envoi réel demandera une clé Web3Forms."
-                                : "Votre demande a bien été envoyée. Je vous répondrai à l’adresse indiquée.";
+                        if (successText) {
+                            if (cfg.provider === "preview") {
+                                successText.textContent =
+                                    "Aperçu HTML ouvert (pas d’envoi, pas d’Outlook). L’envoi réel demandera une clé Web3Forms.";
+                            } else {
+                                successText.innerHTML =
+                                    '<strong class="submit-success__lead">Votre demande a été transmise avec succès.</strong>' +
+                                    '<span class="submit-success__body">Merci de votre confiance envers Artisan FM. Je prendrai connaissance de votre projet et vous répondrai dans un délai de 1 à 2 jours ouvrables.</span>';
+                            }
+                        }
                     }
                     resetTurnstile();
                     return;

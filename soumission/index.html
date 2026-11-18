@@ -14,15 +14,15 @@
     <meta property="og:url" content="https://artisanfm.ca/soumission/">
     <meta property="og:title" content="Démarrer un projet | Artisan FM">
     <meta property="og:description" content="Expliquez vos besoins en quelques étapes — création de sites web, applications, logiciels et interconnexion.">
-    <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
+    <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Démarrer un projet | Artisan FM">
     <meta name="twitter:description" content="Formulaire pour un projet numérique sur mesure — Artisan FM, Québec.">
-    <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png">
-    <link rel="icon" href="../assets/brand/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+    <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
+    <link rel="icon" href="../assets/brand/favicon.png?v=logo-hex-1" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png?v=logo-hex-1">
     <link rel="stylesheet" href="../css/theme-lumineux.css?v=seo-content-1">
-    <link rel="stylesheet" href="../css/soumission.css">
+    <link rel="stylesheet" href="../css/soumission.css?v=maint-2">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,7 +38,7 @@
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header class="site-header">
         <a class="brand" href="../index.html">
-            <img class="brand-logo" src="../assets/brand/logo-artisan-fm-complet.png" alt="Artisan FM — L'Artisan du numérique" width="1024" height="341" decoding="async">
+            <img class="brand-logo" src="../assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1" alt="Artisan FM — L'Artisan numérique" width="1024" height="341" decoding="async">
         </a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
         <nav class="site-nav" id="site-nav" data-root="../" data-active="projet" aria-label="Navigation principale">
@@ -224,6 +224,38 @@
                             </label>
                         </div>
 
+                        <div class="category-block" data-category="maintenance">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="maintenance" data-label="Maintenance et soutien technique" data-has-subs="true">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><path d="M30.5 12.5l5 5-3.2 3.2-5-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M27.5 15.5L14 29v5h5l13.5-13.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 18a7 7 0 0 0-7 7c0 1.2.3 2.3.8 3.3L8 35l3.7-1.2c1 .5 2.1.8 3.3.8a7 7 0 0 0 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Maintenance et soutien technique</span>
+                                    <span class="choice-card__desc">Suivi, corrections et soutien technique.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                            <div class="sub-options" id="subs-maintenance" hidden>
+                                <p class="sub-options__label">Type de maintenance</p>
+                                <div class="sub-options__grid sub-options__grid--stack">
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-maintenance" value="artisan-fm" data-label="Maintenance d’un projet réalisé par Artisan FM">
+                                        <span class="choice-card__title">Maintenance d’un projet réalisé par Artisan FM</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                    <label class="choice-card choice-card--sub">
+                                        <input type="checkbox" name="sub-maintenance" value="externe" data-label="Maintenance d’un système existant (externe à Artisan FM)" data-note-target="maintenance-externe-note">
+                                        <span class="choice-card__title">Maintenance d’un système existant (externe à Artisan FM)</span>
+                                        <span class="choice-card__check" aria-hidden="true"></span>
+                                    </label>
+                                </div>
+                                <p class="category-note__text" id="maintenance-externe-note" hidden>
+                                    Pour les systèmes externes, chaque demande sera évaluée avant toute acceptation.
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="category-block" data-category="autre">
                             <label class="choice-card choice-card--category">
                                 <input type="checkbox" name="categories" value="autre" data-label="Autre / Je ne sais pas encore" data-has-subs="false">
@@ -337,6 +369,20 @@
                             <p class="field-error" id="clientPosteError" role="alert"></p>
                         </div>
                     </div>
+                    <div class="field" id="field-clientSignal">
+                        <label for="clientSignal" class="field-label-with-icon">
+                            <img
+                                class="field-signal-icon"
+                                src="../assets/contact/icone-signal.svg?v=dispo-2"
+                                alt=""
+                                width="160"
+                                height="160"
+                                decoding="async"
+                                aria-hidden="true">
+                            Identifiant Signal <span class="optional">(facultatif)</span>
+                        </label>
+                        <input type="text" id="clientSignal" name="clientSignal" autocomplete="off" placeholder="ex. artisanfm.48">
+                    </div>
                     <div class="field">
                         <label for="clientCompany">Entreprise <span class="optional">(facultatif)</span></label>
                         <input type="text" id="clientCompany" name="clientCompany" autocomplete="organization">
@@ -357,7 +403,10 @@
                 </div>
 
                 <p class="field-error" id="submitError" role="alert"></p>
-                <p class="submit-success" id="submitSuccess" hidden role="status"></p>
+                <p class="submit-success" id="submitSuccess" hidden role="status">
+                    <span class="submit-success__icon" aria-hidden="true">✓</span>
+                    <span class="submit-success__text" id="submitSuccessText"></span>
+                </p>
 
                 <div class="form-actions">
                     <button class="btn btn-ghost" type="button" id="backToStep3">Précédent</button>
@@ -372,9 +421,9 @@
     <footer class="site-footer">
         <p>&copy; ArtisanFM 2026</p>
     </footer>
-    <script src="../js/soumission-config.js"></script>
-    <script src="../js/soumission-mail-html.js"></script>
+    <script src="../js/soumission-config.js?v=worker-1"></script>
+    <script src="../js/soumission-mail-html.js?v=links-2"></script>
     <script src="../js/nav.js?v=page-arrows-4"></script>
-    <script src="../js/soumission.js"></script>
+    <script src="../js/soumission.js?v=links-2"></script>
 </body>
 </html>

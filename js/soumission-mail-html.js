@@ -34,6 +34,99 @@
         return escapeHtml(str).replace(/\r\n|\r|\n/g, "<br>");
     }
 
+    function linkStyle() {
+        return "color:#1a6fa8;text-decoration:underline;";
+    }
+
+    function phoneDigits(phone) {
+        return String(phone || "").replace(/\D/g, "");
+    }
+
+    function phoneTelHref(phone) {
+        var digits = phoneDigits(phone);
+        if (!digits) return "";
+        if (digits.length === 10) digits = "1" + digits;
+        if (digits.length === 11 && digits.charAt(0) === "1") {
+            return "tel:+" + digits;
+        }
+        return digits ? "tel:+" + digits : "";
+    }
+
+    /* Format que Gmail mobile reconnait souvent au toucher. */
+    function phoneIntlDisplay(phone) {
+        var digits = phoneDigits(phone);
+        if (!digits) return "";
+        if (digits.length === 11 && digits.charAt(0) === "1") {
+            digits = digits.slice(1);
+        }
+        if (digits.length === 10) {
+            return (
+                "+1 " +
+                digits.slice(0, 3) +
+                "-" +
+                digits.slice(3, 6) +
+                "-" +
+                digits.slice(6)
+            );
+        }
+        return String(phone || "").trim();
+    }
+
+    function signalHref(signalId) {
+        var raw = String(signalId || "").trim().replace(/^@/, "");
+        if (!raw || raw === "—") return "";
+        return "https://signal.me/#u/" + encodeURIComponent(raw);
+    }
+
+    function emailLinkHtml(email) {
+        var value = String(email || "").trim();
+        if (!value) return "—";
+        return (
+            '<a href="mailto:' +
+            escapeHtml(value) +
+            '" style="' +
+            linkStyle() +
+            '">' +
+            escapeHtml(value) +
+            "</a>"
+        );
+    }
+
+    function phoneLinkHtml(phone, poste) {
+        var label = String(phone || "").trim();
+        var href = phoneTelHref(phone);
+        if (!label && !poste) return "—";
+        var text =
+            escapeHtml(label || "—") +
+            (poste ? " &nbsp;·&nbsp; poste " + escapeHtml(poste) : "");
+        if (!href) return text;
+        return (
+            '<a href="' +
+            escapeHtml(href) +
+            '" style="' +
+            linkStyle() +
+            '">' +
+            text +
+            "</a>"
+        );
+    }
+
+    function signalLinkHtml(signalId) {
+        var raw = String(signalId || "").trim();
+        var href = signalHref(raw);
+        if (!raw || raw === "—") return "—";
+        if (!href) return escapeHtml(raw);
+        return (
+            '<a href="' +
+            escapeHtml(href) +
+            '" style="' +
+            linkStyle() +
+            '">' +
+            escapeHtml(raw) +
+            "</a>"
+        );
+    }
+
     function row(label, valueHtml) {
         return (
             '<tr>' +
@@ -63,8 +156,7 @@
     function buildHtml(data) {
         data = data || {};
         var phoneLine = data.clientPhone
-            ? escapeHtml(data.clientPhone) +
-              (data.clientPoste ? " &nbsp;·&nbsp; poste " + escapeHtml(data.clientPoste) : "")
+            ? phoneLinkHtml(data.clientPhone, data.clientPoste)
             : data.clientPoste
               ? "Poste " + escapeHtml(data.clientPoste)
               : "—";
@@ -95,9 +187,10 @@
         var coords =
             '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;">' +
             row("Nom", escapeHtml(data.clientName || "—")) +
-            row("Courriel", escapeHtml(data.clientEmail || "—")) +
+            row("Courriel", emailLinkHtml(data.clientEmail)) +
             row("Entreprise", escapeHtml(data.clientCompany || "—")) +
             row("Téléphone", phoneLine) +
+            row("Identifiant Signal", signalLinkHtml(data.clientSignal)) +
             "</table>";
 
         var projetInner = selections
@@ -167,18 +260,33 @@
 
     function buildText(data) {
         data = data || {};
+        var email = String(data.clientEmail || "").trim();
+        var phoneIntl = phoneIntlDisplay(data.clientPhone);
+        var signalRaw = String(data.clientSignal || "").trim();
+        var signalUrl = signalHref(signalRaw);
         var lines = [];
         lines.push("Nouvelle demande — Artisan FM");
         lines.push("");
         lines.push("— Coordonnées —");
         lines.push("Nom : " + (data.clientName || ""));
-        lines.push("Courriel : " + (data.clientEmail || ""));
         lines.push("Entreprise : " + (data.clientCompany || "—"));
-        lines.push(
-            "Téléphone : " +
-                (data.clientPhone || "—") +
-                (data.clientPoste ? "  poste " + data.clientPoste : "")
-        );
+        lines.push("");
+        lines.push("Courriel :");
+        lines.push(email || "—");
+        lines.push("");
+        lines.push("Téléphone :");
+        lines.push(phoneIntl || "—");
+        if (data.clientPoste) {
+            lines.push("Poste : " + data.clientPoste);
+        }
+        lines.push("");
+        lines.push("Identifiant Signal :");
+        if (signalUrl) {
+            lines.push(signalRaw);
+            lines.push(signalUrl);
+        } else {
+            lines.push("—");
+        }
         lines.push("");
         lines.push("— Besoins —");
         lines.push(data.needDescription || "");

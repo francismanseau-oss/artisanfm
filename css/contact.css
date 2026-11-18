@@ -72,9 +72,67 @@ body.page-contact.theme-lumineux main#contenu {
         0 0 0 1px rgba(255, 255, 255, 0.85) inset;
 }
 
+.contact-panel--heures,
 .contact-panel--dispo {
     width: 100%;
     padding: 1.15rem 1.35rem 1.25rem;
+}
+
+.contact-panel--heures {
+    margin-bottom: 1.15rem;
+}
+
+.contact-panel--heures .contact-panel__title {
+    margin-bottom: 0.85rem;
+}
+
+.contact-heures {
+    margin: 0;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.contact-heures__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem 1.25rem;
+    align-items: baseline;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.75rem;
+    background: rgba(241, 250, 255, 0.72);
+    border: 1px solid rgba(139, 207, 244, 0.28);
+}
+
+.contact-heures__row dt {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--profond);
+}
+
+.contact-heures__row dd {
+    margin: 0;
+    font-size: 0.96rem;
+    font-weight: 500;
+    color: var(--profond-soft);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.contact-heures__urgent {
+    margin-top: 1rem;
+    padding-top: 0.95rem;
+    border-top: 1px solid rgba(139, 207, 244, 0.32);
+}
+
+.contact-heures__urgent-title {
+    margin: 0 0 0.4rem;
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--profond);
+    letter-spacing: -0.01em;
 }
 
 .contact-panel__head {
@@ -226,6 +284,15 @@ body.page-contact.theme-lumineux main#contenu {
 
     .contact-panel {
         padding: 1.05rem 1.1rem 1.15rem;
+    }
+
+    .contact-heures__row {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+    }
+
+    .contact-heures__row dd {
+        text-align: left;
     }
 
     .contact-panel__signal-row {
