@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow">
-    <title>Démarrer un projet | Demande de soumission — Artisan FM</title>
+    <title>Évaluation | Demande de soumission — Artisan FM</title>
     <meta name="description" content="Décrivez votre besoin : site web, application, logiciel ou outils à interconnecter. Formulaire simple — artisan numérique indépendant au Québec.">
     <meta name="author" content="Francis Manseau">
     <link rel="canonical" href="https://artisanfm.ca/soumission/">
@@ -12,24 +12,24 @@
     <meta property="og:locale" content="fr_CA">
     <meta property="og:site_name" content="Artisan FM">
     <meta property="og:url" content="https://artisanfm.ca/soumission/">
-    <meta property="og:title" content="Démarrer un projet | Artisan FM">
+    <meta property="og:title" content="Évaluation | Artisan FM">
     <meta property="og:description" content="Donnez vie à votre projet numérique : décrivez vos besoins en quelques étapes — sites web, applications, logiciels et interconnexion.">
     <meta property="og:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Démarrer un projet | Artisan FM">
+    <meta name="twitter:title" content="Évaluation | Artisan FM">
     <meta name="twitter:description" content="Formulaire pour un projet numérique sur mesure — Artisan FM, Québec.">
     <meta name="twitter:image" content="https://artisanfm.ca/assets/brand/logo-artisan-fm-complet.png?v=logo-hex-1">
     <link rel="icon" href="../assets/brand/favicon.png?v=logo-hex-1" type="image/png">
     <link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png?v=logo-hex-1">
-    <link rel="stylesheet" href="../css/theme-lumineux.css?v=page-gutter-4">
-    <link rel="stylesheet" href="../css/soumission.css?v=page-gutter-4">
+    <link rel="stylesheet" href="../css/theme-lumineux.css?v=footer-center-1">
+    <link rel="stylesheet" href="../css/soumission.css?v=budget-delai-1">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Démarrer un projet — Artisan FM",
+      "name": "Évaluation — Artisan FM",
       "url": "https://artisanfm.ca/soumission/",
-      "description": "Formulaire pour démarrer un projet de site web, d'application, de logiciel ou d'interconnexion de systèmes.",
+      "description": "Formulaire pour évaluation de site web, d'application, de logiciel ou d'interconnexion de systèmes.",
       "isPartOf": { "@type": "WebSite", "name": "Artisan FM", "url": "https://artisanfm.ca/" }
     }
     </script>
@@ -45,7 +45,7 @@
             <a href="../index.html">L'Atelier</a>
             <a href="../realisations/index.html">Mes réalisations</a>
             <a href="../services/index.html">Mes services</a>
-            <a href="../soumission/index.html" aria-current="page">Démarrer un projet</a>
+            <a href="../soumission/index.html" aria-current="page">Évaluation</a>
             <a href="../contact/index.html">Contact</a>
         </nav>
     </header>
@@ -194,6 +194,20 @@
                             </label>
                         </div>
 
+                        <div class="category-block" data-category="serveur">
+                            <label class="choice-card choice-card--category">
+                                <input type="checkbox" name="categories" value="serveur" data-label="Serveur et infrastructure" data-has-subs="false">
+                                <span class="choice-card__icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" focusable="false"><rect x="10" y="10" width="28" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="10" y="24" width="28" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15h2M15 29h2M24 38v-4M18 38h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="choice-card__body">
+                                    <span class="choice-card__title">Serveur et infrastructure</span>
+                                    <span class="choice-card__desc">Installation, configuration et interconnexion de serveurs et de services numériques, privés ou hébergés.</span>
+                                </span>
+                                <span class="choice-card__check" aria-hidden="true"></span>
+                            </label>
+                        </div>
+
                         <div class="category-block" data-category="automatisation">
                             <label class="choice-card choice-card--category">
                                 <input type="checkbox" name="categories" value="automatisation" data-label="Automatisation" data-has-subs="false">
@@ -293,34 +307,76 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="field-row">
-                        <div class="field">
-                            <label for="timelineType">Délai souhaité</label>
-                            <select id="timelineType" name="timelineType">
-                                <option value="">— Sélectionnez une option —</option>
-                                <option value="des-que-possible">Dès que possible</option>
-                                <option value="semaine">Cette semaine</option>
-                                <option value="mois">Ce mois-ci</option>
-                                <option value="trois-mois">Dans les 3 prochains mois</option>
-                                <option value="flexible">Flexible / À discuter</option>
-                                <option value="sans-date">Aucune date précise</option>
-                            </select>
+                <div class="form-group form-group--attentes">
+                    <div class="field">
+                        <label for="timelineType">Délai souhaité</label>
+                        <select id="timelineType" name="timelineType">
+                            <option value="">— Sélectionnez une option —</option>
+                            <option value="1-2-semaines">1 à 2 semaines</option>
+                            <option value="2-4-semaines">2 à 4 semaines</option>
+                            <option value="1-2-mois">1 à 2 mois</option>
+                            <option value="2-3-mois">2 à 3 mois</option>
+                            <option value="plus-3-mois">Plus de 3 mois</option>
+                            <option value="aucune-echeance">Aucune échéance précise</option>
+                        </select>
+                        <p class="field-hint">Les délais sont évalués selon la nature et la complexité du projet.</p>
+                    </div>
+
+                    <div class="field" id="field-budgetType">
+                        <p class="field-label" id="budgetTypeLabel">Budget envisagé <span class="optional">(indicatif, $ CA)</span></p>
+                        <div class="budget-options" role="radiogroup" aria-labelledby="budgetTypeLabel" id="budgetType">
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="moins-500">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">Moins de 500 $</span>
+                                    <span class="budget-option__example">Dépannage, correction ou petit ajustement.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="500-1499">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">500 $ à 1 499 $</span>
+                                    <span class="budget-option__example">Site vitrine simple, petite création numérique ou automatisation simple.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="1500-2999">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">1 500 $ à 2 999 $</span>
+                                    <span class="budget-option__example">Site vitrine avancé, outil personnalisé ou connexion simple entre systèmes.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="3000-4999">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">3 000 $ à 4 999 $</span>
+                                    <span class="budget-option__example">Site transactionnel, application sur mesure ou configuration de serveur.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="5000-9999">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">5 000 $ à 9 999 $</span>
+                                    <span class="budget-option__example">Solution évoluée réunissant plusieurs outils et plateformes.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="10000-plus">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">10 000 $ et plus</span>
+                                    <span class="budget-option__example">Architecture numérique complexe ou écosystème complet sur mesure.</span>
+                                </span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budgetType" value="inconnu">
+                                <span class="budget-option__body">
+                                    <span class="budget-option__amount">Je ne sais pas encore</span>
+                                    <span class="budget-option__example">J'aimerais être guidé.</span>
+                                </span>
+                            </label>
                         </div>
-                        <div class="field">
-                            <label for="budgetType">Budget envisagé <span class="optional">(indicatif, $ CA)</span></label>
-                            <select id="budgetType" name="budgetType">
-                                <option value="">— Sélectionnez une option —</option>
-                                <option value="moins-500">Moins de 500 $</option>
-                                <option value="500-1499">500 $ à 1 499 $</option>
-                                <option value="1500-2999">1 500 $ à 2 999 $</option>
-                                <option value="3000-4999">3 000 $ à 4 999 $</option>
-                                <option value="5000-9999">5 000 $ à 9 999 $</option>
-                                <option value="10000-plus">10 000 $ et plus</option>
-                                <option value="inconnu">Je ne sais pas encore</option>
-                            </select>
-                            <p class="field-hint">Indiquez ce que vous envisagez — ce n’est ni une soumission ni un engagement de prix.</p>
-                        </div>
+                        <p class="field-hint">Ces exemples sont donnés à titre indicatif. Le coût réel dépend des fonctionnalités, de la complexité et des besoins de votre projet.</p>
+                        <p class="field-error" id="budgetTypeError" role="alert"></p>
                     </div>
                 </div>
 
@@ -421,8 +477,8 @@
         <p>&copy; ArtisanFM 2026</p>
     </footer>
     <script src="../js/soumission-config.js?v=worker-1"></script>
-    <script src="../js/soumission-mail-html.js?v=links-2"></script>
+    <script src="../js/soumission-mail-html.js?v=budget-delai-1"></script>
     <script src="../js/nav.js?v=page-arrows-4"></script>
-    <script src="../js/soumission.js?v=links-2"></script>
+    <script src="../js/soumission.js?v=budget-delai-1"></script>
 </body>
 </html>

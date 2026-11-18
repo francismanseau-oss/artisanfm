@@ -18,12 +18,12 @@
     };
 
     var TIMELINE_LABELS = {
-        "des-que-possible": "Dès que possible",
-        semaine: "Cette semaine",
-        mois: "Ce mois-ci",
-        "trois-mois": "Dans les 3 prochains mois",
-        flexible: "Flexible / À discuter",
-        "sans-date": "Aucune date précise"
+        "1-2-semaines": "1 à 2 semaines",
+        "2-4-semaines": "2 à 4 semaines",
+        "1-2-mois": "1 à 2 mois",
+        "2-3-mois": "2 à 3 mois",
+        "plus-3-mois": "Plus de 3 mois",
+        "aucune-echeance": "Aucune échéance précise"
     };
 
     var formError = document.getElementById("formError");
@@ -52,8 +52,12 @@
     }
 
     function value(id) {
+        var checked = document.querySelector('input[name="' + id + '"]:checked');
+        if (checked) return String(checked.value || "").trim();
         var el = field(id);
-        return el ? String(el.value || "").trim() : "";
+        if (!el) return "";
+        if (el.tagName === "DIV" || el.tagName === "FIELDSET") return "";
+        return String(el.value || "").trim();
     }
 
     function setError(id, message) {

@@ -9,7 +9,7 @@ Site statique pour [artisanfm.ca](https://artisanfm.ca/) — L'Artisan du numér
 | L'Atelier | `/` |
 | Mes réalisations | `/realisations/` |
 | Mes services | `/services/` |
-| Démarrer un projet | `/soumission/` |
+| Évaluation | `/soumission/` |
 | Contact | `/contact/` |
 
 Hébergement : GitHub Pages (`main`, racine). SEO : `robots.txt`, `sitemap.xml`.

@@ -14,12 +14,12 @@
     };
 
     var TIMELINE_LABELS = {
-        "des-que-possible": "Dès que possible",
-        semaine: "Cette semaine",
-        mois: "Ce mois-ci",
-        "trois-mois": "Dans les 3 prochains mois",
-        flexible: "Flexible / À discuter",
-        "sans-date": "Aucune date précise"
+        "1-2-semaines": "1 à 2 semaines",
+        "2-4-semaines": "2 à 4 semaines",
+        "1-2-mois": "1 à 2 mois",
+        "2-3-mois": "2 à 3 mois",
+        "plus-3-mois": "Plus de 3 mois",
+        "aucune-echeance": "Aucune échéance précise"
     };
 
     function escapeHtml(str) {
@@ -215,7 +215,7 @@
             "<tr><td style=\"padding:28px 24px 20px 24px;background-color:#ffffff;border-bottom:1px solid #d9f0ff;\">" +
             '<p style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5eb8e8;">Artisan FM</p>' +
             '<h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.25;font-weight:700;color:#244b69;">Nouvelle demande de projet</h1>' +
-            '<p style="margin:10px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#3d6a8c;">Formulaire « Démarrer un projet »</p>' +
+            '<p style="margin:10px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#3d6a8c;">Formulaire « Évaluation »</p>' +
             "</td></tr>" +
             /* Espace sous en-tête */
             '<tr><td style="height:20px;line-height:20px;font-size:1px;">&nbsp;</td></tr>' +

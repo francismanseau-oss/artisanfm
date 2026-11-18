@@ -3,7 +3,7 @@
         { id: "atelier", file: "index.html", label: "L'Atelier" },
         { id: "realisations", file: "realisations/index.html", label: "Mes réalisations" },
         { id: "services", file: "services/index.html", label: "Mes services" },
-        { id: "projet", file: "soumission/index.html", label: "Démarrer un projet" },
+        { id: "projet", file: "soumission/index.html", label: "Évaluation" },
         { id: "contact", file: "contact/index.html", label: "Contact" }
     ];
 

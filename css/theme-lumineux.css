@@ -234,7 +234,6 @@ body.theme-lumineux .site-footer {
     margin: 0 auto;
     padding: 1.35rem var(--page-inline) 1.6rem;
     box-sizing: border-box;
-}
     border-top: 1px solid rgba(139, 207, 244, 0.28);
     color: var(--profond-soft);
     font-family: var(--display);
@@ -246,6 +245,7 @@ body.theme-lumineux .site-footer {
 
 body.theme-lumineux .site-footer p {
     margin: 0;
+    text-align: center;
 }
 
 body.theme-lumineux main#contenu.measure,
