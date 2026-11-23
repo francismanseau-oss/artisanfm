@@ -482,3 +482,98 @@ a.site-page-arrow:hover {
         transform: translateY(-50%);
     }
 }
+
+/* —— Consentement statistiques / GA4 —— */
+.afm-consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    padding: 0.85rem var(--page-inline) calc(0.85rem + env(safe-area-inset-bottom));
+    pointer-events: none;
+}
+
+.afm-consent[hidden] {
+    display: none !important;
+}
+
+.afm-consent__panel {
+    pointer-events: auto;
+    width: min(40rem, 100%);
+    margin: 0 auto;
+    padding: 1rem 1.1rem 1.05rem;
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(139, 207, 244, 0.5);
+    box-shadow: 0 16px 40px rgba(36, 75, 105, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.afm-consent__title {
+    margin: 0 0 0.4rem;
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--profond);
+}
+
+.afm-consent__text {
+    margin: 0 0 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--profond-soft);
+}
+
+.afm-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.afm-consent__btn {
+    appearance: none;
+    min-height: 44px;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.afm-consent__btn--accept {
+    background: var(--azur-vif);
+    color: #fff;
+    border-color: var(--azur-vif);
+}
+
+.afm-consent__btn--accept:hover {
+    background: #4aa9d9;
+}
+
+.afm-consent__btn--refuse {
+    background: #fff;
+    color: var(--profond);
+    border-color: rgba(139, 207, 244, 0.65);
+}
+
+.afm-consent__btn--refuse:hover {
+    background: var(--glacier);
+}
+
+@media (max-width: 720px) {
+    .afm-consent {
+        padding-inline: 0.75rem;
+    }
+
+    .afm-consent__actions {
+        flex-direction: column;
+    }
+
+    .afm-consent__btn {
+        width: 100%;
+    }
+}
