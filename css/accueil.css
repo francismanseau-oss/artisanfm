@@ -104,14 +104,16 @@ body.page-atelier.theme-lumineux main#contenu {
     box-shadow: 0 24px 60px rgba(36, 75, 105, 0.12);
 }
 
-/* Ordinateur : taille finale réglée en JS (ratio 1024×682, alignée à la boîte texte) */
+/* Ordinateur : taille finale réglée en JS (même hauteur que .hero-assemble__copy) */
 @media (min-width: 981px) {
     .assemble-scene {
         width: auto;
         max-width: 100%;
         margin-inline: 0;
         justify-self: end;
-        align-self: center;
+        align-self: stretch;
+        /* Hauteur pilotée par JS ; aspect-ratio ne doit pas rétrécir la boîte */
+        aspect-ratio: auto;
     }
 }
 

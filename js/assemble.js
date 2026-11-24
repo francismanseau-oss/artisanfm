@@ -18,17 +18,19 @@
         var copyHeight = copy.getBoundingClientRect().height;
         if (!copyHeight) return;
 
+        // Même hauteur que la boîte texte (exigence visuelle).
+        // Largeur = hauteur × ratio image, plafonnée à la colonne.
+        // Si le plafond réduit la largeur, de minces bandes peuvent apparaître :
+        // le fond CSS (teinte bords image) les absorbe — pas de blanc parasite.
         var targetWidth = copyHeight * ASPECT;
         var hero = document.querySelector(".hero-assemble");
         var availWidth = hero ? hero.getBoundingClientRect().width : targetWidth;
         var colShare = 1.15 / (0.95 + 1.15);
         var maxColWidth = Math.max(0, availWidth * colShare);
-
-        // Ratio 1024×682 via aspect-ratio CSS (hauteur auto) → pas de bandes letterbox
-        // même si max-width réduit encore la largeur.
         var width = Math.min(targetWidth, maxColWidth);
+
+        scene.style.height = Math.round(copyHeight * 100) / 100 + "px";
         scene.style.width = Math.round(width * 100) / 100 + "px";
-        scene.style.height = "auto";
     }
 
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
