@@ -24,12 +24,11 @@
         var colShare = 1.15 / (0.95 + 1.15);
         var maxColWidth = Math.max(0, availWidth * colShare);
 
-        // Cadre = hauteur du texte ; largeur selon le ratio si la colonne le permet
-        var height = copyHeight;
+        // Ratio 1024×682 via aspect-ratio CSS (hauteur auto) → pas de bandes letterbox
+        // même si max-width réduit encore la largeur.
         var width = Math.min(targetWidth, maxColWidth);
-
-        scene.style.height = Math.round(height * 100) / 100 + "px";
         scene.style.width = Math.round(width * 100) / 100 + "px";
+        scene.style.height = "auto";
     }
 
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

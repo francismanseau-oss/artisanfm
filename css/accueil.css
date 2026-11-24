@@ -98,20 +98,20 @@ body.page-atelier.theme-lumineux main#contenu {
     border-radius: 1.35rem;
     overflow: hidden;
     isolation: isolate;
-    background: #eaf6fd;
+    /* Teinte proche des bords de l’image (anti-frange coins arrondis) */
+    background-color: rgb(228, 241, 251);
     border: 1px solid rgba(139, 207, 244, 0.4);
-    box-shadow:
-        0 24px 60px rgba(36, 75, 105, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 24px 60px rgba(36, 75, 105, 0.12);
 }
 
-/* Ordinateur : taille finale réglée en JS (hauteur = boîte texte, ratio 1024×682) */
+/* Ordinateur : taille finale réglée en JS (ratio 1024×682, alignée à la boîte texte) */
 @media (min-width: 981px) {
     .assemble-scene {
         width: auto;
         max-width: 100%;
         margin-inline: 0;
         justify-self: end;
+        align-self: center;
     }
 }
 
