@@ -723,6 +723,116 @@ textarea[aria-invalid="true"] {
     min-height: 1.5rem;
 }
 
+.tarif-card,
+.billing-card {
+    margin: 0 0 1.25rem;
+    padding: clamp(1.15rem, 2.4vw, 1.5rem) clamp(1.1rem, 2.6vw, 1.65rem);
+    border-radius: 1.35rem;
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.9), rgba(241, 250, 255, 0.6));
+    border: 1px solid rgba(139, 207, 244, 0.34);
+    box-shadow: var(--ombre-douce), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-sizing: border-box;
+}
+
+.billing-card {
+    margin: 1.45rem 0 0;
+}
+
+.tarif-card__title,
+.billing-card__title {
+    margin: 0 0 0.85rem;
+    font-family: var(--display);
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    color: var(--profond);
+    letter-spacing: -0.015em;
+}
+
+.tarif-table-wrap {
+    overflow-x: auto;
+    margin: 0 0 0.95rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(139, 207, 244, 0.36);
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.tarif-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.97rem;
+    color: var(--profond);
+}
+
+.tarif-table th,
+.tarif-table td {
+    padding: 0.72rem 0.95rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(139, 207, 244, 0.25);
+}
+
+.tarif-table thead th {
+    font-family: var(--display);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--profond-soft);
+    background: rgba(217, 240, 255, 0.42);
+}
+
+.tarif-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tarif-table__rate-col,
+.tarif-table__rate {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.tarif-table__rate {
+    font-family: var(--display);
+    font-weight: 700;
+    color: var(--profond);
+}
+
+.tarif-card__text,
+.tarif-card__note {
+    margin: 0 0 0.55rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--profond);
+}
+
+.tarif-card__note {
+    margin-bottom: 0;
+    color: var(--profond-soft);
+    font-size: 0.91rem;
+}
+
+.budget-intro {
+    margin: 0.2rem 0 0.7rem;
+    font-size: 0.93rem;
+    line-height: 1.5;
+    color: var(--profond-soft);
+}
+
+.billing-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.52rem;
+    font-size: 0.94rem;
+    line-height: 1.52;
+    color: var(--profond);
+}
+
+.billing-list strong {
+    color: var(--profond);
+}
+
 @media (max-width: 820px) {
     .field-row,
     .field-row--phone {
@@ -745,8 +855,16 @@ textarea[aria-invalid="true"] {
         padding-top: 0.35rem;
     }
 
-    .form-panel {
+    .form-panel,
+    .tarif-card,
+    .billing-card {
         padding: 1.1rem 0.95rem 1.25rem;
+    }
+
+    .tarif-table th,
+    .tarif-table td {
+        padding: 0.62rem 0.7rem;
+        font-size: 0.92rem;
     }
 
     .sub-options__grid {
