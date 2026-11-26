@@ -429,6 +429,12 @@ a.site-page-arrow:hover {
     transform: translateY(-50%) scale(1.06);
 }
 
+@media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+    .site-page-arrow {
+        display: none;
+    }
+}
+
 .site-back-top {
     position: fixed;
     right: max(0.85rem, env(safe-area-inset-right, 0px));
